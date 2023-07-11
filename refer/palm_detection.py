@@ -14,7 +14,7 @@ class PalmDetection:
         shape = (128, 128)
         num_keypoints = 7
         min_score_thresh = 0.7
-        anchors = np.load("../anchors_palm.npy")
+        anchors = np.load("anchors_palm.npy")
 
         # Run the neural network
         results = self.to_tensor_result(nn_data)

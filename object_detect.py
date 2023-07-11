@@ -5,25 +5,22 @@ import time
 import cv2
 import depthai as dai
 import numpy as np
-import blobconverter
 
-from curve import draw_curve
+from config_ import DEPTH_THRESH_LOW, DEPTH_THRESH_HIGH, num_columns
+from utils.pipeline_provider import get_prepared_pipeline
 
-DEPTH_THRESH_HIGH = 3000
-DEPTH_THRESH_LOW = 500
-WARNING_DIST = 300
-import random
-num_columns = 20
+from utils.curve import draw_curve
 
 
 # 希望识别的物体
-OBSTACLE_OBJECTS = ["person", "chair", "table", "bottle","background"]
+OBSTACLE_OBJECTS = ["person", "chair", "table", "bottle", "background"]
 
 # MobilenetSSD标签文本
 labelMap = ["background", "aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat", "chair", "cow",
             "diningtable", "dog", "horse", "motorbike", "person", "pottedplant", "sheep", "sofa", "train", "tvmonitor"]
 
 frame = None
+
 
 def crop_to_rect(frame):
     height = frame.shape[0]
@@ -35,10 +32,42 @@ def crop_to_rect(frame):
 def annotate_fun(img, color, fontFace=cv2.FONT_HERSHEY_TRIPLEX, fontScale=0.5, **kwargs):
     def fun(text, pos):
         cv2.putText(img, text, pos, fontFace, fontScale, color, **kwargs)
+
     return fun
 
 
 # 实现人机安全功能
+def draw_detections(frame, detections):
+    color = (0, 0, 0)
+    annotate = annotate_fun(frame, (0, 0, 25))
+
+    for detection in detections:
+        if labelMap[detection.label] not in OBSTACLE_OBJECTS:
+            continue
+        height = frame.shape[0]
+        width = frame.shape[1]
+        # Denormalize bounding box
+        x1 = int(detection.xmin * width)
+        x2 = int(detection.xmax * width)
+        y1 = int(detection.ymin * height)
+        y2 = int(detection.ymax * height)
+
+        offsetX = x1 + 10
+        annotate("{:.2f}".format(detection.confidence * 100), (offsetX, y1 + 35))  # 目标物体置信度
+        annotate(f"width:{x2 - x1}", (offsetX, y1 + 50))
+        annotate(f"height:{y2 - y1}", (offsetX, y1 + 65))
+        annotate(f"X: {int(detection.spatialCoordinates.x)} mm", (offsetX, y1 + 80))
+        annotate(f"Y: {int(detection.spatialCoordinates.y)} mm", (offsetX, y1 + 95))
+        annotate(f"Z: {int(detection.spatialCoordinates.z)} mm", (offsetX, y1 + 110))
+        cv2.rectangle(frame, (x1, y1), (x2, y2), color, cv2.FONT_HERSHEY_SIMPLEX)
+        # noinspection PyBroadException
+        try:
+            label = labelMap[detection.label]
+        except:
+            label = detection.label
+        annotate(str(label), (offsetX, y1 + 20))
+
+
 class HumanMachineSafety:
     def __init__(self):
         print("Loading pipeline...")
@@ -103,38 +132,6 @@ class HumanMachineSafety:
 
         return x, y, z
 
-
-
-    def draw_detections(self, frame, detections):
-        color = (0, 0, 0)
-        annotate = annotate_fun(frame, (0, 0, 25))
-
-        for detection in detections:
-            if labelMap[detection.label] not in OBSTACLE_OBJECTS:
-                continue
-            height = frame.shape[0]
-            width = frame.shape[1]
-            # Denormalize bounding box
-            x1 = int(detection.xmin * width)
-            x2 = int(detection.xmax * width)
-            y1 = int(detection.ymin * height)
-            y2 = int(detection.ymax * height)
-
-
-            offsetX = x1 + 10
-            annotate("{:.2f}".format(detection.confidence * 100), (offsetX, y1 + 35))  # 目标物体置信度
-            annotate(f"width:{x2-x1}", (offsetX, y1 + 50))
-            annotate(f"height:{y2-y1}", (offsetX, y1 + 65))
-            annotate(f"X: {int(detection.spatialCoordinates.x)} mm", (offsetX, y1 + 80))
-            annotate(f"Y: {int(detection.spatialCoordinates.y)} mm", (offsetX, y1 + 95))
-            annotate(f"Z: {int(detection.spatialCoordinates.z)} mm", (offsetX, y1 + 110))
-            cv2.rectangle(frame, (x1, y1), (x2, y2), color, cv2.FONT_HERSHEY_SIMPLEX)
-            try:
-                label = labelMap[detection.label]
-            except:
-                label = detection.label
-            annotate(str(label), (offsetX, y1 + 20))
-
     # 在图像上绘制边界框
     def draw_bbox(self, bbox, color):
         def draw(img):
@@ -149,12 +146,9 @@ class HumanMachineSafety:
         draw(self.debug_frame)
         draw(self.depthFrameColor)
 
-
     # 计算角度
     def calc_angle(self, offset):
         return math.atan(math.tan(self.monoHFOV / 2.0) * offset / (self.depthWidth / 2.0))
-
-
 
     # 检测和目标检测结果，并进行计算和绘制
     def parse(self, palm_coords, detections, frame, depth, depthColored):
@@ -211,15 +205,13 @@ class HumanMachineSafety:
             detection.spatialCoordinates.y = y
             detection.spatialCoordinates.z = z
 
-
-
         # Draw obstacle detections
-        self.draw_detections(self.debug_frame, detections)
+        draw_detections(self.debug_frame, detections)
 
         cv2.imshow("color", self.debug_frame)
 
         if self.depthFrameColor is not None:
-            self.draw_detections(self.depthFrameColor, detections)
+            draw_detections(self.depthFrameColor, detections)
             cv2.imshow("depth", self.depthFrameColor)
 
         if cv2.waitKey(1) == ord("q"):
@@ -227,13 +219,8 @@ class HumanMachineSafety:
             raise StopIteration()
 
 
-
-
-
-
 # 障碍物避开算法
 def obstacle_avoidance(depth_frame):
-
     height, width = depth_frame.shape[:2]
     column_width = width // num_columns
 
@@ -244,91 +231,19 @@ def obstacle_avoidance(depth_frame):
         start_col = i * column_width
         end_col = (i + 1) * column_width
 
-        column_depth = depth_frame[0:height//2, start_col:end_col]
+        column_depth = depth_frame[0:height // 2, start_col:end_col]
         column_depth_mean = np.mean(column_depth)
         x.append(i)
         column_depth_means.append(column_depth_mean)
 
-    draw_curve(x,column_depth_means)
+    draw_curve(x, column_depth_means)
 
     for i in range(num_columns):
-        print(f"direction{i}:{int(column_depth_means[i])}",end=" ")
+        print(f"direction{i}:{int(column_depth_means[i])}", end=" ")
     print()
-
 
     return column_depth_means
 
-print("Creating pipeline...")
-pipeline = dai.Pipeline()
-# 创建了一个Pipeline对象，并添加了相机、神经网络和其他节点
-
-cam = pipeline.create(dai.node.ColorCamera)
-cam.setResolution(dai.ColorCameraProperties.SensorResolution.THE_1080_P)
-cam.setIspScale(2, 3)  # To match 720P mono cameras
-cam.setBoardSocket(dai.CameraBoardSocket.RGB)
-cam.initialControl.setManualFocus(130)
-# For MobileNet NN
-cam.setColorOrder(dai.ColorCameraProperties.ColorOrder.BGR)
-cam.setPreviewSize(300, 300)
-cam.setInterleaved(False)
-
-isp_xout = pipeline.create(dai.node.XLinkOut)
-isp_xout.setStreamName("cam")
-cam.isp.link(isp_xout.input)
-
-print(f"Creating palm detection Neural Network...")
-model_nn = pipeline.create(dai.node.NeuralNetwork)
-model_nn.setBlobPath(blobconverter.from_zoo(name="palm_detection_128x128", zoo_type="depthai", shaves=6))
-model_nn.input.setBlocking(False)
-
-# For Palm-detection NN
-manip = pipeline.create(dai.node.ImageManip)
-manip.initialConfig.setResize(128, 128)
-cam.preview.link(manip.inputImage)
-manip.out.link(model_nn.input)
-
-model_nn_xout = pipeline.create(dai.node.XLinkOut)
-model_nn_xout.setStreamName("palm_nn")
-model_nn.out.link(model_nn_xout.input)
-
-# Creating left/right mono cameras for StereoDepth
-left = pipeline.create(dai.node.MonoCamera)
-left.setResolution(dai.MonoCameraProperties.SensorResolution.THE_720_P)
-left.setBoardSocket(dai.CameraBoardSocket.LEFT)
-
-right = pipeline.create(dai.node.MonoCamera)
-right.setResolution(dai.MonoCameraProperties.SensorResolution.THE_720_P)
-right.setBoardSocket(dai.CameraBoardSocket.RIGHT)
-
-# Create StereoDepth node that will produce the depth map
-stereo = pipeline.create(dai.node.StereoDepth)
-stereo.initialConfig.setConfidenceThreshold(245)
-stereo.initialConfig.setMedianFilter(dai.StereoDepthProperties.MedianFilter.KERNEL_7x7)
-stereo.setLeftRightCheck(True)
-stereo.setDepthAlign(dai.CameraBoardSocket.RGB)
-left.out.link(stereo.left)
-right.out.link(stereo.right)
-
-sdn = pipeline.create(dai.node.MobileNetSpatialDetectionNetwork)
-sdn.setBlobPath(blobconverter.from_zoo(name="mobilenet-ssd", shaves=6))
-sdn.setConfidenceThreshold(0.5)
-sdn.input.setBlocking(False)
-sdn.setBoundingBoxScaleFactor(0.2)
-sdn.setDepthLowerThreshold(DEPTH_THRESH_LOW)
-sdn.setDepthUpperThreshold(DEPTH_THRESH_HIGH)
-
-cam.preview.link(sdn.input)
-stereo.depth.link(sdn.inputDepth)
-
-sdn_out = pipeline.create(dai.node.XLinkOut)
-sdn_out.setStreamName("det")
-sdn.out.link(sdn_out.input)
-
-depth_out = pipeline.create(dai.node.XLinkOut)
-depth_out.setStreamName("depth")
-sdn.passthroughDepth.link(depth_out.input)
-
-print("Pipeline created.")
 
 
 def start():
@@ -336,8 +251,10 @@ def start():
         cams = device.getConnectedCameras()
         depth_enabled = dai.CameraBoardSocket.LEFT in cams and dai.CameraBoardSocket.RIGHT in cams
         if not depth_enabled:
-            raise RuntimeError("Unable to run this experiment on device without depth capabilities! (Available cameras: {})".format(cams))
-        device.startPipeline(pipeline)  # 启动流水线
+            raise RuntimeError(
+                "Unable to run this experiment on device without depth capabilities! (Available cameras: {})".format(
+                    cams))
+        device.startPipeline(get_prepared_pipeline())  # 启动流水线
         # 创建输出队列
         vidQ = device.getOutputQueue(name="cam", maxSize=4, blocking=False)
         detQ = device.getOutputQueue(name="det", maxSize=4, blocking=False)
@@ -361,14 +278,12 @@ def start():
                 if in_det is not None:
                     detections = in_det.detections
 
-
                 in_depth = depthQ.tryGet()
                 if in_depth is not None:
                     depthFrame = crop_to_rect(in_depth.getFrame())
                     depthFrameColor = cv2.normalize(depthFrame, None, 255, 0, cv2.NORM_INF, cv2.CV_8UC1)
                     depthFrameColor = cv2.equalizeHist(depthFrameColor)
                     depthFrameColor = cv2.applyColorMap(depthFrameColor, cv2.COLORMAP_JET)
-
 
                 palm_in = palmQ.tryGet()
 
@@ -388,5 +303,6 @@ def start():
                 pass
 
             time.sleep(0.5)
+
 
 start()

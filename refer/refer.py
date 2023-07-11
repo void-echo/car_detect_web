@@ -3,12 +3,11 @@ import math
 import cv2
 import depthai as dai
 import numpy as np
+
+from config_ import DEPTH_THRESH_LOW, DEPTH_THRESH_HIGH, WARNING_DIST
 from palm_detection import PalmDetection
 import blobconverter
 
-DEPTH_THRESH_HIGH = 3000
-DEPTH_THRESH_LOW = 500
-WARNING_DIST = 300
 
 # If dangerous object is too close to the palm, warning will be displayed
 DANGEROUS_OBJECTS = ["bottle"]
