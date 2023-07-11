@@ -1,0 +1,168 @@
+.rs-event-grid .events-inner-item {
+  background: #fff;
+  box-shadow: 0px 30px 60px rgba(47, 47, 47, 0.07);
+  border-radius: 20px;
+  margin-bottom: 25px;
+  overflow: hidden;
+}
+.rs-event-grid .events-inner-item .thumbnail-img {
+  position: relative;
+  overflow: hidden;
+}
+.rs-event-grid .events-inner-item .thumbnail-img img {
+  border-radius: 20px 20px 0 0;
+  transition: all 0.5s ease;
+}
+.rs-event-grid .events-inner-item .content-part {
+  padding: 40px 30px 40px 30px;
+  position: relative;
+}
+.rs-event-grid .events-inner-item .content-part .event-title {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 30px;
+  margin: 0;
+}
+.rs-event-grid .events-inner-item .content-part .event-title a {
+  color: #3D3458;
+}
+.rs-event-grid .events-inner-item .content-part .event-title a:hover {
+  color: #6f49e8;
+}
+.rs-event-grid .events-inner-item .content-part .rs__date {
+  position: absolute;
+  left: 30px;
+  top: -21px;
+  background: #6f49e8;
+  color: #fff;
+  font-size: 14px;
+  padding: 8px 15px;
+  border-radius: 8px;
+}
+.rs-event-grid .events-inner-item .content-part .btn-part {
+  margin-top: 30px;
+}
+.rs-event-grid .events-inner-item .content-part .btn-part a {
+  font-size: 15px;
+  border: 2px solid rgba(111, 73, 232, 0.2);
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: #6f49e8;
+  font-weight: 500;
+  transition: all 0.5s ease;
+}
+.rs-event-grid .events-inner-item .content-part .btn-part a:hover {
+  background: #6f49e8;
+  border-color: #6f49e8;
+  color: #fff;
+}
+.rs-event-grid .events-inner-item .content-part .rs___meta {
+  margin: -5px 0 10px;
+  padding: 0 0 14px;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: rgba(77, 77, 77, 0.7411764706);
+  border-bottom: 1px solid rgba(77, 77, 77, 0.0705882353);
+}
+.rs-event-grid .events-inner-item .content-part .rs___meta li i {
+  color: #6f49e8;
+  background: #F1EDFF;
+  padding: 5px;
+  border-radius: 50%;
+  font-size: 15px;
+  position: relative;
+  top: 1px;
+  margin-right: 5px;
+}
+.rs-event-grid .events-inner-item .content-part .rs___meta li + li {
+  padding-left: 25px;
+  position: relative;
+}
+.rs-event-grid .events-inner-item:hover .thumbnail-img img {
+  transform: scale(1.1);
+}
+.rs-event-grid .events-inner-item.style__2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 35px 35px 35px 35px;
+  box-shadow: 30px -5px 60px rgba(0, 0, 1, 0.05);
+}
+.rs-event-grid .events-inner-item.style__2 .thumbnail-img {
+  flex: 0 0 35%;
+  max-width: 35%;
+  overflow: visible;
+}
+.rs-event-grid .events-inner-item.style__2 .thumbnail-img img {
+  transform: scale(1);
+}
+.rs-event-grid .events-inner-item.style__2 .thumbnail-img:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: -5px;
+  bottom: -5px;
+  background: #FF0066;
+  z-index: 0;
+  transition: all 0.5s ease;
+}
+.rs-event-grid .events-inner-item.style__2 .content-part {
+  flex: 0 0 65%;
+  max-width: 65%;
+  padding: 0 0 0 35px;
+}
+.rs-event-grid .events-inner-item.style__2 .content-part ul {
+  margin: 0 0 -6px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+.rs-event-grid .events-inner-item.style__2 .content-part ul li + li {
+  padding-left: 38px;
+}
+.rs-event-grid .events-inner-item.style__2 .content-part ul li + li:before {
+  content: "";
+  position: absolute;
+  background: #999;
+  height: 8px;
+  width: 1px;
+  left: 20px;
+  top: 10px;
+}
+.rs-event-grid .events-inner-item.style__2 .content-part ul li {
+  font-size: 16px;
+  font-weight: 500;
+  color: #6d6d6d;
+  position: relative;
+}
+.rs-event-grid .events-inner-item.style__2 .content-part ul li i {
+  margin-right: 2px;
+  color: #FF0066;
+}
+.rs-event-grid .events-inner-item.style__2 .content-part .event-title {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 34px;
+  margin: 7px 0 15px;
+}
+.rs-event-grid .events-inner-item.style__2 .content-part p.txt {
+  margin: 0 0 20px;
+  font-size: 16px;
+  color: rgba(77, 77, 77, 0.8392156863);
+}
+.rs-event-grid .events-inner-item.style__2 .content-part .rs__line_ev path {
+  fill: #7B93DD;
+}
+.rs-event-grid .events-inner-item.style__2:hover .thumbnail-img:before {
+  left: -8px;
+  bottom: -8px;
+}
+@media only screen and (max-width: 991px) {
+  .rs-event-grid .event-item.style2-custom {
+    width: 100%;
+  }
+}

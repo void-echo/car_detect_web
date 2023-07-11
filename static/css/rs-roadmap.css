@@ -1,0 +1,938 @@
+.elementor-widget-container:hover .rs-addon-services.services-style2::before {
+  transform: scaleY(1);
+}
+
+.rs-addon-services {
+  text-align: center;
+}
+
+.rs-addon-services .services-part {
+  position: relative;
+}
+
+.rs-addon-services .services-part .services-icon {
+  display: inline-block;
+  padding: 5px;
+  font-size: 50px;
+  line-height: 50px;
+  color: #010d14;
+  transition: all ease 0.3s;
+  position: relative;
+  z-index: 3;
+}
+
+.rs-addon-services .services-part .services-icon i {
+  transition: all ease 0.3s;
+}
+
+.rs-addon-services .services-part .services-icon i:before {
+  margin: 0;
+}
+
+.rs-addon-services .services-part .services-icon img {
+  max-width: unset;
+  width: 50px;
+  height: 50px;
+}
+
+.rs-addon-services .services-part .services-icon:hover {
+  color: #2b59ff;
+}
+
+.rs-addon-services .services-part .services-icon:after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  display: block;
+  width: 90px;
+  height: 90px;
+  background: #010d14;
+  border-radius: 50%;
+  -webkit-animation: pulse-border 1500ms ease-out infinite;
+  animation: pulse-border 1500ms ease-out infinite;
+  opacity: 0;
+  transition: all 0.3s ease 0s;
+  visibility: hidden;
+}
+
+.rs-addon-services .services-part .services-icon.grayscale img {
+  filter: gray;
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: grayscale(100%);
+  transition: all 0.3s ease 0s;
+}
+
+.rs-addon-services .services-part .services-icon.grayscale img:hover {
+  filter: none;
+  -moz-filter: grayscale(0);
+  -ms-filter: grayscale(0);
+  -o-filter: grayscale(0);
+  filter: grayscale(0);
+}
+
+.rs-addon-services .services-part .services-text {
+  padding: 10px 0 0;
+  position: relative;
+}
+
+.rs-addon-services .services-part .services-text .services-title {
+  position: relative;
+}
+
+.rs-addon-services .services-part .services-text .services-title .title {
+  margin: 0 0 10px;
+}
+
+.rs-addon-services .services-part .services-text .services-title .title a {
+  color: #121933;
+}
+
+.rs-addon-services .services-part .services-text .services-title .title a:hover {
+  color: #1273eb;
+}
+
+.rs-addon-services .services-part .services-text .services-title .title:before {
+  content: "01.";
+  font-size: 50px;
+  font-weight: bold;
+  color: #010d14;
+  position: absolute;
+  transition: all 0.3s ease 0s;
+  top: 0;
+  left: 0;
+  z-index: 9;
+}
+
+.rs-addon-services .services-part .services-text .services-txt {
+  margin: 0;
+  transition: 0.4s;
+}
+
+.rs-addon-services .services-part .services-text .services-btn-part {
+  margin: 15px 0 0;
+}
+
+.rs-addon-services .services-part .services-text .services-btn-part .services-btn {
+  position: relative;
+  display: inline-block;
+  color: #2b59ff;
+  transition: all ease 0.3s;
+}
+
+.rs-addon-services .services-part .services-text .services-btn-part .services-btn i {
+  transition: all ease 0.3s;
+  display: inline-block;
+}
+
+.rs-addon-services .services-part .services-text .services-btn-part .services-btn:hover {
+  color: #010d14;
+}
+
+.rs-addon-services .services-part .services-text .services-btn-part .services-btn:hover .border-right {
+  right: -40px;
+  opacity: 1;
+}
+
+.rs-addon-services .services-part .services-text .services-btn-part .services-btn .border-right {
+  position: absolute;
+  width: 30px;
+  height: 1px;
+  background: #2b59ff;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0px;
+  transition: 0.4s;
+  opacity: 0;
+}
+
+.rs-addon-services .services-part .services-text .services-btn-part .services-btn.icon-after span {
+  float: left;
+}
+
+.rs-addon-services .services-part .services-text .services-btn-part .services-btn.icon-after i {
+  margin-left: 10px;
+}
+
+.rs-addon-services .services-part .services-text .services-btn-part .services-btn.icon-before span {
+  float: right;
+}
+
+.rs-addon-services .services-part .services-text .services-btn-part .services-btn.icon-before i {
+  margin-right: 10px;
+}
+
+.rs-addon-services .services-part:after {
+  content: "";
+  width: 0;
+  height: 4px;
+  background: #010d14;
+  position: absolute;
+  transition: all 0.3s ease 0s;
+  bottom: 0;
+  left: 50%;
+  z-index: 9;
+  transform: translateX(-50%);
+}
+
+.rs-addon-services .services-part:hover .services-icon {
+  color: #2b59ff;
+}
+
+.rs-addon-services .services-part:hover .services-icon:after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.rs-addon-services .services-part:hover .services-text .services-title .title {
+  color: #010d14;
+  transition: 0.4s;
+}
+
+.rs-addon-services .services-part:hover .services-text .services-title .title a {
+  color: #010d14;
+}
+
+.rs-addon-services .services-part:hover:after {
+  width: 100%;
+}
+
+.rs-addon-services.services-style2:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #010d14;
+  transform: scaleY(0);
+  transition: all 0.3s ease 0s;
+}
+
+.rs-addon-services.services-style2 .services-part {
+  background: 0 0;
+  padding: 30px 0;
+  text-align: left;
+  position: relative;
+  z-index: 1;
+}
+
+.rs-addon-services.services-style2 .services-part:hover .services-icon {
+  color: #fff;
+}
+
+.rs-addon-services.services-style2 .services-part:hover .services-title .title {
+  color: #fff;
+}
+
+.rs-addon-services.services-style2 .services-part:hover .services-txt {
+  color: #fff;
+}
+
+.rs-addon-services.services-style2:hover:before {
+  transform: scaleY(1);
+}
+
+.rs-addon-services.services-style3 {
+  position: relative;
+}
+
+.rs-addon-services.services-style3 .services-part {
+  border-bottom-width: 4px;
+  transition: all 0.3s ease 0s;
+  position: relative;
+}
+
+.rs-addon-services.services-style3 .services-part .services-icon {
+  width: 90px;
+  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  top: -45px;
+  transform: translateX(-50%);
+  color: #fff;
+  background: #010d14;
+  box-shadow: 0px 3px 36px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease 0s;
+  height: 90px;
+  line-height: 90px;
+  text-align: center;
+  border-radius: 100%;
+}
+
+.rs-addon-services.services-style3 .services-part .services-icon i {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}
+
+.rs-addon-services.services-style3 .services-part .services-icon img {
+  width: 45px;
+  height: 45px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}
+
+.rs-addon-services.services-style3 .services-part:hover .services-icon {
+  top: -35px;
+}
+
+.rs-addon-services.services-style3 .services-part .services-text {
+  padding: 90px 30px 50px;
+}
+
+.rs-addon-services.services-style4 .services-part {
+  display: flex;
+}
+
+.rs-addon-services.services-style4 .services-icon.enable_rect_shape {
+  border-top-left-radius: 30% 30%;
+  border-top-right-radius: 70% 30%;
+  border-bottom-right-radius: 70% 70%;
+  border-bottom-left-radius: 30% 70%;
+}
+
+.rs-addon-services.services-style7 .services-part {
+  display: flex;
+}
+
+.rs-addon-services.services-style7 .image_border_shape {
+  text-align: center;
+}
+
+.rs-addon-services.services-style7 .image_border_shape .services-icon {
+  position: relative;
+  top: 3px;
+}
+
+.rs-addon-services.services-style5 {
+  position: relative;
+  overflow: hidden;
+}
+
+.rs-addon-services.services-style5 .hover-img {
+  transform: scale(1);
+}
+
+.rs-addon-services.services-style5 .services-part {
+  position: relative;
+}
+
+.rs-addon-services.services-style5 .services-part .services-text {
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  height: 100%;
+  transition: 0.5s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.rs-addon-services.services-style5 .services-part .service-inner {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 51%;
+  transform: translateY(-50%);
+  padding: 20px;
+}
+
+.rs-addon-services.services-style5 .services-part .icon_top {
+  background: #2b59ff;
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 50%;
+}
+
+.rs-addon-services.services-style5 .services-part .icon_top img {
+  max-width: 50px;
+}
+
+.rs-addon-services.services-style5 .services-part .services-titles {
+  display: block;
+}
+
+.rs-addon-services.services-style5 .services-part .services-icon {
+  padding: 0;
+}
+
+.rs-addon-services.services-style5 .services-part .services-icon img:not(.hover-img) {
+  width: 100%;
+  height: auto;
+}
+
+.rs-addon-services.services-style5 .services-part .icon_image i {
+  width: 70px;
+  height: 70px;
+  line-height: 64px;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  background: #2b59ff;
+  color: #ffffff;
+  box-shadow: 0 0 30px #a79f9f;
+  font-size: 30px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.rs-addon-services.services-style5 .services-part .normarl-text-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding-left: 30px;
+  transition: 0.5s;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  right: 0;
+}
+
+.rs-addon-services.services-style5 .services-part .normarl-text-area .title {
+  margin-bottom: 0;
+}
+
+.rs-addon-services.services-style5 .services-part .normarl-text-area .icon-image {
+  background: #2b59ff;
+  padding: 15px 20px;
+}
+
+.rs-addon-services.services-style5 .services-part .normarl-text-area .hover-img {
+  margin-bottom: 0;
+  border-radius: 0;
+  max-width: 42px;
+}
+
+.rs-addon-services.services-style5:hover .services-part .services-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.rs-addon-services.services-style5:hover .services-part .services-btn-part {
+  bottom: -80px;
+  opacity: 1;
+  visibility: visible;
+}
+
+.rs-addon-services.services-style5:hover .services-part .normarl-text-area {
+  opacity: 0;
+  visibility: hidden;
+  right: -100%;
+}
+
+.rs-addon-services.services-style5.services-style5.service_shape_:before {
+  display: none;
+}
+
+.rs-addon-services.services-style5.services-style5.service_shape_:after {
+  display: none;
+}
+
+.rs-addon-services.services-style5.services-style5.service_shape_ .services-part:before {
+  display: none;
+}
+
+.rs-addon-services.services-style6 .services-part {
+  position: relative;
+}
+
+.rs-addon-services.services-style6 .services-part .shape-image {
+  animation: move-y 2s alternate infinite;
+  -webkit-animation: move-y 2s alternate infinite;
+  position: relative;
+  width: unset;
+  height: unset;
+  position: absolute;
+  top: 40px;
+  right: 70px;
+  transition: all 0.3s ease 0s;
+  -webkit-animation: none;
+  animation: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.rs-addon-services.services-style6 .services-part .services-icon {
+  position: relative;
+}
+
+.rs-addon-services.services-style6 .services-part .services-icon:after {
+  content: "";
+  left: 70px;
+  top: 20px;
+  border-radius: 100%;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  background: #010d14;
+  display: block !important;
+  -webkit-animation: none;
+  animation: none;
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+}
+
+.rs-addon-services.services-style6 .services-part .services-icon img {
+  position: relative;
+  z-index: 3;
+}
+
+.rs-addon-services.services-style6 .services-part .services-icon:before {
+  position: absolute;
+  content: "";
+  right: -30px;
+  top: -15px;
+  width: 60px;
+  height: 60px;
+  border: 1px dashed #010d14;
+  border-radius: 100%;
+  z-index: 1;
+  transition: all 0.3s ease 0s;
+  animation: spine 10s linear infinite;
+  -webkit-animation: spine 10s linear infinite;
+}
+
+.rs-addon-services.services-style6 .services-part .services-icon.icon_size_small:after {
+  width: 40px;
+  height: 40px;
+  left: 55px;
+}
+
+.rs-addon-services.services-style6 .services-part .services-icon.icon_size_small:before {
+  width: 40px;
+  height: 40px;
+  right: -25px;
+  top: -5px;
+}
+
+.rs-addon-services.services-style6 .services-part .services-icon.icon_size_big:after {
+  width: 100px;
+  height: 100px;
+  left: 30px;
+  top: 30px;
+}
+
+.rs-addon-services.services-style6 .services-part .services-icon.icon_size_big:before {
+  width: 112px;
+  height: 112px;
+  right: -15px;
+  top: -32px;
+}
+
+.rs-addon-services.services-style6 .services-part .services-icon.border-style-solid:before {
+  border-style: solid;
+}
+
+.rs-addon-services.services-style6:hover .services-part .shape-image {
+  animation: move-y 2s alternate infinite;
+  -webkit-animation: move-y 2s alternate infinite;
+}
+
+.rs-addon-services.services-style6:hover .services-part .services-icon:before {
+  opacity: 0;
+  transform: scale(0.85);
+}
+
+.rs-addon-services.services-style8 .services-icon {
+  border-radius: 2px;
+  margin-left: 11px;
+  margin-top: 11px;
+  transition: 0.4s;
+}
+
+.rs-addon-services.services-style8:hover .services-icon {
+  background-image: inherit !important;
+}
+
+.rs-addon-services.services-style9 .services-part .services-icon.image {
+  overflow: hidden;
+}
+
+.rs-addon-services.services-style9 .services-part .services-icon.image img {
+  width: 100%;
+  height: auto;
+  transition: all 0.5s;
+}
+
+.rs-addon-services.services-style9 .services-part .services-text .services-btn-part {
+  margin-top: 20px;
+}
+
+.rs-addon-services.services-style9 .services-part .services-text .services-btn-part a.services-btn {
+  color: #102b3e;
+}
+
+.rs-addon-services.services-style9 .services-part .services-text .services-btn-part a.services-btn span {
+  text-decoration: underline;
+}
+
+.rs-addon-services.services-style9 .services-part .services-text .services-btn-part a.services-btn i {
+  transform: translateX(0) !important;
+  opacity: 0;
+  visibility: hidden;
+  transition: all ease 0.3s;
+}
+
+.rs-addon-services.services-style9 .services-part .services-text .services-btn-part a.services-btn:hover {
+  color: #f2541b;
+}
+
+.rs-addon-services.services-style9 .services-part .services-text .services-btn-part a.services-btn:hover i {
+  transform: translateX(10px) !important;
+  opacity: 1;
+  visibility: visible;
+  color: #f2541b;
+}
+
+.rs-addon-services.services-style9 .services-part:hover .services-icon.image img {
+  transform: scale(1.03);
+}
+
+.rs-addon-services.services-style10 {
+  position: relative;
+  border-top: 3px solid #e1e1e1;
+  transition: all 0.4s ease 0s;
+}
+
+.rs-addon-services.services-style10 .serial_number {
+  z-index: 2;
+  display: inline-block;
+  margin-top: -35px;
+  position: relative;
+  top: -16px;
+}
+
+.rs-addon-services.services-style10.short-border .services-text {
+  padding-top: 60px;
+}
+
+.rs-addon-services.services-style10.short-border .services-text:after {
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: -20px;
+  height: 50%;
+  border: 1px dashed #e1e1e1;
+  z-index: -1;
+  height: 60px;
+}
+
+.rs-addon-services.services-style10.long-border .services-text {
+  padding-top: 120px;
+}
+
+.rs-addon-services.services-style10.long-border .services-text:after {
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: -20px;
+  height: 50%;
+  border: 1px dashed #e1e1e1;
+  z-index: -1;
+  height: 120px;
+}
+
+.rs-addon-services.services-style11 {
+  overflow: hidden;
+}
+
+.rs-addon-services.services-style11 .serial_number {
+  -webkit-text-fill-color: white;
+  -webkit-text-stroke: 2px #FFF2F1;
+  transition: 0.4s;
+}
+
+.rs-addon-services.services-style11 .hover-shape-image {
+  position: absolute;
+  right: -100px;
+  bottom: -100px;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.4s;
+}
+
+.rs-addon-services.services-style11 .top_left {
+  top: -100px;
+  left: -100px;
+  right: auto;
+  bottom: auto;
+}
+
+.rs-addon-services.services-style11 .bottom_left {
+  top: auto;
+  right: auto;
+  left: -100px;
+  bottom: -100px;
+}
+
+.rs-addon-services.services-style11:hover .hover-shape-image {
+  bottom: 0;
+  right: 0;
+  opacity: 1;
+  visibility: visible;
+}
+
+.rs-addon-services.services-style11:hover .top_left {
+  top: 0;
+  left: 0;
+}
+
+.rs-addon-services.services-style11:hover .bottom_left {
+  left: 0;
+  bottom: 0;
+}
+
+.rs-addon-services.services-style11:hover .serial_number {
+  -webkit-text-fill-color: transparent;
+}
+
+.rs-addon-services.services-style11.rs_hover_shape_disable {
+  position: relative;
+}
+
+.rs-addon-services.services-style11.rs_hover_shape_disable .services-part {
+  position: relative;
+  z-index: 9;
+}
+
+.rs-addon-services.services-style11.rs_hover_shape_disable:after {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  content: "";
+  opacity: 0;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  transition: 0.4s;
+  background-image: linear-gradient(140deg, #fd644f 15%, #f28e26 100%);
+}
+
+.rs-addon-services.services-style11.rs_hover_shape_disable:hover:after {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  visibility: visible;
+}
+
+.rs-addon-services.services-style11.rs_hover_shape_disable:before {
+  position: absolute;
+  content: "";
+  transition: 0.4s;
+  width: 0;
+  height: 0;
+  border-bottom: 100px solid #FDF7F4;
+  border-left: 100px solid transparent;
+  bottom: 0;
+  right: 0;
+}
+
+.rs-addon-services.services-style1 .services-icon .hover-img {
+  transform: scale(1);
+  position: absolute;
+  right: -25px;
+  top: -20px;
+  opacity: 0.07;
+}
+
+.rs-addon-services.services-style1 .services-icon img.main-img {
+  width: unset;
+  height: unset;
+  max-width: 100%;
+  transform: scale(1);
+  transition: 0.4s;
+}
+
+.rs-addon-services.services-style1 .rs-button-style2 {
+  position: absolute;
+  right: 50px;
+  bottom: 46px;
+}
+
+.rs-addon-services.services-style1 .rs-button-style2 i {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 40px;
+  background: #f8e6e6;
+  text-align: center;
+  color: #032e42;
+}
+
+.rs-addon-services.services-style1 .rs-button-style2 i:hover {
+  background: linear-gradient(to bottom right, #003b40, #ffb703);
+  color: #fff;
+}
+
+.rs-addon-services.services-style1 .services-part {
+  overflow: hidden;
+}
+
+.rs-addon-services.services-style1 .services-part .services-text .service-inner.button_inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;
+}
+
+.rs-addon-services.services-style1 .services-part .services-text .services-btn-part {
+  margin: 0;
+}
+
+.rs-addon-services.services-style1:hover img.main-img {
+  transform: scale(0.9);
+}
+
+.rs-addon-services.rs-shape_image-hover {
+  overflow: hidden;
+}
+
+.hover_effect > .elementor-column-gap-default .elementor-widget-container .rs-addon-services {
+  transition: 0.3s;
+}
+
+.hover_effect > .elementor-column-gap-default .elementor-widget-container .rs-addon-services:hover {
+  box-shadow: 3px 7px 25px 0px rgba(0, 0, 0, 0.05);
+}
+
+.hover_effect > .elementor-column-gap-default .elementor-widget-container:hover .services-part .shape-image {
+  opacity: 1;
+  visibility: visible;
+}
+
+.hover_effect > .elementor-column-gap-default:not(:hover) .elementor-widget-container .box_shadow_enable {
+  box-shadow: 3px 7px 25px 0px rgba(0, 0, 0, 0.05);
+}
+
+.hover_effect > .elementor-column-gap-default:not(:hover) .elementor-widget-container .box_shadow_enable .services-part .shape-image {
+  opacity: 1;
+  visibility: visible;
+}
+
+.rs-addon-services.services-style13 .services-part .services-icon {
+  display: block;
+  padding: 0;
+}
+
+.rs-addon-services.services-style13 .services-part .services-icon img {
+  height: unset;
+}
+
+.rs-addon-services.services-style13 .services-part .services-btn-part a.services-btn2 {
+  margin-left: 10px;
+}
+
+.rs-addon-services.services-style13 .rs-icons-list {
+  margin: -18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rs-addon-services.services-style13 .rs-icons-list li {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  background: #fff;
+  border-radius: 36px;
+}
+
+.rs-addon-services.services-style13 .rs-icons-list li img {
+  max-width: 20px;
+}
+
+.rs-addon-services.services-style13 i {
+  font-weight: normal;
+}
+
+.rs-timeline-slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.timeline-list-item {
+  list-style: none;
+}
+
+.timeline-year {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.timeline-list-item {
+  margin-left: 0px;
+  padding-top: 15px;
+}
+
+.timeline-list-item span {
+  margin-left: 10px;
+}
+
+.rsaddon-unique-slider .rs-timelines-slider {
+  position: relative;
+}
+
+.rsaddon-unique-slider .rs-timelines-slider::before {
+  content: "";
+  position: absolute;
+  border: 2px solid #58972c;
+  width: 100%;
+  display: block;
+  top: 26%;
+}
+
+.rs-counter-list .count-number .suffix {
+  position: relative;
+}
+
+.rsaddon-unique-slider .rs-timelines-slider.rs-addon-slider:hover .slick-prev {
+  left: unset;
+}
+
+.rsaddon-unique-slider .rs-timelines-slider.rs-addon-slider:hover .slick-prev {
+  right: unset;
+}
+
+.rsaddon-unique-slider .rs-timelines-slider.rs-addon-slider:hover .slick-arrow {
+  visibility: visible;
+  opacity: 1;
+}
+
+.rsaddon-unique-slider {
+  position: relative;
+}
+
+.rsaddon-unique-slider .rs-timelines-slider.rs-addon-slider:hover .slick-prev,
+.rsaddon-unique-slider .rs-timelines-slider.rs-addon-slider .slick-prev {
+  left: 45%;
+  top: 240px;
+}
+
+.rsaddon-unique-slider .rs-timelines-slider.rs-addon-slider:hover .slick-next,
+.rsaddon-unique-slider .rs-timelines-slider.rs-addon-slider .slick-next {
+  right: 45%;
+  top: 240px;
+}
+
+.rsaddon-unique-slider .rs-timelines-slider.rs-addon-slider .slick-arrow {
+  visibility: visible;
+  opacity: 1;
+}

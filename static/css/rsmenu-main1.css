@@ -1,0 +1,640 @@
+/*
+Author: Johnfirm Themes
+Author URI: http://madrsthemes.com
+Description: rs Menu is a fully responsive, easy-to-use, highly customized and creative Mega Menu
+Version: 1.0.0
+*/
+/*-----------------------------------------------------------------------------------*/
+/*	GLOBAL CSS THAT ARE APPLIED FOR ALL SCREEN SIZES
+/*-----------------------------------------------------------------------------------*/
+.rs-menu {
+   float: left;
+   clear: both;
+   width: 100%;
+   font-size: 0;
+   position: relative;
+   /*background: #1c1c1c;
+   -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+   -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+   box-shadow: 0 2px 5px rgba(0, 0, 0, .2);*/
+}
+
+.rs-menu ul,
+.rs-menu li,
+.rs-menu p,
+.rs-menu a,
+.rs-menu div,
+.rs-menu i {
+   border: 0;
+   margin: 0;
+   padding: 0;
+}
+
+.rs-menu li {
+   display: block;
+   vertical-align: top;
+   position: relative;
+}
+
+.rs-menu a {
+   display: block;
+   padding: 16px;
+}
+
+.rs-menu .row {
+    float: left;
+    width: 100%;
+    position: relative;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	SUB-MENUS SETTINGS 
+/*-----------------------------------------------------------------------------------*/
+/* Hide sub-menus */
+.rs-menu ul ul {
+	position: absolute;
+	top: 100%;
+	width: 100%;
+	display: none;
+	background-color: #111111; 
+}
+.rs-menu ul ul.visible, .rs-menu ul .rs-mega-menu ul.visible ul.sub-menu {	
+	display:block;
+   z-index: 110;
+}
+
+.rs-menu > ul{
+	text-align: left;
+} 
+
+.rs-menu > ul ul{
+	text-align: left;
+} 
+
+/* Adjust position of mega-menu */
+.rs-menu li:hover > ul.mega-menu > li > ul {
+    position:relative;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	SUB-MENUS APPEARANCE 
+/*-----------------------------------------------------------------------------------*/
+/* Place border bottom */
+.rs-menu ul ul li {
+    border-bottom:1px solid #222;
+}
+
+.rs-menu ul ul li:last-child,
+.rs-menu ul ul li.mega-menu-container{
+    border-bottom: 0;
+}
+
+/* Remove border bottom on last li*/
+.rs-menu ul ul li:last-child {
+    border-bottom:none;
+}
+
+/* Puts shadow on sub-menus */
+.rs-menu .sub-menu, .mega-menu {
+	-webkit-box-shadow: 0px 4px 7px -3px rgba(0,0,0,.09);
+    -moz-box-shadow: 0px 4px 7px -3px rgba(0,0,0,.09);
+    -ms-box-shadow: 0px 4px 7px -3px rgba(0,0,0,.09);
+    -o-box-shadow: 0px 4px 7px -3px rgba(0,0,0,.09);
+    box-shadow: 0px 4px 7px -3px rgba(0,0,0,.09);
+}
+.mega-rs h2{
+	position: absolute;
+	bottom: 30px;
+	margin: 0 !important;
+	padding: 5px 28px;
+	left: 25px;
+	background: rgba(0,0,0,.8);
+	color: #fff;
+}
+.mega-rs ul li a{
+	position: relative;
+}
+#inner .rs-menu li a {
+    color: #000;
+}
+#inner .rs-menu li li a{
+	color: #fff;
+}
+
+
+/*-----------------------------------------------------------------------------------*/
+/*  APPEARANCE SETTINGS 
+/*-----------------------------------------------------------------------------------*/
+.rs-menu a {
+    color:#bbb;
+	
+	/* Remove the blue Webkit background when element is tapped */
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+
+.multi ul ul{
+	background: transparent !important;
+}
+
+.multi ul li a{
+	font-weight: 400 !important;
+	font-size: 13px !important;
+}
+
+
+
+/*home 1*/
+
+
+/* Modifies position of icons on the menu */
+.rs-menu li i {
+	margin-right:10px;
+	font-size:16px;
+	/* Make the font smoother for Chrome */
+	transform:translate3d(0, 0, 0);    
+}
+
+.mega-menu h1, .mega-menu h2, .mega-menu h3 {
+	margin-bottom:24px;
+}
+
+
+
+.nav-menu li .mega-menu li a {    
+    padding:0;
+	width:auto;
+	display:inline-block;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*  Typography
+/*-----------------------------------------------------------------------------------*/
+
+
+/* Sub-menus - font size and text alignment*/
+
+.mega-menu p {
+	margin:12px 0;
+}
+
+.mega-menu li p a {
+	font-size:16px;
+    font-family: "Open Sans",sans-serif;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*  MEGA MENU
+/*-----------------------------------------------------------------------------------*/
+.nav-menu {
+    position:relative;
+}
+
+.nav-menu .rs-mega-menu {
+    position: relative;
+}
+
+.nav-menu .mega-menu {
+    left: 0;
+    width: 100%;
+    max-width: 500px;
+	position:absolute;   
+}
+
+.nav-menu .mega-menu .mega-menu-container {
+	float:left;
+	width:100%;
+	position:relative;
+    padding: 0 6px;
+}
+
+.nav-menu .mega-menu .sub-menu {
+    display:block;
+    position:relative;
+	width:auto;
+    padding:0;
+    min-height:initial;
+    box-shadow:none;   
+}
+
+.nav-menu .mega-menu .sub-menu a {
+	padding:12px;
+}
+
+.nav-menu .mega-menu .sub-menu li, .nav-menu .mega-menu .sub-menu a {
+    width:100%;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*  MEGA MENU - IMAGES
+/*-----------------------------------------------------------------------------------*/
+.nav-menu .mega-menu li div.mega-menu-img a {
+	float:left;
+	width:100%;
+	min-height:230px;
+	padding:12px;
+}
+
+/*Hover Effect Images*/
+.nav-menu .mega-menu li div.mega-menu-img a:hover img {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.multi .sub-menu li img{
+    width: 50px;
+    transition: all 0.5s ease 0s;
+    border-radius: 100%;
+}
+.multi .sub-menu li:hover img{
+	transform: rotate(100deg);
+}
+.multi .sub-menu li{
+	margin-bottom: 15px;
+}
+.multi .sub-menu li{
+	padding-bottom: 15px;
+}
+.multi .col-3 .sub-menu li a{
+	display: inline;
+}
+.nav-menu .mega-menu-img h2 {
+	font-size:16px;
+	margin:12px 0 0 0;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+.nav-menu .mega-menu > li .mega-menu-img-meta {
+    padding:0;
+    width:auto;
+    position:relative;
+    height:auto;
+    overflow:hidden;
+    -webkit-backface-visibility:hidden;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*  MEGA MENU - MAP
+/*-----------------------------------------------------------------------------------*/
+#map {
+	height:500px;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*  TRANSITIONS AND EFECTS
+/*-----------------------------------------------------------------------------------*/
+.nav-menu ul {
+    -webkit-transition:all .3s ease-in-out;
+    -moz-transition:all .3s ease-in-out;
+    -ms-transition:all .3s ease-in-out;
+    -o-transition:all .3s ease-in-out;
+    transition:all .3s ease-in-out
+}
+
+.mega-menu-img-meta img {
+    -webkit-transition:-webkit-transform .3s ease-in-out;
+    -moz-transition:-moz-transform .3s ease-in-out;
+    -o-transition:-o-transform .3s ease-in-out;
+    -ms-transition:-ms-transform .3s ease-in-out;
+    transition:transform .3s ease-in-out
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*  LINE
+/*-----------------------------------------------------------------------------------*/
+.rs-menu .line {
+	padding-bottom:12px;
+	border-bottom:1px solid rgba(0, 0, 0, .05);
+	margin-top: 20px;
+	text-align: left;
+	color: #fff;
+	padding-left: 15px;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*  RESPONSIVE IMAGES
+/*-----------------------------------------------------------------------------------*/
+.rs-menu img {
+	max-width:100%;	
+    height:auto;
+    -ms-interpolation-mode:bicubic
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*  MEDIA QUERIES
+/*-----------------------------------------------------------------------------------*/
+@media screen and (min-width: 500px) {
+	.rs-menu h1 {
+		font-size: 3.8rem;
+		line-height: 1.2em;
+	}
+
+	.rs-menu h2 {
+		font-size: 2rem;
+		line-height: 1.2em;
+	}
+
+	.rs-menu h3 {
+		font-size: 3.3rem;
+	}
+
+	.rs-menu h4 {
+		font-size: 2.8rem;
+	}
+}
+
+@media screen and (min-width: 992px) {
+	.rs-menu {
+		height: auto !important;
+	}
+	
+	.rs-menu h1 {
+		font-size: 3.2rem;
+		line-height: 1.2em;
+	}
+
+	.rs-menu h2 {
+		font-size: 2.5rem;
+		line-height: 1.2em;
+	}
+
+	.rs-menu h3 {
+		font-size: 2rem;
+	}
+	
+	.rs-menu h4 {
+		font-size: 1rem;
+	}
+	
+	/* Grid */
+   .rs-menu .row [class*="col-"] {
+      display: block;
+      width: 100%;
+      min-height: 5px;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      box-sizing: border-box;
+      float: left;
+      margin-left: 2.5%;
+   }
+
+   .rs-menu .row [class*="col-"]:first-child {
+      margin-left: 0 !important;
+   }
+
+   .rs-menu .row .col-12 {
+      width: 100%;
+   }
+
+   .rs-menu .row .col-11 {
+      width: 91.45833333333334%;
+   }
+
+   .rs-menu .row .col-10 {
+      width: 82.91666666666667%;
+   }
+
+   .rs-menu .row .col-9 {
+      width: 74.375%;
+   }
+
+   .rs-menu .row .col-8 {
+      width: 65.83333333333334%;
+   }
+
+   .rs-menu .row .col-7 {
+      width: 57.29166666666667%;
+   }
+
+   .rs-menu .row .col-6 {
+     width: 48.75%;
+   }
+
+   .rs-menu .row .col-5 {
+     width: 40.208333333333336%;
+   }
+
+   .rs-menu .row .col-4 {
+      width: 31.666666666666668%;
+   }
+
+   .rs-menu .row .col-3 {
+      width: 23.125%;
+   }
+
+   .rs-menu .row .col-2 {
+      width: 14.583333333333334%;
+   }
+
+   .rs-menu .row .col-1 {
+      width: 6.041666666666667%;
+   }
+	/*-----------------------------------------------------------------------------------*/
+	/*  RESPONSE MENU
+	/*-----------------------------------------------------------------------------------*/
+	.rs-menu li {
+    	display:inline-block;
+	}
+	
+	.nav-menu .rs-mega-menu {
+    	position: static;
+	}
+	
+	.rs-menu ul ul.visible {
+		visibility: hidden;
+    	opacity:0;
+	}
+	
+	/* Remove arrows if not in mobile */
+	.nav-menu .menu-item-has-children > span, .nav-menu .rs-mega-menu > span {
+		display:none;
+	}
+	
+	/* Remove Menu Toggle if not in mobile */	
+	.rs-menu-toggle {
+		display:none;
+	}
+	
+	/* Remove Menu Close if not in mobile */
+	.nav-menu div.sub-menu-close {
+		display:none;
+	}
+	
+	
+	/* Show sub-menus in hover */
+	.rs-menu li:active > ul, .rs-menu li:focus > ul, .rs-menu li:hover > ul, .rs-menu li:hover > ul.mega-menu > li > ul, .rs-menu li:hover ul.mega-menu .sub-menu {		
+		display:block;
+		z-index: 17;	
+	}
+
+	/* Adjust position the sub-menus in the left */
+	.rs-menu ul ul li > ul {
+		left: 100%;
+	}
+	
+	/* Adjust position the sub-menus on the top */
+	.rs-menu ul ul ul {
+		top: 0;
+	}	
+	
+	.rs-menu ul ul {
+		width:auto;
+	}
+	
+	/* Sub-menus - width */
+	.rs-menu ul ul a {
+		width:220px;	/* <- Modify for width change */
+	}
+
+	.full-width-header .rs-header .menu-area .main-menu .rs-menu ul.sub-menu li a {
+		padding: 5px 15px !important;
+		font-size: 14px;
+	}
+	.nav-menu .mega-menu li div.mega-menu-img a {	
+		width:25%;
+	}
+    .nav-menu .mega-menu li div.mega-menu-innner .single-magemenu {
+        width: 25%;
+        float: left;
+        padding: 0 12px;
+    }
+		
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*  ARROWS FIXES IN IE
+/*-----------------------------------------------------------------------------------*/
+@media screen and (min-width:0\0) {
+	.rs-menu img {
+    	width:100%;    	
+	}
+	
+    .nav-menu .menu-item-has-children a, .nav-menu .rs-mega-menu a {
+        padding-right:24px
+    }  
+}
+
+@media only screen and (max-width: 991px) {
+   .rs-menu .row [class*="col-"] {
+       float: left!important;
+       width: 100%!important;
+       margin-left: 0!important;
+       margin-right: 0!important;
+    }
+   	
+	.nav-menu li{
+		display: block !important;
+	}
+   	
+	.nav-menu > li > a {
+		border-bottom:1px solid #131313;
+		color: #fff !important;
+		text-align: left;
+	}
+	
+	.nav-menu > li:last-child > a {
+    	border-bottom:none;
+	}
+	
+	.nav-menu span.rs-menu-parent i { 
+		margin:0;
+	}
+	
+	.nav-menu > .menu-item-has-children > span.rs-menu-parent, 
+	.nav-menu .rs-mega-menu > span.rs-menu-parent {		
+		display: block;
+		position: absolute;
+		right: 0;
+		top: 0;
+		padding: 19px 21px;
+		cursor:pointer;
+		line-height: 14px;
+		color: #fff;
+		background: #257be5;	
+		-webkit-tap-highlight-color:rgba(0,0,0,0);    
+	}	
+	
+	.nav-menu > .menu-item-has-children > span.rs-menu-parent:hover, 
+	.nav-menu .rs-mega-menu > span.rs-menu-parent:hover {	
+		color: #fff;
+	}
+	
+	.nav-menu > .menu-item-has-children .sub-menu .menu-item-has-children span.rs-menu-parent {		
+		display: block;
+		position: absolute;
+		right: 0;
+		top: 0;
+		padding: 11px 21px;
+		cursor: pointer;
+		line-height: 14px;
+		color: #363636;
+		background: #f6f3ed;	
+		-webkit-tap-highlight-color:rgba(0,0,0,0);    
+	}
+	.nav-menu div.sub-menu-close {
+		float:left;
+		width:100%;
+		cursor:pointer;
+		background:#f6f3ed;		
+		color:#000;
+		font-size:14px;
+		text-align:center;	
+		height: 50px;
+		line-height: 50px;
+	}
+	
+	.nav-menu div.sub-menu-close i {		
+		font-size:16px;
+		margin-right: 5px;
+	}
+	
+	.rs-menu .sub-menu {
+		-webkit-box-shadow: 0 0 20px rgba(0,0,0,.15);
+		-moz-box-shadow: 0 0 20px rgba(0,0,0,.15);
+		-ms-box-shadow:  0 0 20px rgba(0,0,0,.15);
+		-o-box-shadow:  0 0 20px rgba(0,0,0,.15);
+		box-shadow:  0 0 20px rgba(0,0,0,.15);
+	}
+	
+	.rs-menu-close {
+    	height: 0;		
+    	overflow: hidden!important;
+	}
+	
+	/*Menu Toggle Appearance*/
+	.rs-menu-toggle {      
+		padding: 28px 0;
+		display: block;
+		position: relative;
+		cursor:pointer;		
+		color: #333 !important;
+		font-size: 15px;
+		text-transform: uppercase;
+		
+		-webkit-tap-highlight-color:rgba(0,0,0,0);
+	}
+	.rs-menu-toggle:hover {
+		color: #106eea !important;
+	}
+	.rs-menu-toggle i {
+		margin-right:10px; 
+	}
+	.rs-menu > ul{
+		background: #757575;
+	}
+	.full-width-header .rs-header .menu-area .main-menu .rs-menu li > ul.sub-menu{
+		padding-bottom: 0;
+	}
+	
+}
+
+@media only screen and (max-width: 1080px) {	
+	.nav-menu > li > a i {
+		display:none;
+	}
+}
+

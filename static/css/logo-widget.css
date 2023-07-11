@@ -1,0 +1,25 @@
+.rs-logo-grid .rs-grid-figure .logo-img {
+  overflow: hidden;
+}
+.rs-logo-grid .rs-grid-figure .logo-title {
+  overflow: hidden;
+}
+.rs-logo-grid .rs-grid-figure .logo-title .title {
+  margin: 0;
+}
+.rs-logo-grid .rs-grid-figure .logo-desc {
+  overflow: hidden;
+}
+.rs-logo-grid .rs-grid-figure .logo-desc .description {
+  margin: 0;
+}
+.rs-logo-grid .logo-grid-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  border-right: 1px solid rgba(0, 0, 0, 0.04);
+}
+.rs-logo-grid .logo-grid-item.pre-last {
+  border-right: 0;
+}
+.rs-logo-grid .logo-grid-item.pre-last-row {
+  border-bottom: 0;
+}

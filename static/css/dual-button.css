@@ -1,0 +1,88 @@
+.rselement-dual-btn {
+  display: inline-block;
+  padding: 1.2rem 3rem;
+  max-width: 100%;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.rselement-dual-btn-connector {
+  display: inline-block;
+  position: absolute !important;
+  z-index: 9;
+  overflow: hidden;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  background-color: #fff;
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.3);
+  color: #27374c;
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 30px;
+  transform: translate(50%, -50%);
+}
+
+.rselement-dual-btn-wrapper {
+  position: relative;
+  text-align: center;
+  font-weight: 400;
+}
+
+.rselement-dual-btn--left {
+  background-color: #fe4d8b;
+}
+.rselement-dual-btn--left:hover {
+  background-color: #d00d51;
+  color: #fff;
+}
+.rselement-dual-btn--left:focus {
+  background-color: #d00d51;
+  color: #fff;
+}
+
+.rselement-dual-btn--right {
+  background-color: #3023ae;
+}
+.rselement-dual-btn--right:hover {
+  background-color: #2e1cde;
+  color: #fff;
+}
+.rselement-dual-btn--right:focus {
+  background-color: #2e1cde;
+  color: #fff;
+}
+
+.rselement-dual-btn-icon > svg {
+  width: 1em;
+  height: auto;
+}
+.rselement-dual-btn-icon > i {
+  font-size: 1em;
+}
+
+.rselement-dual-btn-icon--before {
+  margin-right: 5px;
+}
+
+.rselement-dual-btn-icon--after {
+  margin-left: 5px;
+}
+
+.elementor-widget-rs-dual-button > .elementor-widget-container {
+  display: flex;
+}
+.elementor-widget-rs-dual-button i:before {
+  position: relative;
+}
+.elementor-widget-rs-dual-button .rselement-dual-btn--left {
+  border-radius: 0;
+}
+.elementor-widget-rs-dual-button .rselement-dual-btn--right {
+  border-radius: 0;
+}
+.elementor-widget-rs-dual-button .rselement-dual-btn-connector {
+  top: 50%;
+  right: 0;
+}

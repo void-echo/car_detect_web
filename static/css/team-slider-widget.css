@@ -1,0 +1,95 @@
+.rs-team-slider.team-slider-style7 .team-item {
+  margin: 0 11px;
+  padding: 35px 20px 10px 25px;
+  transition: 0.3s ease-in-out;
+}
+.rs-team-slider.team-slider-style7 .team-item:hover .image-wrap img {
+  transform: scale(1.2);
+}
+.rs-team-slider.team-slider-style7 .team-item .social-icons a::before {
+  content: "";
+  position: absolute;
+  background-color: rgba(202, 202, 202, 0.2784313725);
+  left: 11%;
+  top: -13.5%;
+  width: 80%;
+  height: 0.2px;
+}
+.rs-team-slider.team-slider-style7 .image-wrap {
+  text-align: center;
+  border-radius: 0;
+  overflow: hidden;
+}
+.rs-team-slider.team-slider-style7 .image-wrap .image-inner {
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  max-width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin: 0 auto;
+  transition: 0.3s ease-in-out;
+  background-color: rgb(51, 51, 236);
+}
+.rs-team-slider.team-slider-style7 .image-wrap .image-inner a img {
+  width: auto;
+  border-radius: 0 !important;
+  min-width: auto;
+  height: 164px;
+  margin-bottom: -1px;
+  transform: scale(1);
+  transition: 0.3s ease-in-out;
+}
+
+.team-slider-default {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.team-slider-default .team-item {
+  padding: 0;
+}
+.team-slider-default .slider-for {
+  flex: 0 0 64.8%;
+  max-width: 64.8%;
+}
+.team-slider-default .rs-slide-nav {
+  flex: 0 0 35.2%;
+  max-width: 35.2%;
+  padding-left: 30px;
+  margin-top: -50px;
+}
+.team-slider-default .team-content {
+  padding-top: 16px;
+}
+.team-slider-default .team-content .team-name {
+  margin-bottom: 0;
+}
+.team-slider-default div img {
+  border-radius: 4px;
+}
+.team-slider-default .image-list img {
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+@-webkit-keyframes team-shape-circle {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes team-shape-circle {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

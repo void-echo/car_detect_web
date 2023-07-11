@@ -1,0 +1,108 @@
+.rs-skill-bar .skillbar {
+  background: #eeeeee;
+  display: inline-block;
+  height: 16px;
+  position: relative;
+  width: 100%;
+}
+.rs-skill-bar .skillbar .skillbar-bar {
+  background: #1273eb;
+  height: 16px;
+  width: 0;
+  margin-bottom: 0;
+  overflow: visible !important;
+}
+.rs-skill-bar .skillbar .skillbar-title {
+  position: absolute;
+  color: #212121;
+  font-size: 20px;
+  font-weight: 600;
+}
+.rs-skill-bar .skillbar .skill-bar-percent {
+  position: absolute;
+  font-size: 16px;
+  font-weight: 700;
+  color: #121933;
+}
+
+.rs-skill-bar.animation .skillbar .skillbar-bar {
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 1rem 1rem;
+  -webkit-animation: rs-progress-pie-stripes 1s linear infinite;
+  animation: rs-progress-pie-stripes 1s linear infinite;
+}
+
+.rs-skill-bar.striped .skillbar .skillbar-bar {
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 1rem 1rem;
+}
+
+.rs-skill-bar.style1 .skillbar .skillbar-title {
+  top: -25px;
+}
+.rs-skill-bar.style1 .skillbar .skill-bar-percent {
+  right: 0;
+  top: -25px;
+}
+
+.rs-skill-bar.style2 .skillbar .skillbar-title {
+  left: 0;
+  padding: 2px 20px 0;
+  top: 0;
+  width: 160px;
+  background: #83b614;
+}
+.rs-skill-bar.style2 .skillbar .skill-bar-percent {
+  right: 10px;
+  top: 0;
+}
+
+.rs-skill-bar.style3 .skillbar .skillbar-title {
+  top: -25px;
+}
+.rs-skill-bar.style3 .skillbar .skillbar-bar {
+  position: relative;
+}
+.rs-skill-bar.style3 .skillbar .skillbar-bar .skill-bar-percent {
+  right: 0;
+  top: -25px;
+}
+.rs-skill-bar.style3 .skillbar .skillbar-bar .skill-bar-percent.bubble_show::after {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: solid transparent;
+  content: "";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(0, 0, 0, 0);
+  border-top-color: #6f49e8;
+  border-width: 4px;
+}
+.rs-skill-bar.style3.commet_shape_show .skillbar {
+  position: relative;
+  background: transparent !important;
+}
+.rs-skill-bar.style3.commet_shape_show .skillbar .skillbar-bar {
+  background: transparent !important;
+}
+.rs-skill-bar.style3.commet_shape_show .skillbar .skillbar-bar:after {
+  background: #6f49e8;
+  z-index: 2;
+}
+.rs-skill-bar.style3.commet_shape_show .skillbar .skillbar-bar:after, .rs-skill-bar.style3.commet_shape_show .skillbar:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-clip-path: polygon(0 50%, 100% 100%, 100% 0);
+          clip-path: polygon(0 50%, 100% 100%, 100% 0);
+}
+.rs-skill-bar.style3.commet_shape_show .skillbar:after {
+  background: #fbfbfb;
+  z-index: 0;
+}

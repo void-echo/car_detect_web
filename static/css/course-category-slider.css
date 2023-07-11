@@ -1,0 +1,49 @@
+.rs-courses-categories .categories-item {
+  background: #fff;
+  box-shadow: 0px 30px 60px rgba(47, 47, 47, 0.07);
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 25px;
+}
+.rs-courses-categories .categories-item .rs__cat__icon {
+  display: inline-block;
+  padding: 8px;
+  background: linear-gradient(135.83deg, #9371ff 16.76%, #3300ff 90.7%);
+  border-radius: 50%;
+  position: relative;
+}
+.rs-courses-categories .categories-item .rs__cat__icon img {
+  padding: 7px;
+}
+.rs-courses-categories .categories-item .title {
+  margin: 0;
+  color: #353535;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 32px;
+  padding: 22px 0 0;
+}
+.rs-courses-categories .categories-item .course-qnty {
+  font-size: 14px;
+  padding: 0 0 22px;
+}
+.rs-courses-categories .categories-item .cat__des {
+  font-size: 14px;
+  padding: 0 0 22px;
+}
+.rs-courses-categories .categories-item .rs___button {
+  font-size: 14px;
+}
+.rs-courses-categories .categories-item .rs___button i {
+  font-size: 11px;
+  margin-left: 2px;
+}
+.rs-addon-slider.rs-courses-categories.rs-addon-slider:hover .slick-prev {
+  left: -35px;
+}
+.rs-addon-slider.rs-courses-categories.rs-addon-slider:hover .slick-next {
+  right: -35px;
+}
+.rs-addon-slider.rs-courses-categories .slick-dots li button {
+  height: 10px;
+}

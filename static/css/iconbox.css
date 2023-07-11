@@ -1,0 +1,88 @@
+.rs-iconbox-area .box-inner {
+  position: relative;
+  transition: 0.4s;
+  overflow: hidden;
+}
+.rs-iconbox-area .box-inner .rs-badge {
+  position: absolute;
+  background: #010d14;
+  padding: 3px 8px 0;
+  color: #ffffff;
+  top: 5px;
+  left: 5px;
+  z-index: 1;
+  transform: rotate(0deg);
+}
+.rs-iconbox-area .box-inner .icon-area {
+  display: inline-block;
+  color: #010d14;
+  transition: all ease 0.3s;
+}
+.rs-iconbox-area .box-inner .icon-area i {
+  transition: all ease 0.3s;
+  font-size: 50px;
+}
+.rs-iconbox-area .box-inner .text-area {
+  padding: 10px 0 0;
+  position: relative;
+}
+.rs-iconbox-area .box-inner .text-area .iconbox-title {
+  position: relative;
+}
+.rs-iconbox-area .box-inner .text-area .iconbox-title .title {
+  font-size: 20px;
+  margin: 0;
+  color: #121933;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.rs-iconbox-area .box-inner .text-area .iconbox-title .title a {
+  text-decoration: none !important;
+  color: #121933;
+}
+.rs-iconbox-area .box-inner .text-area .iconbox-title .title a:hover {
+  color: #1273eb;
+}
+.rs-iconbox-area .box-inner .text-area .iconbox-title .title:before {
+  content: "01.";
+  font-size: 50px;
+  font-weight: bold;
+  color: #010d14;
+  position: absolute;
+  transition: all 0.3s ease 0s;
+  top: 0;
+  left: 0;
+  z-index: 9;
+}
+.rs-iconbox-area .box-inner .text-area .services-txt {
+  font-size: 16px;
+  margin: 0;
+}
+.rs-iconbox-area .box-inner .services-btn-part {
+  margin: 15px 0 0;
+}
+.rs-iconbox-area .box-inner .services-btn-part .services-btn {
+  position: relative;
+  display: inline-block;
+  color: #2b59ff;
+  transition: all ease 0.3s;
+}
+.rs-iconbox-area .box-inner .services-btn-part .services-btn i {
+  transition: all ease 0.3s;
+}
+.rs-iconbox-area .box-inner .services-btn-part .services-btn:hover {
+  color: #010d14;
+}
+.rs-iconbox-area .box-inner .services-btn-part .services-btn.icon-after span {
+  float: left;
+}
+.rs-iconbox-area .box-inner .services-btn-part .services-btn.icon-after i {
+  margin-left: 10px;
+  transition: 0.4s;
+}
+.rs-iconbox-area .box-inner .services-btn-part .services-btn.icon-before span {
+  float: right;
+}
+.rs-iconbox-area .box-inner .services-btn-part .services-btn.icon-before i {
+  margin-right: 10px;
+}

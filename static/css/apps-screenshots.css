@@ -1,0 +1,18 @@
+.rs-apps-screenshots .slick-list.draggable {
+  padding: 100px 0 !important;
+}
+.rs-apps-screenshots .grid-item {
+  position: relative;
+  transition: all 0.3s ease 0s;
+}
+.rs-apps-screenshots .grid-item img {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  border-radius: 30px;
+}
+.rs-apps-screenshots .grid-item.slick-center {
+  transform: scale(1.13);
+  z-index: 3;
+}
+.rs-apps-screenshots .grid-item.slick-center img {
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,51 @@
+.rsaddon-unique-slider {
+  transition: all 3s;
+}
+.rsaddon-unique-slider.rs-testi_stylestyle5 .testimonial-items.slick-center .inrs,
+.rsaddon-unique-slider.rs-testi_stylestyle5 .testimonial-items.slick-center .inrs .item-content span img,
+.rsaddon-unique-slider.rs-testi_stylestyle5 .testimonial-items.slick-center .inrs .ratings img,
+.rsaddon-unique-slider.rs-testi_stylestyle5 .testimonial-items.slick-center .image-wrap img {
+  transition: all 0.3s;
+}
+.rsaddon-unique-slider.arrow_style2 {
+  transition: all 3s;
+}
+.rsaddon-unique-slider.arrow_style2 .rs-addon-slider {
+  transition: all 3s;
+}
+.rsaddon-unique-slider.arrow_style2 .rs-addon-slider .slick-arrow {
+  opacity: 1;
+  visibility: visible;
+  width: 50px;
+  height: 50px;
+  line-height: 50;
+}
+.rsaddon-unique-slider.arrow_style2 .rs-addon-slider .slick-arrow::before {
+  line-height: 50px;
+}
+
+.home-7-testimonial-quote .rsaddon-unique-slider .slick-center span img, .rsaddon-unique-slider span .center_img_enable {
+  display: none;
+}
+
+.home-7-testimonial-quote .rsaddon-unique-slider .slick-center span .center_img_enable {
+  display: block !important;
+}
+
+.rs-testimonial .rs-addon-slider.sliders-restimon3 .testimonial-items .inrs {
+  box-shadow: 0 0 0px rgba(0, 0, 0, 0.06);
+}
+
+.rsaddon-unique-slider.rs-testimonial .rs-addon-slider .slick-prev {
+  left: -75px;
+  overflow: visible;
+  opacity: 1;
+  visibility: visible;
+}
+
+.rsaddon-unique-slider.rs-testimonial .rs-addon-slider .slick-next {
+  right: -75px;
+  overflow: visible;
+  opacity: 1;
+  visibility: visible;
+}

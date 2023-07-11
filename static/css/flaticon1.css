@@ -1,0 +1,58 @@
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 15/11/2020 10:46
+  	*/
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("../font/Flaticon1.eot");
+  src: url("../font/Flaticon1.eot") format("embedded-opentype"),
+       url("../font/Flaticon1.woff2") format("woff2"),
+       url("../font/Flaticon1.woff") format("woff"),
+       url("../font/Flaticon1.ttf") format("truetype"),
+       url("../font/Flaticon1.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("../font/Flaticon1.svg") format("svg");
+  }
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+  font-family: Flaticon;
+        font-size: 20px;
+font-style: normal;
+margin-left: 20px;
+}
+
+.flaticon-computer:before { content: "\f100"; }
+.flaticon-layout:before { content: "\f101"; }
+.flaticon-landing-page:before { content: "\f102"; }
+.flaticon-package:before { content: "\f103"; }
+.flaticon-tap:before { content: "\f104"; }
+.flaticon-shopping-cart:before { content: "\f105"; }
+.flaticon-translation:before { content: "\f106"; }
+.flaticon-connecting-rotated-left-and-right-arrows:before { content: "\f107"; }
+.flaticon-direction:before { content: "\f108"; }
+.flaticon-responsive-design:before { content: "\f109"; }
+.flaticon-options:before { content: "\f10a"; }
+.flaticon-negotiation:before { content: "\f10b"; }
+.flaticon-color-palette:before { content: "\f10c"; }
+.flaticon-seo:before { content: "\f10d"; }
+.flaticon-email:before { content: "\f10e"; }
+.flaticon-blog:before { content: "\f10f"; }
+.flaticon-web-browser:before { content: "\f110"; }
+.flaticon-browser:before { content: "\f111"; }
+.flaticon-framework:before { content: "\f112"; }
+.flaticon-checklist:before { content: "\f113"; }
+.flaticon-24-hours-support:before { content: "\f114"; }
+.flaticon-right:before { content: "\f115"; }
+.flaticon-left:before { content: "\f116"; }
+.flaticon-error:before { content: "\f117"; }
+.flaticon-cancel:before { content: "\f118"; }
+.flaticon-cancel-1:before { content: "\f119"; }

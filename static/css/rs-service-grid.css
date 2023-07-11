@@ -1,0 +1,39 @@
+.rs-addon-services.style1 .services-inner {
+  transition: all 0.3s ease 0s;
+}
+.rs-addon-services.style1 .services-inner.gradient-border-enable {
+  background: linear-gradient(0deg, #fdbb14 0%, transparent 100%);
+  border: 0px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+.rs-addon-services.style1 .services-inner.gradient-border-enable:before {
+  position: absolute;
+  content: "";
+  left: 1.5px;
+  top: 1.5px;
+  right: 1.5px;
+  bottom: 1.5px;
+  background: #fff;
+  transition: all 0.3s ease 0s;
+}
+.rs-addon-services.style1 .services-inner.gradient-border-enable .media_wrap,
+.rs-addon-services.style1 .services-inner.gradient-border-enable .content_part {
+  position: relative;
+  z-index: 1;
+}
+.rs-addon-services.style1 .services-inner .media_wrap.custom-shape-yes .media-cmn {
+  border-radius: 54% 46% 45% 55%/43% 46% 54% 57%;
+}
+.rs-addon-services.style2 .services-inner .media-cmn .normal {
+  display: block;
+}
+.rs-addon-services.style2 .services-inner .media-cmn .hover {
+  display: none;
+}
+.rs-addon-services.style2 .services-inner:hover .media-cmn .normal {
+  display: none;
+}
+.rs-addon-services.style2 .services-inner:hover .media-cmn .hover {
+  display: block;
+}

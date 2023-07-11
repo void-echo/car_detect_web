@@ -1,0 +1,23 @@
+/*
+Theme Name: rs Menu
+Description: rs Menu is a fully responsive, easy-to-use, highly customized and creative Mega Menu
+Author: Rs Themes
+*/
+
+/************************************************
+	Transitions
+************************************************/
+@media screen and (min-width: 992px) {
+	.rs-menu ul ul {
+		opacity: 0;
+		display: block;
+		visibility: hidden;	
+		transform: translateY(10px);
+	}
+
+	.rs-menu li:active > ul, .rs-menu li:focus > ul, .rs-menu li:hover > ul, .rs-menu li:hover > ul.mega-menu > li > ul, .rs-menu li:hover ul.mega-menu .sub-menu {    
+		 opacity: 1;
+		 visibility:visible;		
+		 transform: translateY(0px);
+	}	
+}

@@ -1,0 +1,113 @@
+.rs-contact-box {
+  text-align: left;
+}
+.rs-contact-box .address-item {
+  display: flex;
+  position: relative;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.rs-contact-box .address-item:last-child {
+  margin-bottom: 0 !important;
+}
+.rs-contact-box .address-item:last-child .address-icon:after {
+  display: none;
+}
+.rs-contact-box .address-item .address-icon {
+  display: inline-block;
+  position: relative;
+  background: #2b59ff;
+  height: 70px;
+  width: 70px;
+  line-height: 70px;
+  border-radius: 100%;
+  text-align: center;
+}
+.rs-contact-box .address-item .address-icon:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  display: block;
+  width: 70px;
+  height: 70px;
+  background: #2b59ff;
+  border-radius: 50%;
+  opacity: 0;
+  visibility: hidden;
+}
+.rs-contact-box .address-item .address-icon:before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  display: block;
+  width: 70px;
+  height: 70px;
+  background: #2b59ff;
+  border-radius: 50%;
+  -webkit-animation: pulse-border 1500ms ease-out infinite;
+          animation: pulse-border 1500ms ease-out infinite;
+  opacity: 0;
+  visibility: hidden;
+}
+.rs-contact-box .address-item .address-icon:hover {
+  border-color: rgba(255, 255, 255, 0.7);
+}
+.rs-contact-box .address-item .address-icon i {
+  text-align: center;
+  color: #fff;
+  border-radius: 100%;
+  font-size: 30px;
+  position: relative;
+  line-height: 70px;
+  z-index: 9;
+  width: 100%;
+  vertical-align: middle;
+  margin-left: 0;
+  height: auto;
+}
+.rs-contact-box .address-item .address-text .des,
+.rs-contact-box .address-item .address-text .label {
+  display: block;
+}
+.rs-contact-box .address-item .address-text .contact-title {
+  margin-bottom: 1px;
+  font-weight: 500;
+  font-size: 20px;
+  margin-top: 6px;
+}
+.rs-contact-box .address-item .address-text a:hover {
+  color: #010d14;
+}
+.rs-contact-box .address-item .address-text .phone {
+  display: inline-grid;
+}
+.rs-contact-box .address-item .address-text .email {
+  display: inline-grid;
+}
+.rs-contact-box .address-item:hover .address-icon:after {
+  opacity: 1;
+  visibility: visible;
+}
+.rs-contact-box .address-item:hover .address-icon:before {
+  opacity: 1;
+  visibility: visible;
+}
+.rs-contact-box .address-item.vertical {
+  display: block;
+  text-align: center;
+}
+.rs-contact-box .address-item.vertical .address-text span.label {
+  display: block;
+  font-weight: 500;
+  font-size: 20px;
+  margin-top: 15px;
+}
+.rs-contact-box .address-item.horizontal .address-icon {
+  margin-right: 20px;
+}

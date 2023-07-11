@@ -1,0 +1,11 @@
+.rsaddon-unique-slider .rs-addon-slider.arrow_show_enable .slick-arrow {
+    visibility: visible;
+    opacity: 1;
+}
+
+.rs-addon-slider .slick-dots li.slick-active button {
+  width: 30px;
+}
+.rs-addon-slider .slick-dots li button {
+  height: 6px;
+}

@@ -1,0 +1,15 @@
+.rs-portfolio.swiper .content-details {
+  display: block;
+  margin-bottom: 55px;
+  margin-top: 20px;
+}
+
+.rs-portfolio.swiper.swiper-horizontal > .swiper-scrollbar {
+  width: 100%;
+  background-color: #ffe8e5;
+  height: 5px;
+  left: 0;
+}
+.rs-portfolio.swiper.swiper-horizontal > .swiper-scrollbar .swiper-scrollbar-drag {
+  background-color: #F05C4E;
+}

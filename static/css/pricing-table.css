@@ -1,0 +1,373 @@
+.rs-price-table-menu ul {
+  margin: 0;
+  list-style: none;
+}
+.rs-price-table-menu li {
+  list-style: none;
+}
+.rs-price-table-menu .rs-pricing-table-body h3.rs-pricing-menu-features-title {
+  margin-bottom: 0px;
+}
+.rs-price-table-menu .rs-pricing-table-body .full-menu-item .price-menu {
+  display: flex;
+  flex-wrap: wrap;
+}
+.rs-price-table-menu .rs-pricing-table-body .full-menu-item .price-menu .rs-pricing-menu-image {
+  margin-right: 10px;
+  flex-grow: 0;
+  width: 80px;
+}
+.rs-price-table-menu .rs-pricing-table-body .full-menu-item .price-menu .rs-pricing-table-feature-text {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  width: 100%;
+}
+.rs-price-table-menu .rs-pricing-table-body .full-menu-item .price-menu .rs-pricing-table-feature-text span.rs-price-title-connector {
+  border-bottom: 1px dashed #ccc;
+  height: 1px;
+  flex-grow: 1;
+  align-self: center;
+  margin: 0 20px;
+}
+.rs-price-table-menu .rs-pricing-table-body .full-menu-item .price-menu .rs-pricing-table-feature-text span {
+  align-self: center;
+}
+.rs-price-table-menu .rs-pricing-table-body .full-menu-item .price-menu .menu-price {
+  display: inline-table;
+  align-self: center;
+}
+
+div.swiper-container.rs-pricing-slider {
+  position: relative;
+  right: -150px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: -88px;
+  margin-bottom: -88px;
+  padding-left: 20px;
+}
+div.swiper-container.rs-pricing-slider ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+div.swiper-container.rs-pricing-slider .swiper-wrapper {
+  align-items: center;
+}
+div.swiper-container.rs-pricing-slider .swiper-wrapper .swiper-slide .test-it {
+  border-radius: 40px;
+  margin: 0 auto;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: -2;
+  background: transparent;
+  overflow: hidden;
+}
+div.swiper-container.rs-pricing-slider .swiper-wrapper .swiper-slide .test-it img {
+  width: 100%;
+  height: 100%;
+}
+div.swiper-container.rs-pricing-slider .swiper-wrapper .swiper-slide .test-it .priceing-wrap {
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  color: #ffffff;
+}
+div.swiper-container.rs-pricing-slider .swiper-wrapper .swiper-slide .test-it .priceing-wrap .top-part i {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  line-height: 60px;
+  display: block;
+  margin: 0 auto 25px;
+  background: #2b59ff;
+  font-size: 28px;
+}
+div.swiper-container.rs-pricing-slider .swiper-wrapper .swiper-slide .test-it .priceing-wrap .top-part .title {
+  margin-bottom: 7px;
+  font-size: 22px;
+  color: #ffffff;
+}
+div.swiper-container.rs-pricing-slider .swiper-wrapper .swiper-slide .test-it .priceing-wrap .top-part .price {
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+div.swiper-container.rs-pricing-slider .swiper-wrapper .swiper-slide .test-it .priceing-wrap ul.info li {
+  font-size: 13px;
+}
+div.swiper-container.rs-pricing-slider .swiper-wrapper .swiper-slide .test-it .priceing-wrap .btn-part {
+  display: none;
+}
+div.swiper-container.rs-pricing-slider .swiper-wrapper .swiper-slide .test-it .priceing-wrap .btn-part .readon {
+  padding: 8px 33px;
+}
+div.swiper-container.rs-pricing-slider .swiper-slide {
+  opacity: 0;
+}
+div.swiper-container.rs-pricing-slider .swiper-slide .test-it {
+  width: 100%;
+  max-width: 85% !important;
+  left: -85px;
+  height: 395px;
+}
+div.swiper-container.rs-pricing-slider .swiper-slide-prev {
+  opacity: 1;
+}
+div.swiper-container.rs-pricing-slider .swiper-slide-prev .test-it {
+  width: 140%;
+  max-width: 140% !important;
+  left: 0 !important;
+  z-index: 2 !important;
+  height: 690px !important;
+}
+div.swiper-container.rs-pricing-slider .swiper-slide-prev .test-it .top-part i {
+  display: block !important;
+}
+div.swiper-container.rs-pricing-slider .swiper-slide-prev .test-it .top-part .title {
+  font-size: 25px !important;
+  margin-bottom: 32px !important;
+}
+div.swiper-container.rs-pricing-slider .swiper-slide-prev .test-it .top-part .price {
+  font-size: 35px !important;
+  color: #2b59ff !important;
+  margin-bottom: 30px !important;
+  font-weight: 600 !important;
+}
+div.swiper-container.rs-pricing-slider .swiper-slide-prev .test-it ul.info li {
+  font-size: 16px !important;
+}
+div.swiper-container.rs-pricing-slider .swiper-slide-prev .test-it .btn-part {
+  display: block !important;
+}
+div.swiper-container.rs-pricing-slider .swiper-slide-prev .test-it:before {
+  position: absolute;
+  content: "";
+  border-radius: 100%;
+  z-index: 0;
+  width: 22px;
+  height: 22px;
+  right: 80px;
+  top: 80px;
+  background: #91a9ff;
+  opacity: 0.26;
+  animation: move-x2 5s alternate infinite;
+  -webkit-animation: move-x2 5s alternate infinite;
+}
+div.swiper-container.rs-pricing-slider .swiper-slide-prev .test-it:after {
+  position: absolute;
+  content: "";
+  border-radius: 100%;
+  z-index: 0;
+  width: 40px;
+  height: 40px;
+  left: 80px;
+  bottom: 80px;
+  background: #2b59ff;
+  opacity: 0.26;
+  animation: move-x 2s alternate infinite;
+  -webkit-animation: move-x 2s alternate infinite;
+}
+div.swiper-container.rs-pricing-slider .swiper-slide-active {
+  opacity: 1;
+}
+div.swiper-container.rs-pricing-slider .swiper-slide-active .test-it {
+  width: 120%;
+  max-width: 120% !important;
+  left: 0 !important;
+  z-index: 1 !important;
+  height: 520px !important;
+}
+div.swiper-container.rs-pricing-slider .swiper-slide-next {
+  opacity: 1;
+}
+div.swiper-container.rs-pricing-slider .swiper-slide-next .test-it {
+  width: 100%;
+  max-width: 100% !important;
+  left: -45px !important;
+  z-index: -1 !important;
+  height: 450px !important;
+}
+div.swiper-container.rs-pricing-slider .swiper-slide-next .test-it .top-part i {
+  display: block !important;
+}
+div.swiper-container.rs-pricing-slider .swiper-next {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  background: #ffffff;
+  border-radius: 100%;
+  position: absolute;
+  bottom: 20px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.4s ease 0s;
+  z-index: 3;
+  left: 52%;
+}
+div.swiper-container.rs-pricing-slider .swiper-next:after {
+  font-family: Flaticon;
+  color: #2b59ff;
+  transition: all 0.4s ease 0s;
+  content: "\f111";
+}
+div.swiper-container.rs-pricing-slider .swiper-next:hover {
+  background: #2b59ff;
+}
+div.swiper-container.rs-pricing-slider .swiper-next:hover:after {
+  color: #ffffff;
+}
+div.swiper-container.rs-pricing-slider .swiper-prev {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  background: #ffffff;
+  border-radius: 100%;
+  position: absolute;
+  bottom: 20px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.4s ease 0s;
+  z-index: 3;
+  left: 59%;
+}
+div.swiper-container.rs-pricing-slider .swiper-prev:after {
+  font-family: Flaticon;
+  color: #2b59ff;
+  transition: all 0.4s ease 0s;
+  content: "\f110";
+}
+div.swiper-container.rs-pricing-slider .swiper-prev:hover {
+  background: #2b59ff;
+}
+div.swiper-container.rs-pricing-slider .swiper-prev:hover:after {
+  color: #ffffff;
+}
+div.swiper-container.rs-pricing-slider .pattern {
+  position: absolute;
+  left: 80px;
+  top: 80px;
+  pointer-events: none;
+}
+
+.elementor-widget-rsprice .elementor-widget-container .rs-pricing-table-badge {
+  position: absolute;
+  top: 0;
+  padding: 10px 10px;
+  background-color: #010d14;
+  color: #fff;
+  line-height: 1;
+  z-index: 1;
+}
+.elementor-widget-rsprice .elementor-widget-container .rs-pricing-table-title {
+  padding-top: 10px;
+  margin-bottom: 20px;
+  color: #121933;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 30px;
+}
+.elementor-widget-rsprice .elementor-widget-container .rs-pricing-table-price {
+  margin-bottom: 30px;
+}
+.elementor-widget-rsprice .elementor-widget-container .rs-pricing-table-price .rs-pricing-table-price-tag {
+  margin-bottom: 0.5rem;
+  color: #242424;
+  font-weight: 700;
+  font-size: 60px;
+  line-height: normal;
+}
+.elementor-widget-rsprice .elementor-widget-container .rs-pricing-table-price .rs-pricing-table-price-tag .rs-pricing-table-currency {
+  font-size: 24px;
+}
+.elementor-widget-rsprice .elementor-widget-container .rs-pricing-table-price .rs-pricing-table-price-tag .rs-pricing-table-price-text {
+  font-weight: 700;
+}
+.elementor-widget-rsprice .elementor-widget-container .rs-pricing-table-price .rs-pricing-table-period {
+  color: #8c8c8c;
+  font-size: 16px;
+  display: block;
+}
+.elementor-widget-rsprice .elementor-widget-container .rs-pricing-table-price.display-inline2 .rs-pricing-table-price-tag {
+  line-height: 0.66;
+  display: flex;
+  justify-content: center;
+}
+.elementor-widget-rsprice .elementor-widget-container .rs-pricing-table-price.display-inline2 .rs-pricing-table-period {
+  display: flex;
+  align-items: flex-end;
+}
+.elementor-widget-rsprice .elementor-widget-container .rs-pricing-table-price.display-inline .rs-pricing-table-period {
+  position: relative;
+  padding-left: 20px;
+  display: inline-block;
+}
+.elementor-widget-rsprice .elementor-widget-container .rs-pricing-table-price.display-inline .rs-pricing-table-period:before {
+  content: "";
+  height: 20px;
+  width: 2px;
+  position: absolute;
+  left: 0;
+  transform: rotate(20deg) translateY(-50%);
+  top: 50%;
+  background: #f2f2f2;
+}
+.elementor-widget-rsprice .elementor-widget-container .rs-pricing-table-body {
+  margin-bottom: 35px;
+}
+.elementor-widget-rsprice .elementor-widget-container .rs-pricing-table-body .rs-pricing-table-features-title {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 16px;
+}
+.elementor-widget-rsprice .elementor-widget-container .rs-pricing-table-body .rs-pricing-table-features-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.elementor-widget-rsprice .elementor-widget-container .rs-pricing-table-body .rs-pricing-table-features-list li {
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+.elementor-widget-rsprice .elementor-widget-container .rs-pricing-table-body .rs-pricing-table-features-list li:last-child {
+  border: none !important;
+}
+.elementor-widget-rsprice .elementor-widget-container .rs-pricing-table-body .rs-pricing-table-features-list li i {
+  margin-right: 10px;
+  min-width: 15px;
+  font-size: 16px;
+}
+.elementor-widget-rsprice .elementor-widget-container .rs-pricing-table-body .rs-pricing-table-features-list.right_position li {
+  overflow: hidden;
+}
+.elementor-widget-rsprice .elementor-widget-container .rs-pricing-table-body .rs-pricing-table-features-list.right_position li i {
+  float: right;
+  margin-right: 0;
+}
+.elementor-widget-rsprice .elementor-widget-container .rs-pricing-table-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 40px;
+  background-color: #010d14;
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  transition: all 0.3s;
+  position: relative;
+}
+.elementor-widget-rsprice .elementor-widget-container .rs-pricing-icon {
+  position: relative;
+}
+.elementor-widget-rsprice .elementor-widget-container .rs-pricing-icon i {
+  position: relative;
+  transition: all 0.4s ease 0s;
+  text-align: center;
+}

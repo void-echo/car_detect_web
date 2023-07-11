@@ -1,0 +1,120 @@
+.rs_accordion .card {
+  border: none;
+  border-radius: 0;
+}
+.rs_accordion .card-header {
+  padding: 0;
+  border: none;
+}
+.rs_accordion .card-header .rs-tab-title {
+  display: flex;
+  position: relative;
+  padding: 10px 20px 6px 20px;
+  line-height: 1.8;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+.rs_accordion .card-header span {
+  margin-left: auto;
+  width: 30px;
+  text-align: center;
+  height: 100%;
+  border: 1px solid #ddd;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 30px;
+  position: relative;
+  top: -2px;
+}
+.rs_accordion .card-header span.active {
+  display: none;
+}
+.rs_accordion .card-header.active span.normal {
+  display: none;
+}
+.rs_accordion .card-header.active span.active {
+  display: block;
+}
+.rs_accordion .card-header.left_icon span {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 20px;
+}
+.rs_accordion .card-body {
+  border: 1px solid #eee;
+}
+
+div.rs-accordion-area .accordion-item {
+  margin-bottom: 30px;
+  border: none;
+  background: #F8F9FF;
+  border-radius: 15px;
+  padding: 28px 30px;
+  cursor: pointer;
+}
+div.rs-accordion-area .accordion-item:last-child {
+  margin-bottom: 30px;
+}
+div.rs-accordion-area .tab-title {
+  margin-bottom: 0;
+}
+div.rs-accordion-area button:focus {
+  outline: none;
+  box-shadow: none;
+}
+div.rs-accordion-area .accordion-button {
+  font-size: 20px;
+  font-family: "Comfortaa", cursive;
+  color: #121933;
+  font-weight: 700;
+  line-height: 1.35;
+  padding: 0;
+  background: transparent;
+}
+div.rs-accordion-area .accordion-button .elementor-accordion-icon-opened {
+  display: none;
+}
+div.rs-accordion-area .accordion-button span {
+  display: inline-block;
+}
+div.rs-accordion-area .accordion-button:not(.collapsed) {
+  box-shadow: none;
+  background: transparent;
+}
+div.rs-accordion-area .accordion-button:not(.collapsed) .elementor-accordion-icon-closed {
+  display: none;
+}
+div.rs-accordion-area .accordion-button:not(.collapsed) .elementor-accordion-icon-opened {
+  display: block;
+}
+div.rs-accordion-area .accordion-button:after {
+  display: none;
+}
+div.rs-accordion-area .accordion-header .elementor-accordion-icon {
+  position: absolute;
+  left: 0;
+  top: 10px;
+}
+div.rs-accordion-area .accordion-header .elementor-accordion-icon-right {
+  left: auto;
+  right: 0;
+  text-align: center;
+}
+div.rs-accordion-area .accordion-body {
+  padding: 15px 0 0;
+}
+div.rs-accordion-area .accordion-body p {
+  margin-bottom: 0;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+}
+div.rs-accordion-area .icon_image {
+  background: #2b59ff;
+  padding: 11px;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+div.rs-accordion-area .icon_image img {
+  max-width: 30px;
+}

@@ -1,0 +1,27 @@
+.gradient-style-enable .blog-item .blog-content .blog-btn:not(:hover) span,
+.gradient-style-enable .blog-item .blog-content .blog-meta li {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-color: transparent;
+  background-image: linear-gradient(80deg, #FF0945 0%, #FF803B 100%);
+}
+.gradient-style-enable .blog-item .blog-content .blog-btn i {
+  color: #fff;
+}
+.gradient-style-enable .blog-item .blog-content .blog-btn:not(:hover) i::before {
+  color: transparent;
+  background-image: linear-gradient(94.57deg, #FF0945 8.35%, #FF803B 100%);
+  -webkit-background-clip: text;
+}
+
+.rsaddon-unique-slider .blog-content .blog-footer .blog-meta .admin i {
+  top: 0 !important;
+}
+
+.rsaddon-unique-slider .blog-content .blog-footer .blog-meta i {
+  top: 5px !important;
+}
+
+.rs-blog-grid .blog-item .blog-btn i {
+  top: 0 !important;
+}

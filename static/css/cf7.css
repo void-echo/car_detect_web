@@ -1,0 +1,82 @@
+.wpcf7 input[type=file] {
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+.wpcf7 label {
+  display: block;
+}
+.wpcf7 .ui-widget-content {
+  border: 1px solid #4DC19E;
+  background: #4DC19E;
+  margin-top: 40px;
+}
+.wpcf7 .ui-widget-content .esrscf7top::after {
+  border-color: #00a775 transparent transparent transparent;
+}
+.wpcf7 .ui-widget-content:focus-visible {
+  outline: none;
+}
+.wpcf7 .ui-widget-content .ui-slider-handle.ui-corner-all.ui-state-default:focus-visible {
+  outline: none;
+  border: 1px solid #00a775;
+}
+.wpcf7 .ui-widget-content .ui-slider-handle.ui-corner-all.ui-state-default:hover {
+  border: 1px solid #00a775;
+}
+
+.wpcf7 .col-sm-12 {
+  position: relative;
+}
+.wpcf7 .col-sm-12 i {
+  position: absolute;
+  top: 18px;
+  left: 35px;
+  font-size: 20px;
+  z-index: 9;
+  color: rgba(69, 69, 69, 0.7411764706);
+}
+
+.wpcf7 .free_consultation_form {
+  display: flex;
+  justify-content: space-around;
+}
+
+.contact-page-custom .wpcf7-not-valid-tip,
+.home-contact-page .wpcf7-not-valid-tip {
+  color: red;
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-bottom: 10px;
+}
+
+.contact-page-custom input.wpcf7-form-control.has-spinner.wpcf7-submit {
+  width: 100%;
+}
+
+.contact-us-page .wpcf7-form .col-sm-12,
+.contact-us-page .wpcf7-form .col-sm-6 {
+  position: relative !important;
+}
+
+.contact-us-page .wpcf7-form .col-sm-12 i,
+.contact-us-page .wpcf7-form .col-sm-6 i {
+  position: absolute;
+  top: 24px;
+  left: 35px;
+  font-size: 20px;
+  z-index: 9;
+  color: rgba(69, 69, 69, 0.7411764706);
+}
+
+.contact-us-page .wpcf7 i.ri-mail-line, .contact-us-page .wpcf7 i.ri-phone-fill {
+  top: 24px !important;
+}
+
+.contact-us-page .wpcf7 i.ri-edit-line {
+  top: 25px !important;
+}
+
+.wpcf7 form .wpcf7-response-output {
+  margin: 10px 0 0 6px;
+  border: 0;
+}

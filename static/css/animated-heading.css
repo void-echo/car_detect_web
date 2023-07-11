@@ -1,0 +1,39 @@
+.rs-animated-heading .title span {
+  display: inline-block;
+}
+.rs-animated-heading .title-inner .title {
+  color: #121933;
+  line-height: 56px;
+  margin-bottom: 10px;
+  font-family: "Comfortaa", cursive;
+}
+.rs-animated-heading .title-inner .title .cd-headline {
+  color: #121933;
+  line-height: 56px;
+  font-weight: 700;
+  color: #2b59ff;
+  display: inline-block;
+}
+.rs-animated-heading .title-inner .title .cd-headline .cd-words-wrapper {
+  display: block;
+  margin-left: 0;
+}
+.rs-animated-heading .title-inner .title .cd-headline p {
+  margin-bottom: 0;
+}
+.rs-animated-heading .title-inner .title.title-upper {
+  text-transform: uppercase;
+}
+
+.rs-dual-heading .title span {
+  display: inline-block;
+}
+
+.slick-slide {
+  outline: none;
+}
+
+.rs-animated-heading.gradient_color .title-inner .title .cd-headline p {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

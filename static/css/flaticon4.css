@@ -1,0 +1,50 @@
+@font-face {
+    font-family: "flaticon";
+    src: url("../font/Flaticon3.ttf") format("truetype"),
+url("../font/Flaticon3.woff") format("woff"),
+url("../font/Flaticon3.woff2") format("woff2"),
+url("../font/Flaticon3.eot") format("embedded-opentype"),
+url("../font/Flaticon3.svg") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.flaticon-address:before {
+    content: "\f101";
+}
+.flaticon-envelope:before {
+    content: "\f102";
+}
+.flaticon-event:before {
+    content: "\f103";
+}
+.flaticon-open-email:before {
+    content: "\f104";
+}
+.flaticon-email:before {
+    content: "\f105";
+}
+.flaticon-whatsapp:before {
+    content: "\f106";
+}
+.flaticon-call:before {
+    content: "\f107";
+}
+.flaticon-telephone:before {
+    content: "\f108";
+}
+.flaticon-phone-call:before {
+    content: "\f109";
+}
+.flaticon-telephone-1:before {
+    content: "\f10a";
+}

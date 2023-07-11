@@ -1,0 +1,62 @@
+.rs-static-products .box-inner {
+  position: relative;
+  padding: 40px 25px 30px;
+  box-shadow: 0 0 38px 0 rgba(0, 0, 0, 0.12);
+  transition: 0.4s;
+  overflow: hidden;
+}
+.rs-static-products .box-inner:hover {
+  box-shadow: 0 8px 38px 0 rgba(0, 0, 0, 0.2);
+}
+.rs-static-products .box-inner .text-area {
+  padding: 30px 0 0;
+  position: relative;
+}
+.rs-static-products .box-inner .text-area .product-title {
+  position: relative;
+}
+.rs-static-products .box-inner .text-area .product-title .title {
+  font-size: 20px;
+  margin: 0 0 10px;
+  color: #121933;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.rs-static-products .box-inner .text-area .product-title .title a {
+  color: #121933;
+}
+.rs-static-products .box-inner .text-area .product-title .title a:hover {
+  color: #1273eb;
+}
+.rs-static-products .box-inner .text-area .product-des {
+  font-size: 16px;
+  margin: 0;
+}
+.rs-static-products .box-inner .rs-product-button {
+  margin: 15px 0 0;
+}
+.rs-static-products .box-inner .rs-product-button .product-button {
+  position: relative;
+  display: inline-block;
+  color: #2b59ff;
+  transition: all ease 0.3s;
+}
+.rs-static-products .box-inner .rs-product-button .product-button i {
+  transition: all ease 0.3s;
+}
+.rs-static-products .box-inner .rs-product-button .product-button:hover {
+  color: #010d14;
+}
+.rs-static-products .box-inner .rs-product-button .product-button.icon-after span {
+  float: left;
+}
+.rs-static-products .box-inner .rs-product-button .product-button.icon-after i {
+  margin-left: 10px;
+  transition: 0.4s;
+}
+.rs-static-products .box-inner .rs-product-button .product-button.icon-before span {
+  float: right;
+}
+.rs-static-products .box-inner .rs-product-button .product-button.icon-before i {
+  margin-right: 10px;
+}

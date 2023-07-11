@@ -1,0 +1,39 @@
+.rs-cta {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+}
+.rs-cta .cta-content {
+  float: left;
+  width: 80%;
+  text-align: left;
+  order: unset;
+}
+.rs-cta .cta-content .cta-title h3.title {
+  margin: 0 0 10px;
+}
+.rs-cta .cta-content .cta-text .desc {
+  margin: 0;
+}
+.rs-cta .rs-btn {
+  width: 20%;
+  float: right;
+  text-align: right;
+  order: unset;
+}
+.rs-cta .rs-btn .readon {
+  line-height: 1;
+  color: #fff;
+  background-color: #010d14;
+  padding: 15px 35px;
+  font-size: 17px;
+  border-radius: 0;
+}
+.rs-cta .rs-btn .readon:hover {
+  background: #2b59ff;
+}
+.rs-cta .rs-btn .readon i {
+  margin: 0;
+  transform: translateX(5px);
+  transition: all ease 0.3s;
+}

@@ -1,0 +1,11 @@
+.rs-faq-main .rs-faq-title {
+  background: #f7f7f7;
+  padding: 15px 20px;
+  margin-bottom: 0;
+}
+.rs-faq-main .rs-faq-title span {
+  padding-right: 10px;
+}
+.rs-faq-main .rs-faq-content {
+  padding: 30px 20px 50px;
+}

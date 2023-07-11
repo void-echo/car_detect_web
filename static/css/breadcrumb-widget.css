@@ -1,0 +1,93 @@
+.breadcrumb-area {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 14px 30px;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.breadcrumb-area.style2 {
+  font-size: 0;
+}
+.breadcrumb-area.style2 span {
+  position: relative;
+  font-size: 14px;
+  margin-left: 3px;
+  margin-right: 8px;
+}
+.breadcrumb-area.style2 span:after {
+  content: "";
+  position: absolute;
+  background: #fff;
+  width: 1px;
+  height: 16px;
+  border-radius: 0;
+  right: -4px;
+  top: 1.5px;
+  transform: rotate(25deg);
+}
+.breadcrumb-area.style2 span span:after {
+  display: none;
+}
+.breadcrumb-area.style2 span:last-child:after {
+  display: none;
+}
+.breadcrumb-area.style3 {
+  font-size: 0;
+}
+.breadcrumb-area.style3 span {
+  position: relative;
+  font-size: 14px;
+}
+.breadcrumb-area.style3 span:after {
+  content: "\f121";
+  position: absolute;
+  font-family: uicons-regular-rounded !important;
+  font-size: 19px;
+  top: -6px;
+  right: -8px;
+  opacity: 1;
+  transition: all 0.3s;
+  color: #fdbb14;
+}
+.breadcrumb-area.style3 span span:after {
+  display: none;
+}
+.breadcrumb-area.style3 span:last-child:after {
+  display: none;
+}
+
+.breadcrumbs-title {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 14px 30px;
+  max-width: 300px;
+  margin: 20px auto 0;
+  font-size: 0;
+}
+.breadcrumbs-title span {
+  position: relative;
+  font-size: 14px;
+  padding: 0px 10px 0px 10px;
+}
+.breadcrumbs-title span:after {
+  content: "";
+  position: absolute;
+  background: #fdbb14;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  right: -3px;
+  top: 5px;
+}
+.breadcrumbs-title span span:after {
+  display: none;
+}
+.breadcrumbs-title span:last-child:after {
+  display: none;
+}
+
+.rs-breadcrumbs .breadcrumbs-meta {
+  justify-content: center;
+}
+
+.single .breadcrumbs-title {
+  max-width: 700px;
+}
