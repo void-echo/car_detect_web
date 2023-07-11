@@ -3,15 +3,17 @@ import depthai as dai
 
 from config_ import DEPTH_THRESH_HIGH, DEPTH_THRESH_LOW
 
-pipeline_prepared = False
-global_pipeline = None
+pipeline_palm_prepared = False
+global_pipeline_palm = None
+pipeline_simple_prepared = False
+global_pipeline_simple = None
 
 # disable typo check for this function
 # noinspection PyTypeChecker,SpellCheckingInspection
-def get_prepared_pipeline():
-    global pipeline_prepared, global_pipeline
-    if pipeline_prepared:
-        return global_pipeline
+def get_prepared_pipeline_with_palm_detection():
+    global pipeline_palm_prepared, global_pipeline_palm
+    if pipeline_palm_prepared:
+        return global_pipeline_palm
     print("Creating pipeline...")
     pipeline = dai.Pipeline()
     # 创建了一个Pipeline对象，并添加了相机、神经网络和其他节点
@@ -83,6 +85,41 @@ def get_prepared_pipeline():
     sdn.passthroughDepth.link(depth_out.input)
 
     print("Pipeline created.")
-    global_pipeline = pipeline
-    pipeline_prepared = True
+    global_pipeline_palm = pipeline
+    pipeline_palm_prepared = True
     return pipeline
+
+
+def get_simple_pipeline():
+    global pipeline_simple_prepared, global_pipeline_simple
+    if pipeline_simple_prepared:
+        return global_pipeline_simple
+    print("Creating simple pipeline for depth detection...")
+    pipeline = dai.Pipeline()
+    cam = pipeline.create(dai.node.ColorCamera)
+    cam.setResolution(dai.ColorCameraProperties.SensorResolution.THE_1080_P)
+    cam.setIspScale(2, 3)  # To match 720P mono cameras
+    cam.setBoardSocket(dai.CameraBoardSocket.RGB)
+    cam.initialControl.setManualFocus(130)
+    cam.setColorOrder(dai.ColorCameraProperties.ColorOrder.BGR)
+    cam.setPreviewSize(300, 300)
+    cam.setInterleaved(False)
+    isp_xout = pipeline.create(dai.node.XLinkOut)
+    isp_xout.setStreamName("cam")
+    cam.isp.link(isp_xout.input)
+    left = pipeline.create(dai.node.MonoCamera)
+    left.setResolution(dai.MonoCameraProperties.SensorResolution.THE_720_P)
+    left.setBoardSocket(dai.CameraBoardSocket.LEFT)
+
+    right = pipeline.create(dai.node.MonoCamera)
+    right.setResolution(dai.MonoCameraProperties.SensorResolution.THE_720_P)
+    right.setBoardSocket(dai.CameraBoardSocket.RIGHT)
+
+    # Create StereoDepth node that will produce the depth map
+    stereo = pipeline.create(dai.node.StereoDepth)
+    stereo.initialConfig.setConfidenceThreshold(245)
+    stereo.initialConfig.setMedianFilter(dai.StereoDepthProperties.MedianFilter.KERNEL_7x7)
+    stereo.setLeftRightCheck(True)
+    stereo.setDepthAlign(dai.CameraBoardSocket.RGB)
+    left.out.link(stereo.left)
+    right.out.link(stereo.right)

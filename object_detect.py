@@ -6,18 +6,11 @@ import cv2
 import depthai as dai
 import numpy as np
 
-from config_ import DEPTH_THRESH_LOW, DEPTH_THRESH_HIGH, num_columns
-from utils.pipeline_provider import get_prepared_pipeline
+from config_ import DEPTH_THRESH_LOW, DEPTH_THRESH_HIGH, num_columns, labelMap, OBSTACLE_OBJECTS
+from utils.pipeline_provider import get_prepared_pipeline_with_palm_detection
 
 from utils.curve import draw_curve
 
-
-# 希望识别的物体
-OBSTACLE_OBJECTS = ["person", "chair", "table", "bottle", "background"]
-
-# MobilenetSSD标签文本
-labelMap = ["background", "aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat", "chair", "cow",
-            "diningtable", "dog", "horse", "motorbike", "person", "pottedplant", "sheep", "sofa", "train", "tvmonitor"]
 
 frame = None
 
@@ -60,7 +53,6 @@ def draw_detections(frame, detections):
         annotate(f"Y: {int(detection.spatialCoordinates.y)} mm", (offsetX, y1 + 95))
         annotate(f"Z: {int(detection.spatialCoordinates.z)} mm", (offsetX, y1 + 110))
         cv2.rectangle(frame, (x1, y1), (x2, y2), color, cv2.FONT_HERSHEY_SIMPLEX)
-        # noinspection PyBroadException
         try:
             label = labelMap[detection.label]
         except:
@@ -254,7 +246,7 @@ def start():
             raise RuntimeError(
                 "Unable to run this experiment on device without depth capabilities! (Available cameras: {})".format(
                     cams))
-        device.startPipeline(get_prepared_pipeline())  # 启动流水线
+        device.startPipeline(get_prepared_pipeline_with_palm_detection())  # 启动流水线
         # 创建输出队列
         vidQ = device.getOutputQueue(name="cam", maxSize=4, blocking=False)
         detQ = device.getOutputQueue(name="det", maxSize=4, blocking=False)

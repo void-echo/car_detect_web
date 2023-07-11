@@ -3,10 +3,10 @@ import math
 import depthai as dai
 import numpy as np
 
-from config_ import num_columns, DEPTH_THRESH_LOW, DEPTH_THRESH_HIGH
+from config_ import num_columns, DEPTH_THRESH_LOW, DEPTH_THRESH_HIGH, labelMap, OBSTACLE_OBJECTS
 from utils.curve import draw_curve
-from flask_test import detect_motion
-from utils.pipeline_provider import get_prepared_pipeline
+from refer.flask_test import detect_motion
+from utils.pipeline_provider import get_prepared_pipeline_with_palm_detection
 from flask import Flask, render_template, Response
 import threading
 import argparse
@@ -18,7 +18,7 @@ frame = None
 lock = threading.Lock()
 app = Flask(__name__)
 
-pipeline = get_prepared_pipeline()
+pipeline = get_prepared_pipeline_with_palm_detection()
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--ip", type=str, default="127.0.0.1",
@@ -51,15 +51,6 @@ def about():
 @app.route('/contact')
 def contact():
     return render_template('blog.html')
-
-
-# 希望识别的物体
-OBSTACLE_OBJECTS = ["person", "chair", "table", "bottle", "background"]
-
-# MobilenetSSD标签文本
-labelMap = ["background", "aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat", "chair", "cow",
-            "diningtable", "dog", "horse", "motorbike", "person", "pottedplant", "sheep", "sofa", "train", "tvmonitor"]
-
 
 def crop_to_rect():
     global frame
