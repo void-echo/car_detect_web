@@ -5,16 +5,18 @@ import numpy as np
 from flask_detect import DEPTH_THRESH_LOW, DEPTH_THRESH_HIGH
 
 
-def calc_spatials(self, depth, x, y):
+# 将计算坐标的逻辑更改为根据传入的深度图和目标物体的像素坐标，计算相机和障碍物之间的距离。
+# 通过使用目标物体的像素坐标，从深度图中获取对应的深度值，并根据相机的参数计算出相对于相机的空间坐标。
+def calc_spatials(depth, x, y, depthWidth=1080.0):
     z = depth[y, x]
-    angle_x = self.calc_angle(x - self.depthWidth / 2)
+    angle_x = calc_angle(x - depthWidth / 2)
     x = z * math.tan(angle_x)
     # y = -z  # 相机和障碍物在同一高度，y轴坐标为0
     # print(f"x:{x},y:{y},z:{z}")
     return x, y, z
 
 
-def calc_distance(self, detection, depth, averaging_method=np.mean):
+def calc_distance(detection, depth, averaging_method=np.mean, monoHFOV_=np.deg2rad(73.5), depthWidth_=1080.0):
     xmin = int(detection.xmin)
     ymin = int(detection.ymin)
     xmax = int(detection.xmax)
@@ -48,8 +50,8 @@ def calc_distance(self, detection, depth, averaging_method=np.mean):
     bb_x_pos = centroidX - mid
     bb_y_pos = centroidY - mid
 
-    angle_x = self.calc_angle(bb_x_pos)
-    angle_y = self.calc_angle(bb_y_pos)
+    angle_x = calc_angle(bb_x_pos, monoHFOV_, depthWidth_)
+    angle_y = calc_angle(bb_y_pos, monoHFOV_, depthWidth_)
 
     z = averageDepth
     x = z * math.tan(angle_x)
@@ -58,3 +60,7 @@ def calc_distance(self, detection, depth, averaging_method=np.mean):
     print(f"x:{x},y:{y},z:{z}")
 
     return x, y, z
+
+
+def calc_angle(offset, monoHFOV_=np.deg2rad(73.5), depthWidth_=1080.0):
+    return math.atan(math.tan(monoHFOV_ / 2.0) * offset / (depthWidth_ / 2.0))

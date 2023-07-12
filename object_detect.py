@@ -5,12 +5,12 @@ import time
 import cv2
 import depthai as dai
 import numpy as np
+from numpy import ndarray
 
 from config_ import DEPTH_THRESH_LOW, DEPTH_THRESH_HIGH, num_columns, labelMap, OBSTACLE_OBJECTS
-from utils.pipeline_provider import get_prepared_pipeline_with_palm_detection
-
+from utils.calc_util import calc_distance
 from utils.curve import draw_curve
-
+from utils.pipeline_provider import get_prepared_pipeline_with_palm_detection
 
 frame = None
 
@@ -55,74 +55,19 @@ def draw_detections(frame, detections):
         cv2.rectangle(frame, (x1, y1), (x2, y2), color, cv2.FONT_HERSHEY_SIMPLEX)
         try:
             label = labelMap[detection.label]
-        except:
+        except Exception:
             label = detection.label
         annotate(str(label), (offsetX, y1 + 20))
 
 
+
+
+
 class HumanMachineSafety:
     def __init__(self):
-        print("Loading pipeline...")
-        self.distance = 1000
-
         # Required information for calculating spatial coordinates on the host
         self.monoHFOV = np.deg2rad(73.5)
         self.depthWidth = 1080.0
-
-    # 将计算坐标的逻辑更改为根据传入的深度图和目标物体的像素坐标，计算相机和障碍物之间的距离。
-    # 通过使用目标物体的像素坐标，从深度图中获取对应的深度值，并根据相机的参数计算出相对于相机的空间坐标。
-    def calc_spatials(self, depth, x, y):
-        z = depth[y, x]
-        angle_x = self.calc_angle(x - self.depthWidth / 2)
-        x = z * math.tan(angle_x)
-        # y = -z  # 相机和障碍物在同一高度，y轴坐标为0
-        # print(f"x:{x},y:{y},z:{z}")
-        return x, y, z
-
-    def calc_distance(self, detection, depth, averaging_method=np.mean):
-        xmin = int(detection.xmin)
-        ymin = int(detection.ymin)
-        xmax = int(detection.xmax)
-        ymax = int(detection.ymax)
-        # Decrese the ROI to 1/3 of the original ROI
-        deltaX = int((xmax - xmin) * 0.33)
-        deltaY = int((ymax - ymin) * 0.33)
-        xmin += deltaX
-        ymin += deltaY
-        xmax -= deltaX
-        ymax -= deltaY
-        if xmin > xmax:  # bbox flipped
-            xmin, xmax = xmax, xmin
-        if ymin > ymax:  # bbox flipped
-            ymin, ymax = ymax, ymin
-
-        if xmin == xmax or ymin == ymax:  # Box of size zero
-            return None
-
-        # Calculate the average depth in the ROI.
-        depthROI = depth[ymin:ymax, xmin:xmax]
-        inThreshRange = (DEPTH_THRESH_LOW < depthROI) & (depthROI < DEPTH_THRESH_HIGH)
-
-        averageDepth = averaging_method(depthROI[inThreshRange])
-
-        # Palm detection centroid
-        centroidX = int((xmax - xmin) / 2) + xmin
-        centroidY = int((ymax - ymin) / 2) + ymin
-
-        mid = int(depth.shape[0] / 2)  # middle of the depth img
-        bb_x_pos = centroidX - mid
-        bb_y_pos = centroidY - mid
-
-        angle_x = self.calc_angle(bb_x_pos)
-        angle_y = self.calc_angle(bb_y_pos)
-
-        z = averageDepth
-        x = z * math.tan(angle_x)
-        y = -z * math.tan(angle_y)
-
-        print(f"x:{x},y:{y},z:{z}")
-
-        return x, y, z
 
     # 在图像上绘制边界框
     def draw_bbox(self, bbox, color):
@@ -139,8 +84,6 @@ class HumanMachineSafety:
         draw(self.depthFrameColor)
 
     # 计算角度
-    def calc_angle(self, offset):
-        return math.atan(math.tan(self.monoHFOV / 2.0) * offset / (self.depthWidth / 2.0))
 
     # 检测和目标检测结果，并进行计算和绘制
     def parse(self, palm_coords, detections, frame, depth, depthColored):
@@ -192,7 +135,7 @@ class HumanMachineSafety:
 
             x, y, z = self.calc_spatials(depth, objectCenterX, objectCenterY)
             spatialCoords = (x, y, z)
-            self.calc_distance(detection, depth, self.debug_frame)
+            calc_distance(detection, depth, self.debug_frame)
             detection.spatialCoordinates.x = x
             detection.spatialCoordinates.y = y
             detection.spatialCoordinates.z = z
@@ -212,7 +155,7 @@ class HumanMachineSafety:
 
 
 # 障碍物避开算法
-def obstacle_avoidance(depth_frame):
+def obstacle_avoidance(depth_frame) -> list[ndarray]:
     height, width = depth_frame.shape[:2]
     column_width = width // num_columns
 
@@ -229,15 +172,10 @@ def obstacle_avoidance(depth_frame):
         column_depth_means.append(column_depth_mean)
 
     draw_curve(x, column_depth_means)
-
-    for i in range(num_columns):
-        print(f"direction{i}:{int(column_depth_means[i])}", end=" ")
-    print()
-
     return column_depth_means
 
 
-
+# noinspection PyUnresolvedReferences
 def start():
     with dai.Device() as device:
         cams = device.getConnectedCameras()
@@ -297,4 +235,5 @@ def start():
             time.sleep(0.5)
 
 
-start()
+if __name__ == '__main__':
+    start()

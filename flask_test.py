@@ -25,16 +25,19 @@ time.sleep(2.0)
 
 # Define the home page route
 # 默认界面，返回index.html
+# noinspection PyUnresolvedReferences
 @app.route('/')
 def index():
     return render_template('index.html')
 
 
+# noinspection PyUnresolvedReferences
 @app.route('/home')
 def home():
     return render_template('index.html')
 
 
+# noinspection PyUnresolvedReferences
 @app.route('/about')
 def about():
     return render_template('about-us.html')
@@ -95,6 +98,8 @@ def detect_motion(frameCount):
         # lock
         with lock:
             outputFrame = frame.copy()
+
+
 # --------------------------------------------------------------------------------------------------------------------
 
 
@@ -143,7 +148,7 @@ if __name__ == '__main__':
     # start a thread that will perform motion detection
     t = threading.Thread(target=detect_motion, args=(
         args["frame_count"],))
-    t.daemon = True     # 设置为守护线程，主线程结束时，守护线程也会结束
+    t.daemon = True  # 设置为守护线程，主线程结束时，守护线程也会结束
     t.start()
     # start the flask app
     app.run(host=args["ip"], port=args["port"], debug=True,

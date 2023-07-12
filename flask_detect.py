@@ -5,7 +5,7 @@ import numpy as np
 
 from config_ import num_columns, DEPTH_THRESH_LOW, DEPTH_THRESH_HIGH, labelMap, OBSTACLE_OBJECTS
 from utils.curve import draw_curve
-from refer.flask_test import detect_motion
+from flask_test import detect_motion
 from utils.pipeline_provider import get_prepared_pipeline_with_palm_detection
 from flask import Flask, render_template, Response
 import threading
@@ -126,9 +126,6 @@ def draw_detections(detections_):
 
 class HumanMachineSafety:
     def __init__(self):
-        print("Loading pipeline...")
-        self.distance = 1000
-
         # Required information for calculating spatial coordinates on the host
         self.monoHFOV = np.deg2rad(73.5)
         self.depthWidth = 1080.0
