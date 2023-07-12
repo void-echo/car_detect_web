@@ -8,6 +8,7 @@ global_pipeline_palm = None
 pipeline_simple_prepared = False
 global_pipeline_simple = None
 
+
 # disable typo check for this function
 # noinspection PyTypeChecker,SpellCheckingInspection
 def get_prepared_pipeline_with_palm_detection():
@@ -123,3 +124,46 @@ def get_simple_pipeline():
     stereo.setDepthAlign(dai.CameraBoardSocket.RGB)
     left.out.link(stereo.left)
     right.out.link(stereo.right)
+
+
+most_simple_pipeline = None
+most_simple_pipeline_prepared = False
+
+
+def get_most_simple_pipeline():
+    global most_simple_pipeline, most_simple_pipeline_prepared
+    if most_simple_pipeline_prepared:
+        return most_simple_pipeline
+    print("Creating most simple pipeline for depth detection...")
+    pipeline = dai.Pipeline()
+    cam = pipeline.create(dai.node.ColorCamera)
+    cam.setResolution(dai.ColorCameraProperties.SensorResolution.THE_1080_P)
+    cam.setIspScale(2, 3)  # To match 720P mono cameras
+    cam.setBoardSocket(dai.CameraBoardSocket.RGB)
+    cam.initialControl.setManualFocus(130)
+    cam.setColorOrder(dai.ColorCameraProperties.ColorOrder.BGR)
+    cam.setPreviewSize(300, 300)
+    cam.setInterleaved(False)   # INTER LEAVED means that the image is stored in a single array, with the pix
+    isp_xout = pipeline.create(dai.node.XLinkOut)
+    isp_xout.setStreamName("cam")
+    cam.isp.link(isp_xout.input)
+
+    left = pipeline.create(dai.node.MonoCamera)
+    left.setResolution(dai.MonoCameraProperties.SensorResolution.THE_720_P)
+    left.setBoardSocket(dai.CameraBoardSocket.LEFT)
+
+    right = pipeline.create(dai.node.MonoCamera)
+    right.setResolution(dai.MonoCameraProperties.SensorResolution.THE_720_P)
+    right.setBoardSocket(dai.CameraBoardSocket.RIGHT)
+
+    # Create StereoDepth node that will produce the depth map
+    stereo = pipeline.create(dai.node.StereoDepth)
+    stereo.initialConfig.setConfidenceThreshold(245)
+    stereo.initialConfig.setMedianFilter(dai.StereoDepthProperties.MedianFilter.KERNEL_7x7)
+    stereo.setLeftRightCheck(True)
+    stereo.setDepthAlign(dai.CameraBoardSocket.RGB)
+    left.out.link(stereo.left)
+    right.out.link(stereo.right)
+
+    most_simple_pipeline = pipeline
+

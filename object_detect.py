@@ -69,22 +69,6 @@ class HumanMachineSafety:
         self.monoHFOV = np.deg2rad(73.5)
         self.depthWidth = 1080.0
 
-    # 在图像上绘制边界框
-    def draw_bbox(self, bbox, color):
-        def draw(img):
-            cv2.rectangle(
-                img=img,
-                pt1=(bbox[0], bbox[1]),
-                pt2=(bbox[2], bbox[3]),
-                color=color,
-                thickness=2,
-            )
-
-        draw(self.debug_frame)
-        draw(self.depthFrameColor)
-
-    # 计算角度
-
     # 检测和目标检测结果，并进行计算和绘制
     def parse(self, palm_coords, detections, frame, depth, depthColored):
         self.debug_frame = frame.copy()
@@ -171,7 +155,7 @@ def obstacle_avoidance(depth_frame) -> list[ndarray]:
         x.append(i)
         column_depth_means.append(column_depth_mean)
 
-    draw_curve(x, column_depth_means)
+    # draw_curve(x, column_depth_means)
     return column_depth_means
 
 
@@ -232,7 +216,7 @@ def start():
             except:
                 pass
 
-            time.sleep(0.5)
+            time.sleep(0.05)
 
 
 if __name__ == '__main__':

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>    
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> 4D-Net Images </title>
-    	<!-- Favicon -->
+    <!-- Favicon -->
 
     <!--================= Include All Styles ==================-->
     <!-- Bootstrap -->
@@ -30,458 +30,469 @@
 
 <!--==================== body ======================= -->
 <body>
-    <!--==================== Loading ======================= -->
-    <div class="container-loader">
-      <div class="loader">
+<!--==================== Loading ======================= -->
+<div class="container-loader">
+    <div class="loader">
         <div class="double-pulse"></div>
         <div class="double-pulse"></div>
-      </div>
     </div>
-    <!--================= Header Section ==================-->
-    <header class="header">
-        <div class="navbar-wrapper">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 mob-p-0">
-                        <nav class="main-navbar p-0">
-                            <div class="logo">
-                                <a href="{{ url_for('home') }}">4D-Net</a>
-                            </div>
-                            <div class="navigation">
-                                <ul id="onepage-nav" class="mainnav">
-                                    <li><a class="" href="{{ url_for('home') }}">Home</a></li>
-                                    <li><a class="" href="{{ url_for('about') }}">About</a></li>
-                                    <li><a class="active" href="{{ url_for('contact') }}">Images</a></li>
-<!--                                    <li><a class="" href="bandar.html#pricing">Pricing</a></li>-->
-<!--                                    <li><a class="" href="bandar.html#portfolio">Works</a></li>-->
-<!--                                    <li><a class="" href="bandar.html#testinomials">Clients</a></li>-->
-<!--                                    <li><a class="" href="bandar.html#blog">Blog <i class="fas fa-chevron-down fa-xs"></i></a>-->
-<!--                                        <ul class="sub-menu">-->
-<!--                                            <li><a href="blog-single.html">Blogs</a></li>-->
-<!--                                            <li><a href="blog-single.html">Blogs Single</a></li>-->
-<!--                                          </ul>-->
-<!--                                    </li>-->
-<!--                                    <li><a class="" href="bandar.html#contact">Contact</a></li>-->
-                                </ul>
-                            </div>
-                        </nav>
-                    </div>
+</div>
+<!--================= Header Section ==================-->
+<header class="header">
+    <div class="navbar-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 mob-p-0">
+                    <nav class="main-navbar p-0">
+                        <div class="logo">
+                            <a href="{{ url_for('home') }}">4D-Net</a>
+                        </div>
+                        <div class="navigation">
+                            <ul id="onepage-nav" class="mainnav">
+                                <li><a class="" href="{{ url_for('home') }}">Home</a></li>
+                                <li><a class="" href="{{ url_for('about') }}">About</a></li>
+                                <li><a class="active" href="{{ url_for('contact') }}">Images</a></li>
+                                <!--                                    <li><a class="" href="bandar.html#pricing">Pricing</a></li>-->
+                                <!--                                    <li><a class="" href="bandar.html#portfolio">Works</a></li>-->
+                                <!--                                    <li><a class="" href="bandar.html#testinomials">Clients</a></li>-->
+                                <!--                                    <li><a class="" href="bandar.html#blog">Blog <i class="fas fa-chevron-down fa-xs"></i></a>-->
+                                <!--                                        <ul class="sub-menu">-->
+                                <!--                                            <li><a href="blog-single.html">Blogs</a></li>-->
+                                <!--                                            <li><a href="blog-single.html">Blogs Single</a></li>-->
+                                <!--                                          </ul>-->
+                                <!--                                    </li>-->
+                                <!--                                    <li><a class="" href="bandar.html#contact">Contact</a></li>-->
+                            </ul>
+                        </div>
+                    </nav>
                 </div>
             </div>
         </div>
-        <!-- End Navbar Wrapper -->
-    </header>
+    </div>
+    <!-- End Navbar Wrapper -->
+</header>
 
-    <!--================= Banner Inner Section ==================-->
-    <section class="breadcrumb-area m-0">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-inner text-center">
-                        <h2 class="title">Images</h2>
-                        <ul class="page-list">
-                            <li><a href="bandar.html">Images</a></li>
-                            <li class="active">4D-Net</li>
-                        </ul>
-                    </div>
+<!--================= Banner Inner Section ==================-->
+<section class="breadcrumb-area m-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-inner text-center">
+                    <h2 class="title">Images</h2>
+                    <ul class="page-list">
+                        <li><a href="bandar.html">Images</a></li>
+                        <li class="active">4D-Net</li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!--================= Blog Section ==================-->
-    <section class="blog">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 wow fadeInUp" data-wow-duration="700ms" data-wow-delay="700ms">
-                    <div class="heading-section text-center">
-                        <!--================= TITLE:Images List ==================-->
-                        <h2>Images <span class="text-primary"> List</span></h2>
-                    </div>
+<!--================= Blog Section ==================-->
+<section class="blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 wow fadeInUp" data-wow-duration="700ms" data-wow-delay="700ms">
+                <div class="heading-section text-center">
+                    <!--================= TITLE:Images List ==================-->
+                    <h2>Images <span class="text-primary"> List</span></h2>
                 </div>
             </div>
+        </div>
 
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-xs-12 wow fadeInLeft" data-wow-duration="700ms" data-wow-delay="700ms">
-                 <div class="blog-item">
-                   <div class="blog-pic position-relative">
-                       <a href="blog-single.html" class="d-block overflow-hidden">
-                           <!--================= 第一张图 ==================-->
-                           <!--================= 图片尺寸：长580 宽392 ==================-->
-                           <img src="{{ url_for('video_feed') }}" alt="">
-                       </a>
-                   </div>
-                   <div class="blog-content">
-                       <h4><a class="truncate" href="blog-single.html">Marketing Automation Best Practices</a> </h4>
-<!--                       <div class="blog-post-meta">-->
-<!--                           <ul>-->
-<!--                               <li class="post-author"><i class="fas fa-user-tag"></i>  <a href="#" title="WordPress" rel="author">WordPress</a> </li>-->
-<!--                               <li class="blog-date post-comment"><i class="fas fa-calendar"></i>  <a href="#" title="WordPress" rel="author">17 Mar 2021</a> </li>-->
-<!--                           </ul>-->
-<!--                       </div>-->
-                       <p>Mus integer tristique auctor suscipit congue fames parturient mi lacus placerat mi aliquam fusce cras tristique nonummy.</p>
-<!--                       <div class="blog-more">-->
-<!--                           <a href="blog-single.html">Read More</a>-->
-<!--                       </div>-->
-                   </div>
-                 </div>
-                 <!-- End Blog Item -->
-               </div>
-               <!-- End Blog Col -->
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-xs-12 wow fadeInLeft" data-wow-duration="700ms" data-wow-delay="700ms">
+                <div class="blog-item">
+                    <div class="blog-pic position-relative">
+                        <a href="blog-single.html" class="d-block overflow-hidden">
+                            <!--================= 第一张图 ==================-->
+                            <!--================= 图片尺寸：长580 宽392 ==================-->
+                            <img src="{{ url_for('video_feed') }}" alt="">
+                        </a>
+                    </div>
+                    <div class="blog-content">
+                        <h4><a class="truncate" href="blog-single.html">Marketing Automation Best Practices</a></h4>
+                        <!--                       <div class="blog-post-meta">-->
+                        <!--                           <ul>-->
+                        <!--                               <li class="post-author"><i class="fas fa-user-tag"></i>  <a href="#" title="WordPress" rel="author">WordPress</a> </li>-->
+                        <!--                               <li class="blog-date post-comment"><i class="fas fa-calendar"></i>  <a href="#" title="WordPress" rel="author">17 Mar 2021</a> </li>-->
+                        <!--                           </ul>-->
+                        <!--                       </div>-->
+                        <p>Mus integer tristique auctor suscipit congue fames parturient mi lacus placerat mi aliquam
+                            fusce cras tristique nonummy.</p>
+                        <!--                       <div class="blog-more">-->
+                        <!--                           <a href="blog-single.html">Read More</a>-->
+                        <!--                       </div>-->
+                    </div>
+                </div>
+                <!-- End Blog Item -->
+            </div>
+            <!-- End Blog Col -->
 
-                <div class="col-lg-4 col-md-6 col-xs-12 wow fadeInUp" data-wow-duration="700ms" data-wow-delay="700ms">
-                 <div class="blog-item">
-                   <div class="blog-pic position-relative">
-                       <a href="blog-single.html" class="d-block overflow-hidden">
-                           <!--================= 第二张图 ==================-->
-                          <img src="{{ url_for('video_feed') }}" alt="">
-                       </a>
-                   </div>
-                   <div class="blog-content">
-                       <h4><a class="truncate" href="blog-single.html">Copywriting Templates to Use in Marketing</a> </h4>
-<!--                       <div class="blog-post-meta">-->
-<!--                           <ul>-->
-<!--                               <li class="post-author"><i class="fas fa-user-tag"></i>  <a href="#" title="WordPress" rel="author">WordPress</a> </li>-->
-<!--                               <li class="blog-date post-comment"><i class="fas fa-calendar"></i>  <a href="#" title="WordPress" rel="author">17 Mar 2021</a> </li>-->
-<!--                           </ul>-->
-<!--                       </div>-->
-                       <p>Mus integer tristique auctor suscipit congue fames parturient mi lacus placerat mi aliquam fusce cras tristique nonummy.</p>
-<!--                       <div class="blog-more">-->
-<!--                           <a href="blog-single.html">Read More</a>-->
-<!--                       </div>-->
-                   </div>
-                 </div>
-                 <!-- End Blog Item -->
-               </div>
-               <!-- End Blog Col -->
+            <div class="col-lg-4 col-md-6 col-xs-12 wow fadeInUp" data-wow-duration="700ms" data-wow-delay="700ms">
+                <div class="blog-item">
+                    <div class="blog-pic position-relative">
+                        <a href="blog-single.html" class="d-block overflow-hidden">
+                            <!--================= 第二张图 ==================-->
+                            <img src="{{ url_for('video_feed') }}" alt="">
+                        </a>
+                    </div>
+                    <div class="blog-content">
+                        <h4><a class="truncate" href="blog-single.html">Copywriting Templates to Use in Marketing</a>
+                        </h4>
+                        <!--                       <div class="blog-post-meta">-->
+                        <!--                           <ul>-->
+                        <!--                               <li class="post-author"><i class="fas fa-user-tag"></i>  <a href="#" title="WordPress" rel="author">WordPress</a> </li>-->
+                        <!--                               <li class="blog-date post-comment"><i class="fas fa-calendar"></i>  <a href="#" title="WordPress" rel="author">17 Mar 2021</a> </li>-->
+                        <!--                           </ul>-->
+                        <!--                       </div>-->
+                        <p>Mus integer tristique auctor suscipit congue fames parturient mi lacus placerat mi aliquam
+                            fusce cras tristique nonummy.</p>
+                        <!--                       <div class="blog-more">-->
+                        <!--                           <a href="blog-single.html">Read More</a>-->
+                        <!--                       </div>-->
+                    </div>
+                </div>
+                <!-- End Blog Item -->
+            </div>
+            <!-- End Blog Col -->
 
-                <div class="col-lg-4 col-md-6 col-xs-12 wow fadeInLeft" data-wow-duration="700ms" data-wow-delay="700ms">
-                 <div class="blog-item">
-                   <div class="blog-pic position-relative">
-                       <a href="blog-single.html" class="d-block overflow-hidden">
-                           <!--================= 第三张图 ==================-->
-                           <img src="{{ url_for('video_feed') }}" alt="">
-                       </a>
-                   </div>
-                   <div class="blog-content">
-                       <h4><a class="truncate" href="blog-single.html">I like Air Fryer Chicken Tacos</a> </h4>
-<!--                       <div class="blog-post-meta">-->
-<!--                           <ul>-->
-<!--                               <li class="post-author"><i class="fas fa-user-tag"></i>  <a href="#" title="WordPress" rel="author">WordPress</a> </li>-->
-<!--                               <li class="blog-date post-comment"><i class="fas fa-calendar"></i>  <a href="#" title="WordPress" rel="author">17 Mar 2021</a> </li>-->
-<!--                           </ul>-->
-<!--                       </div>-->
-                       <p>Mus integer tristique auctor suscipit congue fames parturient mi lacus placerat mi aliquam fusce cras tristique nonummy.</p>
-<!--                       <div class="blog-more">-->
-<!--                           <a href="blog-single.html">Read More</a>-->
-<!--                       </div>-->
-                   </div>
-                 </div>
-                 <!-- End Blog Item -->
-               </div>
-               <!-- End Blog Col -->
+            <div class="col-lg-4 col-md-6 col-xs-12 wow fadeInLeft" data-wow-duration="700ms" data-wow-delay="700ms">
+                <div class="blog-item">
+                    <div class="blog-pic position-relative">
+                        <a href="blog-single.html" class="d-block overflow-hidden">
+                            <!--================= 第三张图 ==================-->
+                            <img src="{{ url_for('video_feed') }}" alt="">
+                        </a>
+                    </div>
+                    <div class="blog-content">
+                        <h4><a class="truncate" href="blog-single.html">I like Air Fryer Chicken Tacos</a></h4>
+                        <!--                       <div class="blog-post-meta">-->
+                        <!--                           <ul>-->
+                        <!--                               <li class="post-author"><i class="fas fa-user-tag"></i>  <a href="#" title="WordPress" rel="author">WordPress</a> </li>-->
+                        <!--                               <li class="blog-date post-comment"><i class="fas fa-calendar"></i>  <a href="#" title="WordPress" rel="author">17 Mar 2021</a> </li>-->
+                        <!--                           </ul>-->
+                        <!--                       </div>-->
+                        <p>Mus integer tristique auctor suscipit congue fames parturient mi lacus placerat mi aliquam
+                            fusce cras tristique nonummy.</p>
+                        <!--                       <div class="blog-more">-->
+                        <!--                           <a href="blog-single.html">Read More</a>-->
+                        <!--                       </div>-->
+                    </div>
+                </div>
+                <!-- End Blog Item -->
+            </div>
+            <!-- End Blog Col -->
 
-                <div class="col-lg-4 col-md-6 col-xs-12 wow fadeInLeft" data-wow-duration="700ms" data-wow-delay="700ms">
-                 <div class="blog-item">
-                   <div class="blog-pic position-relative">
-                       <a href="blog-single.html" class="d-block overflow-hidden">
-                           <!--================= 第四张图 ==================-->
-                           <img src="{{ url_for('video_feed') }}" alt="">
-                       </a>
-                   </div>
-                   <div class="blog-content">
-                       <h4><a class="truncate" href="blog-single.html">Best Website Designs to Inspire You in 2022</a> </h4>
-<!--                       <div class="blog-post-meta">-->
-<!--                           <ul>-->
-<!--                               <li class="post-author"><i class="fas fa-user-tag"></i>  <a href="#" title="WordPress" rel="author">WordPress</a> </li>-->
-<!--                               <li class="blog-date post-comment"><i class="fas fa-calendar"></i>  <a href="#" title="WordPress" rel="author">17 Mar 2021</a> </li>-->
-<!--                           </ul>-->
-<!--                       </div>-->
-                       <p>Mus integer tristique auctor suscipit congue fames parturient mi lacus placerat mi aliquam fusce cras tristique nonummy.</p>
-<!--                       <div class="blog-more">-->
-<!--                           <a href="blog-single.html">Read More</a>-->
-<!--                       </div>-->
-                   </div>
-                 </div>
-                 <!-- End Blog Item -->
-               </div>
-               <!-- End Blog Col -->
+            <div class="col-lg-4 col-md-6 col-xs-12 wow fadeInLeft" data-wow-duration="700ms" data-wow-delay="700ms">
+                <div class="blog-item">
+                    <div class="blog-pic position-relative">
+                        <a href="blog-single.html" class="d-block overflow-hidden">
+                            <!--================= 第四张图 ==================-->
+                            <img src="{{ url_for('video_feed') }}" alt="">
+                        </a>
+                    </div>
+                    <div class="blog-content">
+                        <h4><a class="truncate" href="blog-single.html">Best Website Designs to Inspire You in 2022</a>
+                        </h4>
+                        <!--                       <div class="blog-post-meta">-->
+                        <!--                           <ul>-->
+                        <!--                               <li class="post-author"><i class="fas fa-user-tag"></i>  <a href="#" title="WordPress" rel="author">WordPress</a> </li>-->
+                        <!--                               <li class="blog-date post-comment"><i class="fas fa-calendar"></i>  <a href="#" title="WordPress" rel="author">17 Mar 2021</a> </li>-->
+                        <!--                           </ul>-->
+                        <!--                       </div>-->
+                        <p>Mus integer tristique auctor suscipit congue fames parturient mi lacus placerat mi aliquam
+                            fusce cras tristique nonummy.</p>
+                        <!--                       <div class="blog-more">-->
+                        <!--                           <a href="blog-single.html">Read More</a>-->
+                        <!--                       </div>-->
+                    </div>
+                </div>
+                <!-- End Blog Item -->
+            </div>
+            <!-- End Blog Col -->
 
-                <div class="col-lg-4 col-md-6 col-xs-12 wow fadeInUp" data-wow-duration="700ms" data-wow-delay="700ms">
-                 <div class="blog-item">
-                   <div class="blog-pic position-relative">
-                       <a href="blog-single.html" class="d-block overflow-hidden">
-                           <!--================= 第五张图 ==================-->
-                           <img src="static/picture/car5.jpg" alt="" title="">
-                       </a>
-                   </div>
-                   <div class="blog-content">
-                       <h4><a class="truncate" href="blog-single.html">How to Become a Front End Developer - Skills, Roles, Salary Explained</a> </h4>
-<!--                       <div class="blog-post-meta">-->
-<!--                           <ul>-->
-<!--                               <li class="post-author"><i class="fas fa-user-tag"></i>  <a href="#" title="WordPress" rel="author">WordPress</a> </li>-->
-<!--                               <li class="blog-date post-comment"><i class="fas fa-calendar"></i>  <a href="#" title="WordPress" rel="author">17 Mar 2021</a> </li>-->
-<!--                           </ul>-->
-<!--                       </div>-->
-                       <p>Mus integer tristique auctor suscipit congue fames parturient mi lacus placerat mi aliquam fusce cras tristique nonummy.</p>
-<!--                       <div class="blog-more">-->
-<!--                           <a href="blog-single.html">Read More</a>-->
-<!--                       </div>-->
-                   </div>
-                 </div>
-                 <!-- End Blog Item -->
-               </div>
-               <!-- End Blog Col -->
+            <div class="col-lg-4 col-md-6 col-xs-12 wow fadeInUp" data-wow-duration="700ms" data-wow-delay="700ms">
+                <div class="blog-item">
+                    <div class="blog-pic position-relative">
+                        <a href="blog-single.html" class="d-block overflow-hidden">
+                            <!--================= 第五张图 ==================-->
+                            <img src="static/picture/car5.jpg" alt="" title="">
+                        </a>
+                    </div>
+                    <div class="blog-content">
+                        <h4><a class="truncate" href="blog-single.html">How to Become a Front End Developer - Skills,
+                            Roles, Salary Explained</a></h4>
+                        <!--                       <div class="blog-post-meta">-->
+                        <!--                           <ul>-->
+                        <!--                               <li class="post-author"><i class="fas fa-user-tag"></i>  <a href="#" title="WordPress" rel="author">WordPress</a> </li>-->
+                        <!--                               <li class="blog-date post-comment"><i class="fas fa-calendar"></i>  <a href="#" title="WordPress" rel="author">17 Mar 2021</a> </li>-->
+                        <!--                           </ul>-->
+                        <!--                       </div>-->
+                        <p>Mus integer tristique auctor suscipit congue fames parturient mi lacus placerat mi aliquam
+                            fusce cras tristique nonummy.</p>
+                        <!--                       <div class="blog-more">-->
+                        <!--                           <a href="blog-single.html">Read More</a>-->
+                        <!--                       </div>-->
+                    </div>
+                </div>
+                <!-- End Blog Item -->
+            </div>
+            <!-- End Blog Col -->
 
-               <div class="col-lg-4 col-md-6 col-xs-12 wow fadeInRight" data-wow-duration="700ms" data-wow-delay="700ms">
-                 <div class="blog-item">
-                   <div class="blog-pic position-relative">
-                       <a href="blog-single.html" class="d-block overflow-hidden">
-                           <!--================= 第六张图 ==================-->
-                           <img src="static/picture/car6.jpg" alt="" title="">
-                       </a>
-                   </div>
-                   <div class="blog-content">
-                       <h4><a class="truncate" href="blog-single.html">Front End Developer Roles and Responsibilities</a> </h4>
-<!--                       <div class="blog-post-meta">-->
-<!--                           <ul>-->
-<!--                               <li class="post-author"><i class="fas fa-user-tag"></i>  <a href="#" title="WordPress" rel="author">WordPress</a> </li>-->
-<!--                               <li class="blog-date post-comment"><i class="fas fa-calendar"></i>  <a href="#" title="WordPress" rel="author">17 Mar 2021</a> </li>-->
-<!--                           </ul>-->
-<!--                       </div>-->
-                       <p>Mus integer tristique auctor suscipit congue fames parturient mi lacus placerat mi aliquam fusce cras tristique nonummy.</p>
-<!--                       <div class="blog-more">-->
-<!--                           <a href="blog-single.html">Read More</a>-->
-<!--                       </div>-->
-                   </div>
-                 </div>
-                 <!-- End Blog Item -->
-               </div>
-               <!-- End Blog Col -->
+            <div class="col-lg-4 col-md-6 col-xs-12 wow fadeInRight" data-wow-duration="700ms" data-wow-delay="700ms">
+                <div class="blog-item">
+                    <div class="blog-pic position-relative">
+                        <a href="blog-single.html" class="d-block overflow-hidden">
+                            <!--================= 第六张图 ==================-->
+                            <img src="static/picture/car6.jpg" alt="" title="">
+                        </a>
+                    </div>
+                    <div class="blog-content">
+                        <h4><a class="truncate" href="blog-single.html">Front End Developer Roles and
+                            Responsibilities</a></h4>
+                        <!--                       <div class="blog-post-meta">-->
+                        <!--                           <ul>-->
+                        <!--                               <li class="post-author"><i class="fas fa-user-tag"></i>  <a href="#" title="WordPress" rel="author">WordPress</a> </li>-->
+                        <!--                               <li class="blog-date post-comment"><i class="fas fa-calendar"></i>  <a href="#" title="WordPress" rel="author">17 Mar 2021</a> </li>-->
+                        <!--                           </ul>-->
+                        <!--                       </div>-->
+                        <p>Mus integer tristique auctor suscipit congue fames parturient mi lacus placerat mi aliquam
+                            fusce cras tristique nonummy.</p>
+                        <!--                       <div class="blog-more">-->
+                        <!--                           <a href="blog-single.html">Read More</a>-->
+                        <!--                       </div>-->
+                    </div>
+                </div>
+                <!-- End Blog Item -->
+            </div>
+            <!-- End Blog Col -->
 
-<!--                多余的图-->
-<!--               <div class="col-lg-4 col-md-6 col-xs-12 wow fadeInLeft" data-wow-duration="700ms" data-wow-delay="700ms">-->
-<!--                <div class="blog-item">-->
-<!--                  <div class="blog-pic position-relative">-->
-<!--                      <a href="blog-single.html" class="d-block overflow-hidden">-->
-<!--                          <img src="static/picture/1.jpg" alt="" title="">-->
-<!--                      </a>-->
-<!--                  </div>-->
-<!--                  <div class="blog-content">-->
-<!--                      <h4><a class="truncate" href="blog-single.html">Marketing Automation Best Practices</a> </h4>-->
-<!--                      <div class="blog-post-meta">-->
-<!--                          <ul>-->
-<!--                              <li class="post-author"><i class="fas fa-user-tag"></i>  <a href="#" title="WordPress" rel="author">WordPress</a> </li>-->
-<!--                              <li class="blog-date post-comment"><i class="fas fa-calendar"></i>  <a href="#" title="WordPress" rel="author">17 Mar 2021</a> </li>-->
-<!--                          </ul>-->
-<!--                      </div>-->
-<!--                      <p>Mus integer tristique auctor suscipit congue fames parturient mi lacus placerat mi aliquam fusce cras tristique nonummy.</p>-->
-<!--                      <div class="blog-more">-->
-<!--                          <a href="blog-single.html">Read More</a>-->
-<!--                      </div>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                &lt;!&ndash; End Blog Item &ndash;&gt;-->
-<!--              </div>-->
-<!--              &lt;!&ndash; End Blog Col &ndash;&gt;-->
-<!--  -->
-<!--               <div class="col-lg-4 col-md-6 col-xs-12 wow fadeInUp" data-wow-duration="700ms" data-wow-delay="700ms">-->
-<!--                <div class="blog-item">-->
-<!--                  <div class="blog-pic position-relative">-->
-<!--                      <a href="blog-single.html" class="d-block overflow-hidden">-->
-<!--                         <img src="static/picture/2.jpg" alt="" title="">-->
-<!--                      </a>-->
-<!--                  </div>-->
-<!--                  <div class="blog-content">-->
-<!--                      <h4><a class="truncate" href="blog-single.html">Copywriting Templates to Use in Marketing</a> </h4>-->
-<!--                      <div class="blog-post-meta">-->
-<!--                          <ul>-->
-<!--                              <li class="post-author"><i class="fas fa-user-tag"></i>  <a href="#" title="WordPress" rel="author">WordPress</a> </li>-->
-<!--                              <li class="blog-date post-comment"><i class="fas fa-calendar"></i>  <a href="#" title="WordPress" rel="author">17 Mar 2021</a> </li>-->
-<!--                          </ul>-->
-<!--                      </div>-->
-<!--                      <p>Mus integer tristique auctor suscipit congue fames parturient mi lacus placerat mi aliquam fusce cras tristique nonummy.</p>-->
-<!--                      <div class="blog-more">-->
-<!--                          <a href="blog-single.html">Read More</a>-->
-<!--                      </div>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                &lt;!&ndash; End Blog Item &ndash;&gt;-->
-<!--              </div>-->
-<!--              &lt;!&ndash; End Blog Col &ndash;&gt;-->
-<!--  -->
-<!--               <div class="col-lg-4 col-md-6 col-xs-12 wow fadeInLeft" data-wow-duration="700ms" data-wow-delay="700ms">-->
-<!--                <div class="blog-item">-->
-<!--                  <div class="blog-pic position-relative">-->
-<!--                      <a href="blog-single.html" class="d-block overflow-hidden">-->
-<!--                          <img src="static/picture/3.jpg" alt="" title="">-->
-<!--                      </a>-->
-<!--                  </div>-->
-<!--                  <div class="blog-content">-->
-<!--                      <h4><a class="truncate" href="blog-single.html">I like Air Fryer Chicken Tacos</a> </h4>-->
-<!--                      <div class="blog-post-meta">-->
-<!--                          <ul>-->
-<!--                              <li class="post-author"><i class="fas fa-user-tag"></i>  <a href="#" title="WordPress" rel="author">WordPress</a> </li>-->
-<!--                              <li class="blog-date post-comment"><i class="fas fa-calendar"></i>  <a href="#" title="WordPress" rel="author">17 Mar 2021</a> </li>-->
-<!--                          </ul>-->
-<!--                      </div>-->
-<!--                      <p>Mus integer tristique auctor suscipit congue fames parturient mi lacus placerat mi aliquam fusce cras tristique nonummy.</p>-->
-<!--                      <div class="blog-more">-->
-<!--                          <a href="blog-single.html">Read More</a>-->
-<!--                      </div>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                &lt;!&ndash; End Blog Item &ndash;&gt;-->
-<!--              </div>-->
-<!--              &lt;!&ndash; End Blog Col &ndash;&gt;-->
-<!--              -->
-<!--             </div>-->
-<!--             &lt;!&ndash; End Row &ndash;&gt;-->
+            <!--                多余的图-->
+            <!--               <div class="col-lg-4 col-md-6 col-xs-12 wow fadeInLeft" data-wow-duration="700ms" data-wow-delay="700ms">-->
+            <!--                <div class="blog-item">-->
+            <!--                  <div class="blog-pic position-relative">-->
+            <!--                      <a href="blog-single.html" class="d-block overflow-hidden">-->
+            <!--                          <img src="static/picture/1.jpg" alt="" title="">-->
+            <!--                      </a>-->
+            <!--                  </div>-->
+            <!--                  <div class="blog-content">-->
+            <!--                      <h4><a class="truncate" href="blog-single.html">Marketing Automation Best Practices</a> </h4>-->
+            <!--                      <div class="blog-post-meta">-->
+            <!--                          <ul>-->
+            <!--                              <li class="post-author"><i class="fas fa-user-tag"></i>  <a href="#" title="WordPress" rel="author">WordPress</a> </li>-->
+            <!--                              <li class="blog-date post-comment"><i class="fas fa-calendar"></i>  <a href="#" title="WordPress" rel="author">17 Mar 2021</a> </li>-->
+            <!--                          </ul>-->
+            <!--                      </div>-->
+            <!--                      <p>Mus integer tristique auctor suscipit congue fames parturient mi lacus placerat mi aliquam fusce cras tristique nonummy.</p>-->
+            <!--                      <div class="blog-more">-->
+            <!--                          <a href="blog-single.html">Read More</a>-->
+            <!--                      </div>-->
+            <!--                  </div>-->
+            <!--                </div>-->
+            <!--                &lt;!&ndash; End Blog Item &ndash;&gt;-->
+            <!--              </div>-->
+            <!--              &lt;!&ndash; End Blog Col &ndash;&gt;-->
+            <!--  -->
+            <!--               <div class="col-lg-4 col-md-6 col-xs-12 wow fadeInUp" data-wow-duration="700ms" data-wow-delay="700ms">-->
+            <!--                <div class="blog-item">-->
+            <!--                  <div class="blog-pic position-relative">-->
+            <!--                      <a href="blog-single.html" class="d-block overflow-hidden">-->
+            <!--                         <img src="static/picture/2.jpg" alt="" title="">-->
+            <!--                      </a>-->
+            <!--                  </div>-->
+            <!--                  <div class="blog-content">-->
+            <!--                      <h4><a class="truncate" href="blog-single.html">Copywriting Templates to Use in Marketing</a> </h4>-->
+            <!--                      <div class="blog-post-meta">-->
+            <!--                          <ul>-->
+            <!--                              <li class="post-author"><i class="fas fa-user-tag"></i>  <a href="#" title="WordPress" rel="author">WordPress</a> </li>-->
+            <!--                              <li class="blog-date post-comment"><i class="fas fa-calendar"></i>  <a href="#" title="WordPress" rel="author">17 Mar 2021</a> </li>-->
+            <!--                          </ul>-->
+            <!--                      </div>-->
+            <!--                      <p>Mus integer tristique auctor suscipit congue fames parturient mi lacus placerat mi aliquam fusce cras tristique nonummy.</p>-->
+            <!--                      <div class="blog-more">-->
+            <!--                          <a href="blog-single.html">Read More</a>-->
+            <!--                      </div>-->
+            <!--                  </div>-->
+            <!--                </div>-->
+            <!--                &lt;!&ndash; End Blog Item &ndash;&gt;-->
+            <!--              </div>-->
+            <!--              &lt;!&ndash; End Blog Col &ndash;&gt;-->
+            <!--  -->
+            <!--               <div class="col-lg-4 col-md-6 col-xs-12 wow fadeInLeft" data-wow-duration="700ms" data-wow-delay="700ms">-->
+            <!--                <div class="blog-item">-->
+            <!--                  <div class="blog-pic position-relative">-->
+            <!--                      <a href="blog-single.html" class="d-block overflow-hidden">-->
+            <!--                          <img src="static/picture/3.jpg" alt="" title="">-->
+            <!--                      </a>-->
+            <!--                  </div>-->
+            <!--                  <div class="blog-content">-->
+            <!--                      <h4><a class="truncate" href="blog-single.html">I like Air Fryer Chicken Tacos</a> </h4>-->
+            <!--                      <div class="blog-post-meta">-->
+            <!--                          <ul>-->
+            <!--                              <li class="post-author"><i class="fas fa-user-tag"></i>  <a href="#" title="WordPress" rel="author">WordPress</a> </li>-->
+            <!--                              <li class="blog-date post-comment"><i class="fas fa-calendar"></i>  <a href="#" title="WordPress" rel="author">17 Mar 2021</a> </li>-->
+            <!--                          </ul>-->
+            <!--                      </div>-->
+            <!--                      <p>Mus integer tristique auctor suscipit congue fames parturient mi lacus placerat mi aliquam fusce cras tristique nonummy.</p>-->
+            <!--                      <div class="blog-more">-->
+            <!--                          <a href="blog-single.html">Read More</a>-->
+            <!--                      </div>-->
+            <!--                  </div>-->
+            <!--                </div>-->
+            <!--                &lt;!&ndash; End Blog Item &ndash;&gt;-->
+            <!--              </div>-->
+            <!--              &lt;!&ndash; End Blog Col &ndash;&gt;-->
+            <!--              -->
+            <!--             </div>-->
+            <!--             &lt;!&ndash; End Row &ndash;&gt;-->
 
             <!--================= Pagination ==================-->
-                <!--================= 底部导航 ==================-->
-<!--            <div class="row mt-5">-->
-<!--                <div class="col-lg-12">-->
-<!--                    <div class="boxer-pagination text-center">-->
-<!--                        <ul class="page-list">-->
-<!--                            <li class="active"><a href="#">1</a></li>-->
-<!--                            <li><a href="#">2</a></li>-->
-<!--                            <li><a href="#">3</a></li>-->
-<!--                            <li><a href="#">4</a></li>-->
-<!--                            <li><a href="#"><i class="fas fa-chevron-right"></i></a></li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                </div>-->
+            <!--================= 底部导航 ==================-->
+            <!--            <div class="row mt-5">-->
+            <!--                <div class="col-lg-12">-->
+            <!--                    <div class="boxer-pagination text-center">-->
+            <!--                        <ul class="page-list">-->
+            <!--                            <li class="active"><a href="#">1</a></li>-->
+            <!--                            <li><a href="#">2</a></li>-->
+            <!--                            <li><a href="#">3</a></li>-->
+            <!--                            <li><a href="#">4</a></li>-->
+            <!--                            <li><a href="#"><i class="fas fa-chevron-right"></i></a></li>-->
+            <!--                        </ul>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+        </div>
+    </div>
+</section>
+
+
+<!--================= Newsletter Section ==================-->
+<section class="newsletter-section">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-5 text-center">
+                <div class="newsletter-text mb-3">
+                    <h4>Subscribe to our Newsletter!</h4>
+                    <p class="mb-0">Subscribe to our Newsletter to be updated. We promise not to spam.</p>
+                </div>
+                <!-- Newsletter Text -->
+
+                <div class="newsletter-form">
+                    <form>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="subscribe" placeholder="Subscribe with us">
+                        </div>
+                        <button type="submit" class="btn"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+                <!-- End Newsletter Form -->
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 
-    <!--================= Newsletter Section ==================-->
-    <section class="newsletter-section">
+<!--================= Footer Section ==================-->
+<footer class="footer">
+    <div class="footer-top">
         <div class="container">
-            <div class="row justify-content-center align-items-center">
-                <div class="col-md-5 text-center">
-                    <div class="newsletter-text mb-3">
-                      <h4>Subscribe to our Newsletter!</h4>
-                      <p class="mb-0">Subscribe to our Newsletter to be updated. We promise not to spam.</p>
+            <div class="row">
+                <div class="col-sm-6 col-lg-3 wow fadeInLeft" data-wow-duration="700ms" data-wow-delay="900ms">
+                    <div class="footer-widget white">
+                        <h3 class="widget-title">About Me</h3>
+                        <p>We have heap of fun piece of equipmnt builds dow every inh your body the and From</p>
                     </div>
-                    <!-- Newsletter Text -->
-
-                    <div class="newsletter-form">
-                        <form>
-                            <div class="mb-3">
-                                <input type="text" class="form-control" id="subscribe" placeholder="Subscribe with us">
-                            </div>
-                            <button type="submit" class="btn"><i class="fas fa-paper-plane"></i></button>
-                        </form>
+                    <!-- End Footer Widget  -->
+                </div>
+                <div class="col-sm-6 col-lg-3 wow fadeInUp" data-wow-duration="700ms" data-wow-delay="900ms">
+                    <div class="footer-widget white">
+                        <h3 class="widget-title">Address</h3>
+                        <p>98 Winn St, Woburn, MA 01801,<br> United States</p>
                     </div>
-                    <!-- End Newsletter Form -->
+                    <!-- End Footer Widget  -->
+                </div>
+                <div class="col-sm-6 col-lg-3 wow fadeInUp" data-wow-duration="700ms" data-wow-delay="900ms">
+                    <div class="footer-widget white">
+                        <h3 class="widget-title">Phone</h3>
+                        <div class="popular-tags">
+                            <ul class="mb-0 list-unstyled">
+                                <li>(+44) 153 456 789</li>
+                                <li>(+44) 721 456 789</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Footer Widget  -->
+                </div>
+                <div class="col-sm-6 col-lg-3  wow fadeInRight" data-wow-duration="700ms" data-wow-delay="900ms">
+                    <div class="footer-widget white">
+                        <h3 class="widget-title">Social</h3>
+                        <div class="footer-social">
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Footer Widget  -->
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+    <!-- End Footer Top -->
 
-
-    <!--================= Footer Section ==================-->
-    <footer class="footer">
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 col-lg-3 wow fadeInLeft" data-wow-duration="700ms" data-wow-delay="900ms">
-                        <div class="footer-widget white">
-                            <h3 class="widget-title">About Me</h3>
-                            <p>We have heap of fun piece of equipmnt builds dow every inh your body the and From</p>
-                        </div>
-                        <!-- End Footer Widget  -->
-                    </div>
-                    <div class="col-sm-6 col-lg-3 wow fadeInUp" data-wow-duration="700ms" data-wow-delay="900ms">
-                        <div class="footer-widget white">
-                            <h3 class="widget-title">Address</h3>
-                            <p>98 Winn St, Woburn, MA 01801,<br> United States</p>
-                        </div>
-                        <!-- End Footer Widget  -->
-                    </div>
-                    <div class="col-sm-6 col-lg-3 wow fadeInUp" data-wow-duration="700ms" data-wow-delay="900ms">
-                        <div class="footer-widget white">
-                            <h3 class="widget-title">Phone</h3>
-                            <div class="popular-tags">
-                                <ul class="mb-0 list-unstyled">
-                                    <li>(+44) 153 456 789</li>
-                                    <li>(+44) 721 456 789</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- End Footer Widget  -->
-                    </div>
-                    <div class="col-sm-6 col-lg-3  wow fadeInRight" data-wow-duration="700ms" data-wow-delay="900ms">
-                        <div class="footer-widget white">
-                            <h3 class="widget-title">Social</h3>
-                            <div class="footer-social">
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- End Footer Widget  -->
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row wow fadeInUp" data-wow-duration="700ms" data-wow-delay="900ms">
+                <div class="col-md-12">
+                    <div class="copyright text-center">
+                        Copyright &copy; 2023.Company name All rights reserved.<a target="_blank"
+                                                                                  href="https://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
                     </div>
                 </div>
+                <!-- End col  -->
             </div>
         </div>
-        <!-- End Footer Top -->
-
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row wow fadeInUp" data-wow-duration="700ms" data-wow-delay="900ms">
-                    <div class="col-md-12">
-                     <div class="copyright text-center">
-                        Copyright &copy; 2023.Company name All rights reserved.<a target="_blank" href="https://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
-                     </div>
-                    </div>
-                    <!-- End col  -->
-                </div>
-            </div>
-        </div>
-        <!-- End Footer Bottom -->
-    </footer>
+    </div>
+    <!-- End Footer Bottom -->
+</footer>
 
 
-    <!--================= Back to top ==================-->
-    <a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>
-    <!--================= Div End ==================-->
+<!--================= Back to top ==================-->
+<a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>
+<!--================= Div End ==================-->
 
-    <!--================= Include All JS ==================-->
-    <!-- Jquery Main -->
-    <script src="static/js1/jquery-3.5.1.min.js"></script>
-    <!-- Jquery Easing -->
-    <script src="static/js1/jquery.easing.js"></script>
-    <!-- Bootstrap -->
-    <script src="static/js1/popper.min.js"></script>
-    <script src="static/js1/bootstrap.min.js"></script>
-    <!-- Animate wow -->
-    <script src="static/js1/wow.min.js"></script>
-    <!-- Onepage Nav -->
-    <script src="static/js1/onepageNav.js"></script>
-    <!-- waypoints -->
-    <script src="static/js1/jquery.waypoints.min.js"></script>
-    <!-- Sticky -->
-    <script src="static/js1/jquery.sticky.js"></script>
-     <!-- Carousel -->
-    <script src="static/js1/owl.carousel.min.js"></script>
-    <!-- Fancybox Popup -->
-    <script src="static/js1/jquery.fancybox.min.js"></script>
-    <!-- Mobile Menu -->
-    <script src="static/js1/jquery.meanmenu.js"></script>
-    <!-- Rcounterup -->
-    <script src="static/js1/jquery.rcounterup.js"></script>
-    <!-- mixitup.min.js -->
-    <script src="static/js1/jquery.mixitup.min.js"></script>
+<!--================= Include All JS ==================-->
+<!-- Jquery Main -->
+<script src="static/js1/jquery-3.5.1.min.js"></script>
+<!-- Jquery Easing -->
+<script src="static/js1/jquery.easing.js"></script>
+<!-- Bootstrap -->
+<script src="static/js1/popper.min.js"></script>
+<script src="static/js1/bootstrap.min.js"></script>
+<!-- Animate wow -->
+<script src="static/js1/wow.min.js"></script>
+<!-- Onepage Nav -->
+<script src="static/js1/onepageNav.js"></script>
+<!-- waypoints -->
+<script src="static/js1/jquery.waypoints.min.js"></script>
+<!-- Sticky -->
+<script src="static/js1/jquery.sticky.js"></script>
+<!-- Carousel -->
+<script src="static/js1/owl.carousel.min.js"></script>
+<!-- Fancybox Popup -->
+<script src="static/js1/jquery.fancybox.min.js"></script>
+<!-- Mobile Menu -->
+<script src="static/js1/jquery.meanmenu.js"></script>
+<!-- Rcounterup -->
+<script src="static/js1/jquery.rcounterup.js"></script>
+<!-- mixitup.min.js -->
+<script src="static/js1/jquery.mixitup.min.js"></script>
 
-    <!-- js Plugins Initialize Scripts -->
-    <script src="static/js1/scripts1.js"></script>
+<!-- js Plugins Initialize Scripts -->
+<script src="static/js1/scripts1.js"></script>
 </body>
 </html>

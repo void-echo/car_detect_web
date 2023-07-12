@@ -293,9 +293,9 @@ def generate():
                         if not flag:
                             continue
 
-                    # 将字节流作为生成器的输出
-                    yield (b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' +
-                           bytearray(encodedImage) + b'\r\n')
+                # 将字节流作为生成器的输出
+                yield (b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' +
+                       bytearray(encodedImage) + b'\r\n')
 
                 in_depth = depthQ.tryGet()
                 if in_depth is not None:
@@ -313,9 +313,11 @@ def generate():
                             depthFrame,
                             depthFrameColor)
 
-                    except StopIteration:
-                        break
-            except:
+                    except StopIteration as e:
+                        print(e)
+                        continue
+            except Exception as e:
+                print(e)
                 pass
 
             # time.sleep(0.5)
