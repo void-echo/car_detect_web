@@ -11,7 +11,7 @@ from flask_socketio import SocketIO, emit
 from imutils.video import VideoStream
 
 from pyimagesearch.motion_detection.singlemotiondetector import SingleMotionDetector
-from utils.SerialController import get_info
+# from utils.SerialController import get_info
 
 # initialize the output frame and a lock used to ensure thread-safe
 # exchanges of the output frames (useful when multiple browsers/tabs are viewing the stream)
