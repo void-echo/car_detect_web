@@ -9,6 +9,7 @@ Note: Most recent open3d version (0.17.0) has a bug with Visualizer::get_view_co
 """
 
 import os
+import sys
 import threading
 import time
 from enum import Enum
@@ -270,8 +271,24 @@ def parseArgs():
 
 if __name__ == '__main__':
     args = parseArgs()
-    if args.outputFolder:
+    # if args.outputFolder:
+    #     os.makedirs(args.outputFolder)
+    # the code below will raise an exception if the dir already exists.
+    # but it's better to create one random name folder for each run, under the outputFolder
+    # to avoid the mess of the output files.
+
+    if args.dataFolder:
+        if not os.path.isdir(args.dataFolder):
+            print("Error: --dataFolder argument must be a valid directory")
+            sys.exit(1)
+
+        if args.file:
+            print("Error: --dataFolder and --file arguments cannot be used together")
+            sys.exit(1)
+        rand_name_considering_time = str(time.time()).replace('.', '')
+        args.outputFolder = os.path.join(args.outputFolder, rand_name_considering_time)
         os.makedirs(args.outputFolder)
+        print("Saving point clouds to: " + args.outputFolder)
 
     configInternal = {
         "computeStereoPointCloud": "true",

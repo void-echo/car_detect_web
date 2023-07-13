@@ -33,8 +33,13 @@ def clear_thread_dict():
 
 
 def chmod_1():
+    clear_thread_dict()
     run_bash_file('../scripts/launch_livox_mapper.sh')
     run_bash_file('../scripts/launch_livox_lidar.sh')
+
+def chmod_2():
+    clear_thread_dict()
+    run_bash_file('../scripts/launch_livox_mapper.sh')
 
 
 if __name__ == '__main__':
