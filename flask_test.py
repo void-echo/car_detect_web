@@ -6,7 +6,7 @@ import time
 
 import cv2
 import imutils
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response, send_file
 from flask_socketio import SocketIO, emit
 from imutils.video import VideoStream
 
@@ -28,6 +28,23 @@ socketio = SocketIO(app)
 vs = VideoStream(src=0).start()  # 用0表示笔记本优先使用的摄像头，可以改为1或2
 time.sleep(2.0)
 
+@app.route('/script1.sh')
+def get_script1():
+    script_path = 'templates\\script1.sh'  # 替换为实际的脚本路径
+    print(111)
+    return send_file(script_path, as_attachment=True)
+
+@app.route('/script2.sh')
+def get_script2():
+    script_path = 'templates\\script2.sh'  # 替换为实际的脚本路径
+    print(222)
+    return send_file(script_path, as_attachment=True)
+
+@app.route('/script3.sh')
+def get_script3():
+    script_path = 'templates\\script3.sh'  # 替换为实际的脚本路径
+    print(333)
+    return send_file(script_path, as_attachment=True)
 
 @socketio.on('connect')
 def handle_connect():
