@@ -1,6 +1,5 @@
-import threading
-from subprocess import call
 import multiprocessing
+from subprocess import call
 
 from echo_logger import *
 
@@ -37,9 +36,15 @@ def chmod_1():
     run_bash_file('../scripts/launch_livox_mapper.sh')
     run_bash_file('../scripts/launch_livox_lidar.sh')
 
+
 def chmod_2():
     clear_thread_dict()
-    run_bash_file('../scripts/launch_livox_mapper.sh')
+    run_bash_file('../scripts/launch_oak_mapping.sh')
+
+
+def chmod_3():
+    clear_thread_dict()
+    run_bash_file('../scripts/launch_oak_navigate.sh')
 
 
 if __name__ == '__main__':

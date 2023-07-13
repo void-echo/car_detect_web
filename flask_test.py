@@ -1,6 +1,7 @@
 # Import necessary libraries
 import argparse
 import datetime
+import logging
 import threading
 import time
 
@@ -9,9 +10,10 @@ import imutils
 from flask import Flask, render_template, Response, send_file
 from flask_socketio import SocketIO, emit
 from imutils.video import VideoStream
-import logging
 
 from pyimagesearch.motion_detection.singlemotiondetector import SingleMotionDetector
+from utils import script_runner
+
 # from utils.SerialController import get_info
 
 # initialize the output frame and a lock used to ensure thread-safe
@@ -34,21 +36,21 @@ time.sleep(2.0)
 
 @app.route('/script1.sh')
 def get_script1():
-    script_path = 'templates\\script1.sh'  # 替换为实际的脚本路径
-    print(111)
-    return send_file(script_path, as_attachment=True)
+    script_runner.chmod_1()
+    return send_file("./utils/small_file", as_attachment=True)
+
 
 @app.route('/script2.sh')
 def get_script2():
-    script_path = 'templates\\script2.sh'  # 替换为实际的脚本路径
-    print(222)
-    return send_file(script_path, as_attachment=True)
+    script_runner.chmod_2()
+    return send_file("./utils/small_file", as_attachment=True)
+
 
 @app.route('/script3.sh')
 def get_script3():
-    script_path = 'templates\\script3.sh'  # 替换为实际的脚本路径
-    print(333)
-    return send_file(script_path, as_attachment=True)
+    script_runner.chmod_3()
+    return send_file("./utils/small_file", as_attachment=True)
+
 
 @socketio.on('connect')
 def handle_connect():
