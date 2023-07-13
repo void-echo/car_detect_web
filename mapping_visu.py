@@ -8,15 +8,18 @@ Note: Most recent open3d version (0.17.0) has a bug with Visualizer::get_view_co
 
 """
 
-import spectacularAI
-import depthai
-import open3d as o3d
-import numpy as np
+import os
 import threading
 import time
-import os
-from common.deserialize_output import input_stream_reader, MockVioOutput, MockMapperOutput
 from enum import Enum
+
+import depthai
+import numpy as np
+import open3d as o3d
+import spectacularAI
+
+from common.deserialize_output import input_stream_reader, MockVioOutput, MockMapperOutput
+
 
 # Status for point clouds (for updating Open3D renderer).
 class Status(Enum):
@@ -25,14 +28,17 @@ class Status(Enum):
     UPDATED = 2
     REMOVED = 3
 
+
 def invert_se3(a):
     b = np.eye(4)
     b[:3, :3] = a[:3, :3].transpose()
     b[:3, 3] = -np.dot(b[:3, :3], a[:3, 3])
     return b
 
+
 def blend(a, b, m):
     return [a[0] * (1 - m) + b[0] * m, a[1] * (1 - m) + b[1] * m, a[2] * (1 - m) + b[2] * m]
+
 
 class Trajectory:
     def __init__(self):
@@ -42,7 +48,7 @@ class Trajectory:
         self.cloud = o3d.geometry.PointCloud()
         for i in range(self.maxPoints):
             self.colors.append(blend([0.960, 0.0192, 0.270], [.217, .009, .9], i / (self.maxPoints - 1)))
-            self.points.append([0,0,0])
+            self.points.append([0, 0, 0])
         self.cloud.colors = o3d.utility.Vector3dVector(self.colors)
 
     def addPosition(self, pos):
@@ -50,6 +56,7 @@ class Trajectory:
         self.points.insert(0, pos)
         self.points = self.points[:self.maxPoints]
         self.cloud.points = o3d.utility.Vector3dVector(self.points)
+
 
 # Wrapper around Open3D point cloud, which helps to update its world pose.
 class PointCloud:
@@ -63,7 +70,7 @@ class PointCloud:
         cloud.points = o3d.utility.Vector3dVector(keyFrame.pointCloud.getPositionData())
 
         if keyFrame.pointCloud.hasColors():
-            colors = keyFrame.pointCloud.getRGB24Data() * 1./255
+            colors = keyFrame.pointCloud.getRGB24Data() * 1. / 255
             cloud.colors = o3d.utility.Vector3dVector(colors)
 
         if keyFrame.pointCloud.hasNormals():
@@ -89,20 +96,27 @@ class PointCloud:
         self.cloud.transform(prevToCurrent)
         self.camToWorld = camToWorld
 
+
 # Camera object
 class CoordinateFrame:
     def __init__(self, scale=0.25):
         # self.frame = o3d.geometry.TriangleMesh.create_coordinate_frame(scale)
-        corners = np.array([[0., 0., 0.], [0., 1., 0.], [1., 1., 0.], [1., 0., 0.], [0., 0., 1.], [0., 1., 1.], [1., 1., 1.], [1., 0., 1.]])
-        vertices = np.array(list(map(lambda n: n - [.5, .5, 0] if n[2] == 1. else (n - [.5, .5, 0]) * .5, corners))) * .1
-        colors = np.array(list(map(lambda n: np.array([0.960, 0.0192, 0.270]) * (.7 + .3 * n[0]) * (1. - .3 * n[1]) * (.7 + .3 * n[2]), corners)))
+        corners = np.array(
+            [[0., 0., 0.], [0., 1., 0.], [1., 1., 0.], [1., 0., 0.], [0., 0., 1.], [0., 1., 1.], [1., 1., 1.],
+             [1., 0., 1.]])
+        vertices = np.array(
+            list(map(lambda n: n - [.5, .5, 0] if n[2] == 1. else (n - [.5, .5, 0]) * .5, corners))) * .1
+        colors = np.array(list(
+            map(lambda n: np.array([0.960, 0.0192, 0.270]) * (.7 + .3 * n[0]) * (1. - .3 * n[1]) * (.7 + .3 * n[2]),
+                corners)))
         quads = np.array([[0, 1, 2, 3], [0, 4, 5, 1], [1, 5, 6, 2], [2, 6, 7, 3], [0, 3, 7, 4], [4, 7, 6, 5]])
         triangles = []
         for quad in quads:
             triangles.append([quad[0], quad[1], quad[2]])
             triangles.append([quad[2], quad[3], quad[0]])
         triangles = np.array(triangles)
-        self.frame = o3d.geometry.TriangleMesh(o3d.utility.Vector3dVector(vertices), o3d.utility.Vector3iVector(triangles))
+        self.frame = o3d.geometry.TriangleMesh(o3d.utility.Vector3dVector(vertices),
+                                               o3d.utility.Vector3iVector(triangles))
         self.frame.vertex_colors = o3d.utility.Vector3dVector(colors)
         self.camToWorld = np.identity(4)
 
@@ -111,6 +125,7 @@ class CoordinateFrame:
         prevToCurrent = np.matmul(camToWorld, prevWorldToCam)
         self.frame.transform(prevToCurrent)
         self.camToWorld = camToWorld
+
 
 class Open3DVisualization:
     def __init__(self, voxelSize, cameraManual, cameraSmooth, colorOnly, trajectory=False):
@@ -185,7 +200,7 @@ class Open3DVisualization:
 
             if self.cameraSmooth and self.prevPos is not None:
                 alpha = np.array([0.01, 0.01, 0.001])
-                camPos = camPos * alpha + self.prevCamPos * (np.array([1, 1, 1])  - alpha)
+                camPos = camPos * alpha + self.prevCamPos * (np.array([1, 1, 1]) - alpha)
                 pos = pos * alpha + self.prevPos * (np.array([1, 1, 1]) - alpha)
 
             self.prevPos = pos
@@ -218,11 +233,13 @@ class Open3DVisualization:
         pc = self.pointClouds[keyFrameId]
         pc.status = Status.REMOVED
 
+
 def parseArgs():
     import argparse
     p = argparse.ArgumentParser(__doc__)
     p.add_argument("--dataFolder", help="Instead of running live mapping session, replay session from this folder")
-    p.add_argument('--file', type=argparse.FileType('rb'), help='Read data from file or pipe, using this with mapping_visu C++ example', default=None)
+    p.add_argument('--file', type=argparse.FileType('rb'),
+                   help='Read data from file or pipe, using this with mapping_visu C++ example', default=None)
     p.add_argument("--recordingFolder", help="Record live mapping session for replay")
     p.add_argument("--outputFolder", help="Folder where to save the captured point clouds")
     p.add_argument("--voxel", help="Voxel size (m) for downsampling point clouds")
@@ -231,10 +248,14 @@ def parseArgs():
     p.add_argument("--color", help="Filter points without color", action="store_true")
     p.add_argument("--use_rgb", help="Use OAK-D RGB camera", action="store_true")
     p.add_argument("--trajectory", help="Draw camera trajectory", action="store_true")
-    p.add_argument('--ir_dot_brightness', help='OAK-D Pro (W) IR laser projector brightness (mA), 0 - 1200', type=float, default=0)
+    p.add_argument('--ir_dot_brightness', help='OAK-D Pro (W) IR laser projector brightness (mA), 0 - 1200', type=float,
+                   default=0)
     p.add_argument('--no_feature_tracker', help='Disable on-device feature tracking and depth map', action="store_true")
-    p.add_argument("--useRectification", help="--dataFolder option can also be used with some non-OAK-D recordings, but this parameter must be set if the videos inputs are not rectified.", action="store_true")
+    p.add_argument("--useRectification",
+                   help="--dataFolder option can also be used with some non-OAK-D recordings, but this parameter must be set if the videos inputs are not rectified.",
+                   action="store_true")
     return p.parse_args()
+
 
 if __name__ == '__main__':
     args = parseArgs()
@@ -254,10 +275,12 @@ if __name__ == '__main__':
     voxelSize = 0 if args.voxel is None else float(args.voxel)
     visu3D = Open3DVisualization(voxelSize, args.manual, args.smooth, args.color, args.trajectory)
 
+
     def onVioOutput(vioOutput):
         cameraPose = vioOutput.getCameraPose(0)
         camToWorld = cameraPose.getCameraToWorldMatrix()
         visu3D.updateCameraFrame(camToWorld)
+
 
     def onMappingOutput(output):
         for frameId in output.updatedKeyFrames:
@@ -282,13 +305,20 @@ if __name__ == '__main__':
         if output.finalMap:
             print("Final map ready!")
 
+
     if args.file:
         print("Starting reading input from file or pipe")
+
+
         def inputStreamLoop():
             vio_source = input_stream_reader(args.file)
             for vio_out in vio_source:
-                if 'cameraPoses' in vio_out: onVioOutput(MockVioOutput(vio_out))
-                else: onMappingOutput(MockMapperOutput(vio_out))
+                if 'cameraPoses' in vio_out:
+                    onVioOutput(MockVioOutput(vio_out))
+                else:
+                    onMappingOutput(MockMapperOutput(vio_out))
+
+
         thread = threading.Thread(target=inputStreamLoop)
         thread.start()
         visu3D.run()
@@ -313,11 +343,12 @@ if __name__ == '__main__':
             vioPipeline = spectacularAI.depthai.Pipeline(pipeline, config, onMappingOutput)
 
             with depthai.Device(pipeline) as device, \
-                vioPipeline.startSession(device) as vio_session:
+                    vioPipeline.startSession(device) as vio_session:
                 if args.ir_dot_brightness > 0:
                     device.setIrLaserDotProjectorBrightness(args.ir_dot_brightness)
                 while not visu3D.shouldClose:
                     onVioOutput(vio_session.waitForOutput())
+
 
         thread = threading.Thread(target=captureLoop)
         thread.start()

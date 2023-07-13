@@ -1,16 +1,16 @@
+import argparse
 import math
+import threading
 
+import cv2
 import depthai as dai
 import numpy as np
+from flask import Flask, render_template, Response
 
 from config_ import num_columns, DEPTH_THRESH_LOW, DEPTH_THRESH_HIGH, labelMap, OBSTACLE_OBJECTS
-from utils.curve import draw_curve
 from flask_test import detect_motion
+from utils.curve import draw_curve
 from utils.pipeline_provider import get_prepared_pipeline_with_palm_detection
-from flask import Flask, render_template, Response
-import threading
-import argparse
-import cv2
 
 # initialize the output frame and a lock used to ensure thread-safe
 # exchanges of the output frames (useful when multiple browsers/tabs are viewing the stream)
@@ -28,6 +28,8 @@ ap.add_argument("-o", "--port", type=int,
                 help="ephemeral port number of the server (1024 to 65535)")
 ap.add_argument("-f", "--frame-count", type=int, default=32,
                 help="# of frames used to construct the background model")
+
+
 # args = vars(ap.parse_args())
 
 
@@ -51,6 +53,7 @@ def about():
 @app.route('/contact')
 def contact():
     return render_template('blog.html')
+
 
 def crop_to_rect():
     global frame

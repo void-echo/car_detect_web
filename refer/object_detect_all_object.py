@@ -1,9 +1,10 @@
 # coding=utf-8
 import math
+
+import blobconverter
 import cv2
 import depthai as dai
 import numpy as np
-import blobconverter
 
 from config_ import DEPTH_THRESH_LOW, DEPTH_THRESH_HIGH
 
@@ -45,7 +46,6 @@ class HumanMachineSafety:
         y = -z * math.tan(angle_y)
 
         return x, y, z
-
 
     # 计算角度
     def calc_angle(self, offset):
@@ -97,7 +97,8 @@ cam.isp.link(isp_xout.input)
 
 print("Creating palm detection Neural Network...")
 model_nn = pipeline.create(dai.node.NeuralNetwork)
-model_nn.setBlobPath(blobconverter.from_zoo(name="palm_detection_128x128", zoo_type="depthai", shaves=6))  # 或者 model_nn.setBlobPath(None)
+model_nn.setBlobPath(blobconverter.from_zoo(name="palm_detection_128x128", zoo_type="depthai",
+                                            shaves=6))  # 或者 model_nn.setBlobPath(None)
 
 # Creating left/right mono cameras for StereoDepth
 left = pipeline.create(dai.node.MonoCamera)
@@ -214,7 +215,8 @@ with dai.Device() as device:
     cams = device.getConnectedCameras()
     depth_enabled = dai.CameraBoardSocket.LEFT in cams and dai.CameraBoardSocket.RIGHT in cams
     if not depth_enabled:
-        raise RuntimeError("Unable to run this experiment on device without depth capabilities! (Available cameras: {})".format(cams))
+        raise RuntimeError(
+            "Unable to run this experiment on device without depth capabilities! (Available cameras: {})".format(cams))
     device.startPipeline(pipeline)  # 启动流水线
     # 创建输出队列
     vidQ = device.getOutputQueue(name="cam", maxSize=4, blocking=False)
@@ -228,21 +230,21 @@ with dai.Device() as device:
 
     while True:
         # try:
-            in_rgb = vidQ.tryGet()
-            if in_rgb is not None:
-                frame = crop_to_rect(in_rgb.getCvFrame())
+        in_rgb = vidQ.tryGet()
+        if in_rgb is not None:
+            frame = crop_to_rect(in_rgb.getCvFrame())
 
-            in_depth = depthQ.tryGet()
-            if in_depth is not None:
-                depthFrame = crop_to_rect(in_depth.getFrame())
-                depthFrameColor = cv2.normalize(depthFrame, None, 255, 0, cv2.NORM_INF, cv2.CV_8UC1)
-                depthFrameColor = cv2.equalizeHist(depthFrameColor)
-                depthFrameColor = cv2.applyColorMap(depthFrameColor, cv2.COLORMAP_JET)
+        in_depth = depthQ.tryGet()
+        if in_depth is not None:
+            depthFrame = crop_to_rect(in_depth.getFrame())
+            depthFrameColor = cv2.normalize(depthFrame, None, 255, 0, cv2.NORM_INF, cv2.CV_8UC1)
+            depthFrameColor = cv2.equalizeHist(depthFrameColor)
+            depthFrameColor = cv2.applyColorMap(depthFrameColor, cv2.COLORMAP_JET)
 
-            if frame is not None and depthFrame is not None:
-                try:
-                    humanMachineSafety.parse(depthFrame, frame, depthFrameColor)
-                except StopIteration:
-                    break
-        # except:
-        #     pass
+        if frame is not None and depthFrame is not None:
+            try:
+                humanMachineSafety.parse(depthFrame, frame, depthFrameColor)
+            except StopIteration:
+                break
+    # except:
+    #     pass
