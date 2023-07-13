@@ -26,6 +26,29 @@
     <link rel="stylesheet" type="text/css" href="static/css1/styles1.css">
     <!-- Responsive styles-->
     <link rel="stylesheet" type="text/css" href="static/css1/responsive1.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js"></script>
+    <script>
+        const socket = io.connect('http://' + document.domain + ':' + location.port);
+        socket.on('out_a', function(out_a) {
+            document.getElementById('out_a-container').innerHTML = out_a;
+        });
+        socket.on('out_ba', function(out_ba) {
+            document.getElementById('out_ba-container').innerHTML = out_ba;
+        });
+        socket.on('out_bs', function(out_bs) {
+            document.getElementById('out_bs-container').innerHTML = out_bs;
+        });
+        socket.on('out_s', function(out_s) {
+            document.getElementById('out_s-container').innerHTML = out_s;
+        });
+        socket.on('out_t', function(out_t) {
+            document.getElementById('out_t-container').innerHTML = out_t;
+        });
+        socket.on('out_v', function(out_v) {
+            document.getElementById('out_v-container').innerHTML = out_v;
+        });
+        socket.emit('start_stream');
+    </script>
 </head>
 
 <!--==================== body ======================= -->
@@ -249,19 +272,15 @@
                         </a>
                     </div>
                     <div class="blog-content">
-                        <h4><a class="truncate" href="blog-single.html">Front End Developer Roles and
-                            Responsibilities</a></h4>
-                        <!--                       <div class="blog-post-meta">-->
-                        <!--                           <ul>-->
-                        <!--                               <li class="post-author"><i class="fas fa-user-tag"></i>  <a href="#" title="WordPress" rel="author">WordPress</a> </li>-->
-                        <!--                               <li class="blog-date post-comment"><i class="fas fa-calendar"></i>  <a href="#" title="WordPress" rel="author">17 Mar 2021</a> </li>-->
-                        <!--                           </ul>-->
-                        <!--                       </div>-->
-                        <p>Mus integer tristique auctor suscipit congue fames parturient mi lacus placerat mi aliquam
-                            fusce cras tristique nonummy.</p>
-                        <!--                       <div class="blog-more">-->
-                        <!--                           <a href="blog-single.html">Read More</a>-->
-                        <!--                       </div>-->
+                        <h4><a class="truncate">实时参数</a></h4>
+                        <p>
+                            <span class="no-wrap" id="out_a-container"></span>
+                            <br><span class="no-wrap" id="out_ba-container"></span>
+                                                    <br><span class="no-wrap" id="out_bs-container"></span>
+                            <br><span class="no-wrap" id="out_s-container"></span>
+                                                    <br><span class="no-wrap" id="out_t-container"></span>
+                            <br><span class="no-wrap" id="out_v-container"></span>
+                        </p>
                     </div>
                 </div>
                 <!-- End Blog Item -->
