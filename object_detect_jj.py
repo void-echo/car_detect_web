@@ -9,6 +9,7 @@ import blobconverter
 
 
 from utils.SerialController import *
+from utils.curve import *
 
 DEPTH_THRESH_HIGH = 3000
 DEPTH_THRESH_LOW = 500
@@ -283,14 +284,14 @@ def obstacle_avoidance(depth_frame):
         x.append(i)
         column_depth_means.append(column_depth_mean)
 
-    x_fit, y_fit = draw_curve(x, column_depth_means)
+    y_fit = draw_curve(x, column_depth_means)
 
     # for i in range(num_columns):
     #     print(f"direction{i}:{int(column_depth_means[i])}",end=" ")
     # print()
 
     direction_choose(y_fit)
-    return x_fit, y_fit
+    return y_fit
 
 
 # 方向选择算法
@@ -534,7 +535,7 @@ with dai.Device() as device:
                 except StopIteration:
                     break
         except Exception as e:
-            # print(e)
+            print(e)
             pass
 
         time.sleep(0.05)
