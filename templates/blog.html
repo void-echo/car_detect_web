@@ -133,15 +133,18 @@
                             <img src="static/picture/pic1.jpg" alt="" title=""  onclick="runScript1()">
                             <script>
                                 function runScript1() {
-                                    var xmlhttp = new XMLHttpRequest();
-                                    xmlhttp.onreadystatechange = function() {
-                                      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                                        var result = xmlhttp.responseText;
-                                        // do something with the result
-                                      }
-                                    };
-                                    xmlhttp.open("GET", "script1.sh", true);
-                                    xmlhttp.send();
+                                    var confirmed = confirm("是否跳转到livox-loam点云图?");
+                                    if(confirmed) {
+                                        var xmlhttp = new XMLHttpRequest();
+                                        xmlhttp.onreadystatechange = function() {
+                                          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                                            var result = xmlhttp.responseText;
+                                            // do something with the result
+                                          }
+                                        };
+                                        xmlhttp.open("GET", "script1.sh", true);
+                                        xmlhttp.send();
+                                    }
                                   }
                             </script>
                         </a>
@@ -173,15 +176,18 @@
                             <img src="static/picture/pic2.jpg" alt="" title="" height="313" onclick="runScript2()">
                             <script>
                                 function runScript2() {
-                                    var xmlhttp = new XMLHttpRequest();
-                                    xmlhttp.onreadystatechange = function() {
-                                      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                                        var result = xmlhttp.responseText;
-                                        // do something with the result
-                                      }
-                                    };
-                                    xmlhttp.open("GET", "script2.sh", true);
-                                    xmlhttp.send();
+                                    var confirmed = confirm("是否跳转到OAK-D点云图?");
+                                    if(confirmed) {
+                                        var xmlhttp = new XMLHttpRequest();
+                                        xmlhttp.onreadystatechange = function() {
+                                          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                                            var result = xmlhttp.responseText;
+                                            // do something with the result
+                                          }
+                                        };
+                                        xmlhttp.open("GET", "script2.sh", true);
+                                        xmlhttp.send();
+                                    }
                                   }
                             </script>
 <!--                            <img src="{{ url_for('video_feed') }}" alt="">-->
@@ -215,15 +221,18 @@
                             <img src="static/picture/car6.jpg" alt="" title=""  onclick="runScript3()">
                             <script>
                                 function runScript3() {
-                                    var xmlhttp = new XMLHttpRequest();
-                                    xmlhttp.onreadystatechange = function() {
-                                      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                                        var result = xmlhttp.responseText;
-                                        // do something with the result
-                                      }
-                                    };
-                                    xmlhttp.open("GET", "script3.sh", true);
-                                    xmlhttp.send();
+                                    var confirmed = confirm("是否跳转到自动驾驶界面?");
+                                    if(confirmed) {
+                                        var xmlhttp = new XMLHttpRequest();
+                                        xmlhttp.onreadystatechange = function() {
+                                          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                                            var result = xmlhttp.responseText;
+                                            // do something with the result
+                                          }
+                                        };
+                                        xmlhttp.open("GET", "script3.sh", true);
+                                        xmlhttp.send();
+                                    }
                                   }
                             </script>
 <!--                            <img src="{{ url_for('video_feed') }}" alt="">-->
