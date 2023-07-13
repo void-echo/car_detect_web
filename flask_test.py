@@ -14,7 +14,7 @@ from imutils.video import VideoStream
 from pyimagesearch.motion_detection.singlemotiondetector import SingleMotionDetector
 from utils import script_runner
 
-# from utils.SerialController import get_info
+from utils.SerialController import get_info
 
 # initialize the output frame and a lock used to ensure thread-safe
 # exchanges of the output frames (useful when multiple browsers/tabs are viewing the stream)
@@ -60,8 +60,8 @@ def handle_connect():
 @socketio.on('start_stream')
 def start_stream():
     while True:
-        # out_a, out_ba, out_bs, out_s, out_t, out_v = get_info()  # 要传递给前端的数据
-        out_a, out_ba, out_bs, out_s, out_t, out_v = '1', '2', '3', '4', '5', '6'
+        out_a, out_ba, out_bs, out_s, out_t, out_v = get_info()  # 要传递给前端的数据
+        # out_a, out_ba, out_bs, out_s, out_t, out_v = '1', '2', '3', '4', '5', '6'
         emit('out_a', '电流' + out_a, broadcast=True)
         emit('out_ba', '电池电流' + out_ba, broadcast=True)
         emit('out_bs', '电机速度' + out_bs, broadcast=True)
