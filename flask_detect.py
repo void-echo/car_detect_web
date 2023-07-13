@@ -85,10 +85,6 @@ def obstacle_avoidance(depth_frame):
         column_depth_means.append(column_depth_mean)
 
     draw_curve(x, column_depth_means)
-    # for i in range(num_columns):
-    #     print(f"direction{i}:{int(column_depth_means[i])}", end=" ")
-    # print()
-
     return column_depth_means
 
 
@@ -288,10 +284,13 @@ def generate():
                         if frame is None:
                             continue
                         # 将帧转换为字节流
+                        print("in while true, generating new frame")
                         (flag, encodedImage) = cv2.imencode(".jpg", frame)
                         # ensure the frame was successfully encoded
                         if not flag:
                             continue
+                    else:
+                        (flag, encodedImage) = cv2.imencode(".jpg", frame)
 
                 # 将字节流作为生成器的输出
                 yield (b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' +

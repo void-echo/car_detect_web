@@ -1,13 +1,11 @@
 import argparse
-import threading
-
+# import threading
+import _sha256
 import cv2
 import depthai as dai
-import numpy as np
 from flask import Flask, render_template, Response
 
-from config_ import num_columns
-from flask_test import detect_motion
+# from flask_test import detect_motion
 from utils.pipeline_provider import get_prepared_pipeline_with_palm_detection
 
 frame = None
@@ -36,25 +34,29 @@ def contact():
     return render_template('blog.html')
 
 
-vidQ = None
 detections = None
 device = dai.Device()
+device.startPipeline(pipeline)  # 启动流水线
+vidQ = device.getOutputQueue(name="cam", maxSize=4, blocking=False)
+
 
 # 定义生成视频流的函数
 def generate():
     global frame, vidQ
+    print("begin generate")
     while True:
+        print("first while")
         cams = device.getConnectedCameras()
         depth_enabled = dai.CameraBoardSocket.LEFT in cams and dai.CameraBoardSocket.RIGHT in cams
         if not depth_enabled:
             raise RuntimeError(
                 "Unable to run this experiment on device without depth capabilities! (Available cameras: {})".format(
                     cams))
-        device.startPipeline(pipeline)  # 启动流水线
+
         # 创建输出队列
-        vidQ = device.getOutputQueue(name="cam", maxSize=4, blocking=False)
 
         while True:
+            print("second", end=" ")
             try:
                 # check if the output frame is available, otherwise skip
                 # the iteration of the loop
@@ -67,6 +69,7 @@ def generate():
                     if frame is None:
                         continue
                     # 将帧转换为字节流
+                    print("new frame coming")
                     (flag, encodedImage) = cv2.imencode(".jpg", frame)
                     # ensure the frame was successfully encoded
                     if not flag:
@@ -75,6 +78,11 @@ def generate():
                     # 将字节流作为生成器的输出
                     yield (b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' +
                            bytearray(encodedImage) + b'\r\n')
+                else:
+                    print("in_rgb is None, returning unchanged frame")
+                    (flag, encodedImage) = cv2.imencode(".jpg", frame)
+                    yield (b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' +
+                            bytearray(encodedImage) + b'\r\n')
             except Exception as e:
                 print(e)
                 pass
@@ -87,6 +95,7 @@ def generate():
 def video_feed():
     # return the response generated along with the specific media
     # type (mime type)
+    print("video feed")
     return Response(generate(),
                     mimetype="multipart/x-mixed-replace; boundary=frame")
 
@@ -103,12 +112,7 @@ def start():
     ap.add_argument("-f", "--frame-count", type=int, default=32,
                     help="# of frames used to construct the background model")
     args = vars(ap.parse_args())
-    # start a thread that will perform motion detection
 
-    t = threading.Thread(target=detect_motion, args=(
-        args["frame_count"],))
-    t.daemon = True
-    t.start()
 
     app.run(host=args["ip"], port=args["port"], debug=True,
             threaded=True, use_reloader=False)
