@@ -48,6 +48,8 @@
             document.getElementById('out_v-container').innerHTML = out_v;
         });
         socket.emit('start_stream');
+
+
     </script>
 </head>
 
@@ -74,7 +76,7 @@
                             <ul id="onepage-nav" class="mainnav">
                                 <!--                                    修改导航栏-->
                                 <li><a class="" href="{{ url_for('home') }}">主页</a></li>
-<!--                                <li><a class="" href="{{ url_for('about') }}">关于我们</a></li>-->
+                                <!--                                <li><a class="" href="{{ url_for('about') }}">关于我们</a></li>-->
                                 <li><a class="active" href="{{ url_for('contact') }}">影像</a></li>
 
                             </ul>
@@ -115,7 +117,7 @@
                 <div class="heading-section text-center">
                     <!--================= TITLE:Images List ==================-->
                     <h2 style="font-size:30px">影像列表 ·<span class="text-primary"
-                                                               style="font-size:30px"> Images List</span></h2>
+                                                           style="font-size:30px"> Images List</span></h2>
                 </div>
             </div>
         </div>
@@ -127,8 +129,21 @@
                         <a class="d-block overflow-hidden">
                             <!--================= 第一张图 ==================-->
                             <!--================= 图片尺寸：长580 宽392 ==================-->
-                            <img src="{{ url_for('video_feed') }}" alt="">
-                            <!--                            <img src="static/picture/car6.jpg" alt="" title="">-->
+<!--                            <img src="{{ url_for('video_feed') }}" alt="">-->
+                            <img src="static/picture/car6.jpg" alt="" title=""  onclick="runScript1()">
+                            <script>
+                                function runScript1() {
+                                    var xmlhttp = new XMLHttpRequest();
+                                    xmlhttp.onreadystatechange = function() {
+                                      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                                        var result = xmlhttp.responseText;
+                                        // do something with the result
+                                      }
+                                    };
+                                    xmlhttp.open("GET", "script1.sh", true);
+                                    xmlhttp.send();
+                                  }
+                            </script>
                         </a>
                     </div>
                     <div class="blog-content">
@@ -155,8 +170,21 @@
                     <div class="blog-pic position-relative">
                         <a class="d-block overflow-hidden">
                             <!--================= 第二张图 ==================-->
-                            <!--                            <img src="static/picture/car6.jpg" alt="" title="">-->
-                            <img src="{{ url_for('video_feed') }}" alt="">
+                            <img src="static/picture/car6.jpg" alt="" title=""  onclick="runScript2()">
+                            <script>
+                                function runScript2() {
+                                    var xmlhttp = new XMLHttpRequest();
+                                    xmlhttp.onreadystatechange = function() {
+                                      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                                        var result = xmlhttp.responseText;
+                                        // do something with the result
+                                      }
+                                    };
+                                    xmlhttp.open("GET", "script2.sh", true);
+                                    xmlhttp.send();
+                                  }
+                            </script>
+<!--                            <img src="{{ url_for('video_feed') }}" alt="">-->
                         </a>
                     </div>
                     <div class="blog-content">
@@ -184,8 +212,21 @@
                     <div class="blog-pic position-relative">
                         <a class="d-block overflow-hidden">
                             <!--================= 第三张图 ==================-->
-                            <!--                            <img src="static/picture/car6.jpg" alt="" title="">-->
-                            <img src="{{ url_for('video_feed') }}" alt="">
+                            <img src="static/picture/car6.jpg" alt="" title=""  onclick="runScript3()">
+                            <script>
+                                function runScript3() {
+                                    var xmlhttp = new XMLHttpRequest();
+                                    xmlhttp.onreadystatechange = function() {
+                                      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                                        var result = xmlhttp.responseText;
+                                        // do something with the result
+                                      }
+                                    };
+                                    xmlhttp.open("GET", "script3.sh", true);
+                                    xmlhttp.send();
+                                  }
+                            </script>
+<!--                            <img src="{{ url_for('video_feed') }}" alt="">-->
                         </a>
                     </div>
                     <div class="blog-content">
@@ -241,6 +282,21 @@
                         <a class="d-block overflow-hidden">
                             <!--================= 第五张图 ==================-->
                             <img src="static/picture/car5.jpg" alt="" title="">
+                            <script>
+                                function runScript() {
+                                    var xmlhttp = new XMLHttpRequest();
+                                    xmlhttp.onreadystatechange = function() {
+                                      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                                        var result = xmlhttp.responseText;
+                                        // do something with the result
+                                      }
+                                    };
+                                    xmlhttp.open("GET", "script.sh", true);
+                                    xmlhttp.send();
+                                  }
+
+
+                            </script>
                         </a>
                     </div>
                     <div class="blog-content">
@@ -276,9 +332,9 @@
                         <p>
                             <span class="no-wrap" id="out_a-container"></span>
                             <br><span class="no-wrap" id="out_ba-container"></span>
-                                                    <br><span class="no-wrap" id="out_bs-container"></span>
+                            <br><span class="no-wrap" id="out_bs-container"></span>
                             <br><span class="no-wrap" id="out_s-container"></span>
-                                                    <br><span class="no-wrap" id="out_t-container"></span>
+                            <br><span class="no-wrap" id="out_t-container"></span>
                             <br><span class="no-wrap" id="out_v-container"></span>
                         </p>
                     </div>
@@ -343,19 +399,19 @@
     </div>
     <!-- End Footer Top -->
 
-<!--    <div class="footer-bottom">-->
-<!--        <div class="container">-->
-<!--            <div class="row wow fadeInUp" data-wow-duration="500ms" data-wow-delay="500ms">-->
-<!--                <div class="col-md-12">-->
-<!--                    <div class="copyright text-center">-->
-<!--                        Copyright &copy; 2023.Company name All rights reserved.<a target="_blank"-->
-<!--                                                                                  href="https://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                &lt;!&ndash; End col  &ndash;&gt;-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+    <!--    <div class="footer-bottom">-->
+    <!--        <div class="container">-->
+    <!--            <div class="row wow fadeInUp" data-wow-duration="500ms" data-wow-delay="500ms">-->
+    <!--                <div class="col-md-12">-->
+    <!--                    <div class="copyright text-center">-->
+    <!--                        Copyright &copy; 2023.Company name All rights reserved.<a target="_blank"-->
+    <!--                                                                                  href="https://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--                &lt;!&ndash; End col  &ndash;&gt;-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
     <!-- End Footer Bottom -->
 </footer>
 
@@ -401,6 +457,8 @@
           "three/addons/": "https://unpkg.com/three@0.152.2/examples/jsm/"
         }
       }
+
+
 
 
 </script>
@@ -481,6 +539,8 @@
 
     const myDiv = document.getElementById('myDiv');
     myDiv.appendChild(renderer.domElement);
+
+
 
 
 </script>
