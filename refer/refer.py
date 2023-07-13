@@ -1,13 +1,13 @@
 # coding=utf-8
 import math
+
+import blobconverter
 import cv2
 import depthai as dai
 import numpy as np
 
 from config_ import DEPTH_THRESH_LOW, DEPTH_THRESH_HIGH, WARNING_DIST
 from palm_detection import PalmDetection
-import blobconverter
-
 
 # If dangerous object is too close to the palm, warning will be displayed
 DANGEROUS_OBJECTS = ["bottle"]
@@ -19,16 +19,18 @@ labelMap = ["background", "aeroplane", "bicycle", "bird", "boat", "bottle", "bus
 
 def crop_to_rect(frame):
     height = frame.shape[0]
-    width  = frame.shape[1]
-    delta = int((width-height) / 2)
+    width = frame.shape[1]
+    delta = int((width - height) / 2)
     # print(height, width, delta)
-    return frame[0:height, delta:width-delta]
+    return frame[0:height, delta:width - delta]
 
 
 def annotate_fun(img, color, fontFace=cv2.FONT_HERSHEY_TRIPLEX, fontScale=0.5, **kwargs):
     def fun(text, pos):
         cv2.putText(img, text, pos, fontFace, fontScale, color, **kwargs)
+
     return fun
+
 
 # 实现人机安全功能
 class HumanMachineSafety:
@@ -58,7 +60,7 @@ class HumanMachineSafety:
         if ymin > ymax:  # bbox flipped
             ymin, ymax = ymax, ymin
 
-        if xmin == xmax or ymin == ymax: # Box of size zero
+        if xmin == xmax or ymin == ymax:  # Box of size zero
             return None
 
         # Calculate the average depth in the ROI.
@@ -72,7 +74,7 @@ class HumanMachineSafety:
         centroidX = int((xmax - xmin) / 2) + xmin
         centroidY = int((ymax - ymin) / 2) + ymin
 
-        mid = int(depth.shape[0] / 2) # middle of the depth img
+        mid = int(depth.shape[0] / 2)  # middle of the depth img
         bb_x_pos = centroidX - mid
         bb_y_pos = centroidY - mid
 
@@ -84,43 +86,43 @@ class HumanMachineSafety:
         y = -z * math.tan(angle_y)
 
         # print(f"X: {x}mm, Y: {y} mm, Z: {z} mm")
-        return (x,y,z, centroidX, centroidY)
-
+        return (x, y, z, centroidX, centroidY)
 
     # calc_spatial_distance方法计算物体与手掌之间的距离，并根据距离显示警告。
     # 它遍历目标检测结果中的危险物体，并计算物体与手掌空间坐标之间的距离。如果距离小于预设的警告距离，则在图像上显示警告信息
     def calc_spatial_distance(self, spatialCoords, frame, detections):
-        x,y,z, centroidX, centroidY = spatialCoords
+        x, y, z, centroidX, centroidY = spatialCoords
         annotate = annotate_fun(frame, (0, 0, 25), fontScale=1.7)
 
         for det in detections:
             # Ignore detections that aren't considered dangerous
             if labelMap[det.label] not in DANGEROUS_OBJECTS: continue
 
-            self.distance = math.sqrt((det.spatialCoordinates.x-x)**2 + (det.spatialCoordinates.y-y)**2 + (det.spatialCoordinates.z-z)**2)
+            self.distance = math.sqrt((det.spatialCoordinates.x - x) ** 2 + (det.spatialCoordinates.y - y) ** 2 + (
+                        det.spatialCoordinates.z - z) ** 2)
 
             height = frame.shape[0]
             x1 = int(det.xmin * height)
             x2 = int(det.xmax * height)
             y1 = int(det.ymin * height)
             y2 = int(det.ymax * height)
-            objectCenterX = int((x1+x2)/2)
-            objectCenterY = int((y1+y2)/2)
-            cv2.line(frame, (centroidX, centroidY), (objectCenterX, objectCenterY), (50,220,100), 4)
+            objectCenterX = int((x1 + x2) / 2)
+            objectCenterY = int((y1 + y2) / 2)
+            cv2.line(frame, (centroidX, centroidY), (objectCenterX, objectCenterY), (50, 220, 100), 4)
 
             if self.distance < WARNING_DIST:
                 # Color dangerous objects in red
                 sub_img = frame[y1:y2, x1:x2]
                 red_rect = np.ones(sub_img.shape, dtype=np.uint8) * 255
                 # Setting blue/green to 0
-                red_rect[:,:,0] = 0
-                red_rect[:,:,1] = 0
+                red_rect[:, :, 0] = 0
+                red_rect[:, :, 1] = 0
                 res = cv2.addWeighted(sub_img, 0.5, red_rect, 0.5, 1.0)
                 # Putting the image back to its position
                 frame[y1:y2, x1:x2] = res
                 # Print twice to appear in bold
-                annotate("Danger", (100, int(height/3)))
-                annotate("Danger", (101, int(height/3)))
+                annotate("Danger", (100, int(height / 3)))
+                annotate("Danger", (101, int(height / 3)))
         cv2.imshow("color", frame)
 
     # draw_bbox方法在图像上绘制边界框
@@ -133,25 +135,26 @@ class HumanMachineSafety:
                 color=color,
                 thickness=2,
             )
+
         draw(self.debug_frame)
         draw(self.depthFrameColor)
 
     # draw_detections方法在图像上绘制目标检测结果。
     def draw_detections(self, frame, detections):
-        color = (250,0,0)
+        color = (250, 0, 0)
         annotate = annotate_fun(frame, (0, 0, 25))
 
         for detection in detections:
             if labelMap[detection.label] not in DANGEROUS_OBJECTS: continue
             height = frame.shape[0]
-            width  = frame.shape[1]
+            width = frame.shape[1]
             # Denormalize bounding box
             x1 = int(detection.xmin * width)
             x2 = int(detection.xmax * width)
             y1 = int(detection.ymin * height)
             y2 = int(detection.ymax * height)
             offsetX = x1 + 10
-            annotate("{:.2f}".format(detection.confidence*100), (offsetX, y1 + 35))
+            annotate("{:.2f}".format(detection.confidence * 100), (offsetX, y1 + 35))
             annotate(f"X: {int(detection.spatialCoordinates.x)} mm", (offsetX, y1 + 50))
             annotate(f"Y: {int(detection.spatialCoordinates.y)} mm", (offsetX, y1 + 65))
             annotate(f"Z: {int(detection.spatialCoordinates.z)} mm", (offsetX, y1 + 80))
@@ -191,7 +194,7 @@ class HumanMachineSafety:
     def parse(self, in_palm_detections, detections, frame, depth, depthColored):
         self.debug_frame = frame.copy()
         self.depthFrameColor = depthColored
-        annotate = annotate_fun(self.debug_frame, (50,220,110), fontScale=1.4)
+        annotate = annotate_fun(self.debug_frame, (50, 220, 110), fontScale=1.4)
 
         # Parse palm detection output
         palm_coords = self.palmDetection.run_palm(
@@ -201,14 +204,14 @@ class HumanMachineSafety:
         spatialCoords = self.draw_palm_detection(palm_coords, depth)
         # Calculate distance, show warning
         if spatialCoords is not None:
-            self.calc_spatial_distance(spatialCoords,self.debug_frame, detections)
+            self.calc_spatial_distance(spatialCoords, self.debug_frame, detections)
 
         # Mobilenet detections
         self.draw_detections(self.debug_frame, detections)
         # Put text 3 times for the bold appearance
-        annotate(f"Distance: {int(self.distance)} mm", (50,700))
-        annotate(f"Distance: {int(self.distance)} mm", (51,700))
-        annotate(f"Distance: {int(self.distance)} mm", (52,700))
+        annotate(f"Distance: {int(self.distance)} mm", (50, 700))
+        annotate(f"Distance: {int(self.distance)} mm", (51, 700))
+        annotate(f"Distance: {int(self.distance)} mm", (52, 700))
         cv2.imshow("color", self.debug_frame)  # 最后，通过cv2.imshow显示图像，并通过按下 'q' 键退出循环
 
         if self.depthFrameColor is not None:
@@ -226,7 +229,7 @@ pipeline = dai.Pipeline()
 
 cam = pipeline.create(dai.node.ColorCamera)
 cam.setResolution(dai.ColorCameraProperties.SensorResolution.THE_1080_P)
-cam.setIspScale(2, 3) # To match 720P mono cameras
+cam.setIspScale(2, 3)  # To match 720P mono cameras
 cam.setBoardSocket(dai.CameraBoardSocket.RGB)
 cam.initialControl.setManualFocus(130)
 # For MobileNet NN
@@ -296,7 +299,8 @@ with dai.Device() as device:
     cams = device.getConnectedCameras()
     depth_enabled = dai.CameraBoardSocket.LEFT in cams and dai.CameraBoardSocket.RIGHT in cams
     if not depth_enabled:
-        raise RuntimeError("Unable to run this experiment on device without depth capabilities! (Available cameras: {})".format(cams))
+        raise RuntimeError(
+            "Unable to run this experiment on device without depth capabilities! (Available cameras: {})".format(cams))
     device.startPipeline(pipeline)  # 启动流水线
     # 创建输出队列
     vidQ = device.getOutputQueue(name="cam", maxSize=4, blocking=False)
@@ -339,4 +343,3 @@ with dai.Device() as device:
                     depthFrameColor)
             except StopIteration:
                 break
-

@@ -2,6 +2,7 @@
 import math
 import time
 
+import blobconverter
 import cv2
 import depthai as dai
 import numpy as np
@@ -9,6 +10,7 @@ import blobconverter
 
 from utils.curve import *
 from utils.SerialController import *
+from utils.curve import *
 
 DEPTH_THRESH_HIGH = 3000
 DEPTH_THRESH_LOW = 500
@@ -534,7 +536,7 @@ with dai.Device() as device:
                 except StopIteration:
                     break
         except Exception as e:
-            print(e)
+            # print(e)
             pass
 
         time.sleep(0.05)

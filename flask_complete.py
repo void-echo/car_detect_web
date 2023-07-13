@@ -44,7 +44,7 @@ class AnyFrameOfPipelineProvider:
                     self.now_frame_depth = depthColoredFrame
         return self.now_frame_depth
 
-    def generate_rgb_frame(self):   ########################
+    def generate_rgb_frame(self):  ########################
         global GLOBAL_FRAME_NORMAL
         while True:
             with lock_normal:
@@ -56,7 +56,7 @@ class AnyFrameOfPipelineProvider:
                     continue
                 yield b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' + bytearray(encodedImage) + b'\r\n'
 
-    def generate_depth_colored_frame(self):   #####################
+    def generate_depth_colored_frame(self):  #####################
         global GLOBAL_FRAME_DEPTH
         while True:
             with lock_depth:

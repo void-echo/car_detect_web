@@ -15,7 +15,7 @@ If so, change the parameters in the following code accordingly.
 
 # 串口初始化
 ser = serial.Serial(
-    port='COM6',  # 这里改成你的电脑上，串口对应的端口号。这是唯一可以根据你的电脑修改的参数。
+    port='COM3',  # 这里改成你的电脑上，串口对应的端口号。这是唯一可以根据你的电脑修改的参数。
     baudrate=115200,  # 这里必须是115200。如果设备管理器上面不是，就在设备管理器中改成对应的数值。这一行、以下三行代码不应该被修改。
     parity=serial.PARITY_NONE,
     stopbits=serial.STOPBITS_ONE,
@@ -79,8 +79,8 @@ def turn_angle(angle=180, t_angle=10):
     if angle > 0:
         num = angle / t_angle
         while True:
-            num -=1
-            command = '!M '+str(t_angle)+' 0'
+            num -= 1
+            command = '!M ' + str(t_angle) + ' 0'
             command += '\r\n'
             ser.write(command.encode('ASCII'))
 
@@ -98,8 +98,8 @@ def turn_angle(angle=180, t_angle=10):
     else:
         num = angle / t_angle
         while True:
-            num +=1
-            command = '!M -'+str(t_angle)
+            num += 1
+            command = '!M -' + str(t_angle)
             command += '\r\n'
             ser.write(command.encode('ASCII'))
 
@@ -143,8 +143,8 @@ def forward_turn_angle(speed=10, angle=10, t_angle=10):
     if angle > 0:
         num = angle / t_angle
         while True:
-            num -=1
-            command = '!M '+str(t_angle)+' '+str(speed)
+            num -= 1
+            command = '!M ' + str(t_angle) + ' ' + str(speed)
             command += '\r\n'
             ser.write(command.encode('ASCII'))
 
@@ -162,8 +162,8 @@ def forward_turn_angle(speed=10, angle=10, t_angle=10):
     else:
         num = angle / t_angle
         while True:
-            num +=1
-            command = '!M -'+str(t_angle)+' '+str(speed)
+            num += 1
+            command = '!M -' + str(t_angle) + ' ' + str(speed)
             command += '\r\n'
             ser.write(command.encode('ASCII'))
 
@@ -274,4 +274,3 @@ def get_info():
 
 
 get_info()
-

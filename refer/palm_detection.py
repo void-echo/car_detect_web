@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class PalmDetection:
     def run_palm(self, frame, nn_data):
         """
@@ -70,7 +71,7 @@ class PalmDetection:
             offset = 4 + k * 2
             keypoint_x = raw_boxes[..., offset] / x_scale * anchors[:, 2] + anchors[:, 0]
             keypoint_y = (
-                raw_boxes[..., offset + 1] / y_scale * anchors[:, 3] + anchors[:, 1]
+                    raw_boxes[..., offset + 1] / y_scale * anchors[:, 3] + anchors[:, 1]
             )
             boxes[..., offset] = keypoint_x
             boxes[..., offset + 1] = keypoint_y
@@ -158,6 +159,6 @@ class PalmDetection:
         :return:
         """
         return (
-            np.clip(np.array(xy_vals), 0, 1)
-            * np.array(frame.shape[:2] * (len(xy_vals) // 2))[::-1]
+                np.clip(np.array(xy_vals), 0, 1)
+                * np.array(frame.shape[:2] * (len(xy_vals) // 2))[::-1]
         ).astype(int)
