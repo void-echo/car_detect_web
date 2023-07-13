@@ -9,6 +9,7 @@ import imutils
 from flask import Flask, render_template, Response, send_file
 from flask_socketio import SocketIO, emit
 from imutils.video import VideoStream
+import logging
 
 from pyimagesearch.motion_detection.singlemotiondetector import SingleMotionDetector
 # from utils.SerialController import get_info
@@ -20,6 +21,8 @@ lock = threading.Lock()
 # initialize a flask object
 # 这是必要的，因为flask需要知道它在哪里寻找模板和静态文件夹
 app = Flask(__name__)
+log = logging.getLogger('werkzeug')
+log.disabled = True
 app.config['SECRET_KEY'] = 'secret_key'
 socketio = SocketIO(app)
 # initialize the video stream and allow the camera sensor to
@@ -27,6 +30,7 @@ socketio = SocketIO(app)
 # vs = VideoStream(usePiCamera=1).start()
 vs = VideoStream(src=0).start()  # 用0表示笔记本优先使用的摄像头，可以改为1或2
 time.sleep(2.0)
+
 
 @app.route('/script1.sh')
 def get_script1():
