@@ -8,6 +8,8 @@ import datetime
 import imutils
 import time
 import cv2
+from flask_socketio import SocketIO, emit
+from utils.SerialController import get_info
 
 # initialize the output frame and a lock used to ensure thread-safe
 # exchanges of the output frames (useful when multiple browsers/tabs are viewing the stream)
@@ -16,11 +18,32 @@ lock = threading.Lock()
 # initialize a flask object
 # 这是必要的，因为flask需要知道它在哪里寻找模板和静态文件夹
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret_key'
+socketio = SocketIO(app)
 # initialize the video stream and allow the camera sensor to
 # warmup
 # vs = VideoStream(usePiCamera=1).start()
 vs = VideoStream(src=0).start()  # 用0表示笔记本优先使用的摄像头，可以改为1或2
 time.sleep(2.0)
+
+
+@socketio.on('connect')
+def handle_connect():
+    emit('data', 'Hello, World!', broadcast=True)  # 初始数据传递
+
+
+@socketio.on('start_stream')
+def start_stream():
+    while True:
+        out_a, out_ba, out_bs, out_s, out_t, out_v = get_info()  # 要传递给前端的数据
+        # out_a, out_ba, out_bs, out_s, out_t, out_v = '1', '2', '3', '4', '5', '6'
+        emit('out_a', '电流'+out_a, broadcast=True)
+        emit('out_ba', '电池电流'+out_ba, broadcast=True)
+        emit('out_bs', '电机速度'+out_bs, broadcast=True)
+        emit('out_s', '编码器转速'+out_s, broadcast=True)
+        emit('out_t', '温度'+out_t, broadcast=True)
+        emit('out_v', '电池电压'+out_v, broadcast=True)
+        time.sleep(0.2)
 
 
 # Define the home page route
