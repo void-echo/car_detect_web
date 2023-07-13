@@ -1,16 +1,21 @@
 # coding=utf-8
 import math
+import time
 
 import blobconverter
 import cv2
 import depthai as dai
+import numpy as np
+import blobconverter
 
+from utils.curve import *
 from utils.SerialController import *
 from utils.curve import *
 
 DEPTH_THRESH_HIGH = 3000
 DEPTH_THRESH_LOW = 500
 WARNING_DIST = 300
+import random
 
 num_columns = 10
 
@@ -280,14 +285,14 @@ def obstacle_avoidance(depth_frame):
         x.append(i)
         column_depth_means.append(column_depth_mean)
 
-    y_fit = draw_curve(x, column_depth_means)
+    x_fit, y_fit = draw_curve(x, column_depth_means)
 
     # for i in range(num_columns):
     #     print(f"direction{i}:{int(column_depth_means[i])}",end=" ")
     # print()
 
     direction_choose(y_fit)
-    return y_fit
+    return x_fit, y_fit
 
 
 # 方向选择算法
@@ -373,20 +378,18 @@ def direction_choose(y_fit):
     y_fit_right = y_fit_matrix[:, len(y_fit) // 2: len(y_fit)]
     y_fit_front = y_fit_matrix[:, len(y_fit) // 3: len(y_fit) * 2 // 3]
     # print("y_fit", y_fit)
-    print("y_fit_front", y_fit_front)
 
     # 阈值（单个值）
-    threshold =2000
+    threshold = 2000
     count_left = np.sum(y_fit_left < threshold)
     count_right = np.sum(y_fit_right < threshold)
     count_front = np.sum(y_fit_front < threshold)
-    print("count_front", count_front)
 
     total_left = sum(y_fit_left[0])
     total_right = sum(y_fit_right[0])
     # 前方没有障碍物
     if count_front < len(y_fit) // 15:
-        forward(100, 0.2)
+        forward(50, 0.4)
         # print("forward")
     else:
         # 两边都有障碍物
@@ -395,16 +398,16 @@ def direction_choose(y_fit):
             turn_angle(-30, 30)
         # 右边没有障碍物
         elif count_right < len(y_fit) // 10 <= count_left:
-            turn_angle(-50, 20)
+            turn_angle(-30, 30)
         # 左边没有障碍物
         elif count_left < len(y_fit) // 10 <= count_right:
-            turn_angle(50, 20)
+            turn_angle(30, 30)
         # 两边都没有障碍物
         else:
             if total_left > total_right:
-                turn_angle(20, 20)
+                turn_angle(30, 30)
             else:
-                turn_angle(-20, 20)
+                turn_angle(-30, 30)
 
 
 # --------------------------------------------------------------------------------------------------------
@@ -533,7 +536,7 @@ with dai.Device() as device:
                 except StopIteration:
                     break
         except Exception as e:
-            print(e)
+            # print(e)
             pass
 
         time.sleep(0.05)
