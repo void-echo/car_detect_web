@@ -13,6 +13,7 @@ from imutils.video import VideoStream
 
 from pyimagesearch.motion_detection.singlemotiondetector import SingleMotionDetector
 from utils import script_runner
+import serial.tools.list_ports
 
 def check_com_port(port):
     ports = list(serial.tools.list_ports.comports())
