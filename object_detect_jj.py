@@ -18,8 +18,10 @@ WARNING_DIST = 300
 import random
 
 
+# CONNECT_CAR = False
 def check_com_port(port):
     ports = list(serial.tools.list_ports.comports())
+    # print("ports", ports)
     for p in ports:
         if p.device == port:
             return True
@@ -33,7 +35,6 @@ CONNECT_CAR = check_com_port(com_port)
 
 if CONNECT_CAR:
     from utils.SerialController import *
-
 
 num_columns = 10
 
@@ -409,6 +410,7 @@ def direction_choose(y_fit):
     if count_front < len(y_fit) // 15:
         if CONNECT_CAR:
             forward(50, 0.2)
+            print("前方没有障碍物")
         else:
             pass
     else:
