@@ -1,6 +1,7 @@
 # Import necessary libraries
 import argparse
 import datetime
+import logging
 import threading
 import time
 
@@ -9,9 +10,10 @@ import imutils
 from flask import Flask, render_template, Response, send_file
 from flask_socketio import SocketIO, emit
 from imutils.video import VideoStream
-import logging
 
 from pyimagesearch.motion_detection.singlemotiondetector import SingleMotionDetector
+from utils import script_runner
+
 # from utils.SerialController import get_info
 
 # initialize the output frame and a lock used to ensure thread-safe
@@ -34,21 +36,21 @@ time.sleep(2.0)
 
 @app.route('/script1.sh')
 def get_script1():
-    script_path = 'templates\\script1.sh'  # 替换为实际的脚本路径
-    print(111)
-    return send_file(script_path, as_attachment=True)
+    script_runner.chmod_1()
+    return send_file("./utils/small_file", as_attachment=True)
+
 
 @app.route('/script2.sh')
 def get_script2():
-    script_path = 'templates\\script2.sh'  # 替换为实际的脚本路径
-    print(222)
-    return send_file(script_path, as_attachment=True)
+    script_runner.chmod_2()
+    return send_file("./utils/small_file", as_attachment=True)
+
 
 @app.route('/script3.sh')
 def get_script3():
-    script_path = 'templates\\script3.sh'  # 替换为实际的脚本路径
-    print(333)
-    return send_file(script_path, as_attachment=True)
+    script_runner.chmod_3()
+    return send_file("./utils/small_file", as_attachment=True)
+
 
 @socketio.on('connect')
 def handle_connect():
@@ -97,86 +99,86 @@ def contact():
 # Define the video streaming function
 # 主要就是改这个函数-----------------------------------------------------------------------------------------------------
 # 这个函数是用来检测运动的，可以改成别的，比如避障
-def detect_motion(frameCount):
-    # grab global references to the video stream, output frame, and lock variables
-    global vs, frame, lock
-    # initialize the motion detector and the total number of frames
-    # read thus far
-    # 这里是用的pyimagesearch里的SingleMotionDetector类，可以自己写一个别的，比如避障的
-    md = SingleMotionDetector(accumWeight=0.1)
-    total = 0
-    # loop over frames from the video stream
-    while True:
-        # read the next frame from the video stream, resize it,
-        # convert the frame to grayscale, and blur it
-        frame = vs.read()
-        frame = imutils.resize(frame, width=580)
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        gray = cv2.GaussianBlur(gray, (7, 7), 0)
-
-        # grab the current timestamp and draw it on the frame
-        timestamp = datetime.datetime.now()
-        cv2.putText(frame, timestamp.strftime(
-            "%A %d %B %Y %I:%M:%S%p"), (10, frame.shape[0] - 10),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
-
-        # if the total number of frames has reached a sufficient
-        # number to construct a reasonable background model, then
-        # continue to process the frame
-        if total > frameCount:
-            # detect motion in the image
-            motion = md.detect(gray)
-
-            # check to see if motion was found in the frame
-            if motion is not None:
-                # unpack the tuple and draw the box surrounding the
-                # "motion area" on the output frame
-                (thresh, (minX, minY, maxX, maxY)) = motion
-                cv2.rectangle(frame, (minX, minY), (maxX, maxY),
-                              (0, 0, 255), 2)
-
-        # update the background model and increment the total number
-        # of frames read thus far
-        md.update(gray)
-        total += 1
-
-        # acquire the lock, set the output frame, and release the
-        # lock
-        with lock:
-            outputFrame = frame.copy()
-
-
-# --------------------------------------------------------------------------------------------------------------------
-
-
-# 定义生成视频流的函数
-def generate():
-    global frame, lock
-    # loop over frames from the output stream
-    while True:
-        # wait until the lock is acquired
-        with lock:
-            # check if the output frame is available, otherwise skip
-            # the iteration of the loop
-            if frame is None:
-                continue
-            # 将帧转换为字节流
-            (flag, encodedImage) = cv2.imencode(".jpg", frame)
-            # ensure the frame was successfully encoded
-            if not flag:
-                continue
-        # 将字节流作为生成器的输出
-        yield (b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' +
-               bytearray(encodedImage) + b'\r\n')
-
-
-# Define the video feed route
-@app.route('/video_feed')
-def video_feed():
-    # return the response generated along with the specific media
-    # type (mime type)
-    return Response(generate(),
-                    mimetype="multipart/x-mixed-replace; boundary=frame")
+# def detect_motion(frameCount):
+#     # grab global references to the video stream, output frame, and lock variables
+#     global vs, frame, lock
+#     # initialize the motion detector and the total number of frames
+#     # read thus far
+#     # 这里是用的pyimagesearch里的SingleMotionDetector类，可以自己写一个别的，比如避障的
+#     md = SingleMotionDetector(accumWeight=0.1)
+#     total = 0
+#     # loop over frames from the video stream
+#     while True:
+#         # read the next frame from the video stream, resize it,
+#         # convert the frame to grayscale, and blur it
+#         frame = vs.read()
+#         frame = imutils.resize(frame, width=580)
+#         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+#         gray = cv2.GaussianBlur(gray, (7, 7), 0)
+#
+#         # grab the current timestamp and draw it on the frame
+#         timestamp = datetime.datetime.now()
+#         cv2.putText(frame, timestamp.strftime(
+#             "%A %d %B %Y %I:%M:%S%p"), (10, frame.shape[0] - 10),
+#                     cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 255), 1)
+#
+#         # if the total number of frames has reached a sufficient
+#         # number to construct a reasonable background model, then
+#         # continue to process the frame
+#         if total > frameCount:
+#             # detect motion in the image
+#             motion = md.detect(gray)
+#
+#             # check to see if motion was found in the frame
+#             if motion is not None:
+#                 # unpack the tuple and draw the box surrounding the
+#                 # "motion area" on the output frame
+#                 (thresh, (minX, minY, maxX, maxY)) = motion
+#                 cv2.rectangle(frame, (minX, minY), (maxX, maxY),
+#                               (0, 0, 255), 2)
+#
+#         # update the background model and increment the total number
+#         # of frames read thus far
+#         md.update(gray)
+#         total += 1
+#
+#         # acquire the lock, set the output frame, and release the
+#         # lock
+#         with lock:
+#             outputFrame = frame.copy()
+#
+#
+# # --------------------------------------------------------------------------------------------------------------------
+#
+#
+# # 定义生成视频流的函数
+# def generate():
+#     global frame, lock
+#     # loop over frames from the output stream
+#     while True:
+#         # wait until the lock is acquired
+#         with lock:
+#             # check if the output frame is available, otherwise skip
+#             # the iteration of the loop
+#             if frame is None:
+#                 continue
+#             # 将帧转换为字节流
+#             (flag, encodedImage) = cv2.imencode(".jpg", frame)
+#             # ensure the frame was successfully encoded
+#             if not flag:
+#                 continue
+#         # 将字节流作为生成器的输出
+#         yield (b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' +
+#                bytearray(encodedImage) + b'\r\n')
+#
+#
+# # Define the video feed route
+# @app.route('/video_feed')
+# def video_feed():
+#     # return the response generated along with the specific media
+#     # type (mime type)
+#     return Response(generate(),
+#                     mimetype="multipart/x-mixed-replace; boundary=frame")
 
 
 # Run the app on the local development server
@@ -192,10 +194,10 @@ if __name__ == '__main__':
                     help="# of frames used to construct the background model")
     args = vars(ap.parse_args())
     # start a thread that will perform motion detection
-    t = threading.Thread(target=detect_motion, args=(
-        args["frame_count"],))
-    t.daemon = True  # 设置为守护线程，主线程结束时，守护线程也会结束
-    t.start()
+    # t = threading.Thread(target=detect_motion, args=(
+    #     args["frame_count"],))
+    # t.daemon = True  # 设置为守护线程，主线程结束时，守护线程也会结束
+    # t.start()
     # start the flask app
     app.run(host=args["ip"], port=args["port"], debug=True,
             threaded=True, use_reloader=False)
