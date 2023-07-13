@@ -11,4 +11,4 @@ source /opt/ros/melodic/setup.bash
 # 4. launch rviz
 source /home/sora/livox_ros_driver_/ws_livox/devel/setup.bash
 
-roslaunch livox_ros_driver livox_lidar.launch
+roslaunch --wait livox_ros_driver livox_lidar.launch

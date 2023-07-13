@@ -2,19 +2,15 @@ import multiprocessing
 import subprocess
 from subprocess import call
 
-from echo_logger import *
-
 sudoPassword = "0-=0-="
-
-threads_dict = {}
 
 
 def __invoke_bash_file(path):
-    call(['bash', path])
+    subprocess.Popen(['bash', path])
 
 
 def __invoke_bash_command(command):
-    call(['bash', '-c', command])
+    subprocess.Popen(['bash', '-c', command])
 
 
 def run_bash_file(path):
@@ -22,9 +18,10 @@ def run_bash_file(path):
     proc.start()
 
 
+@DeprecationWarning
 def clear_thread_dict():
     # get the string of `ps aux | grep mapping_visu` result
-    thread_str = str(subprocess.check_output(["bash", "-c", "ps aux | grep mapping_visu"]))
+    thread_str = str(subprocess.check_output(["bash", "-c", "ps aux | grep \"mapping_visu\|\""]))
     print("thread str: ", thread_str)
     """
     thread str be like:
@@ -34,29 +31,33 @@ def clear_thread_dict():
 
     """
     pid_str = thread_str.split(' ')[5]
-    call(['bash', '-c', 'kill -9 ' + pid_str])
+    call(['bash', '-c', 'kill -SIGINT ' + pid_str])
 
     thread_str = str(subprocess.check_output(["bash", "-c", "ps aux | grep object_detect_jj"]))
     print("thread str: ", thread_str)
     pid_str = thread_str.split(' ')[5]
-    call(['bash', '-c', 'kill -9 ' + pid_str])
+    call(['bash', '-c', 'kill -SIGINT ' + pid_str])
 
 
+def kill_all_sub_tasks_in_project():
+    call(['bash', '-c',
+          'pkill -f "rviz|livox|object_detect|feature_point_tracker|edge_detecter|object_tractor|mapping_visu"'])
 
 
 def chmod_1():
-    clear_thread_dict()
+    kill_all_sub_tasks_in_project()
     run_bash_file('./scripts/launch_livox_mapper.sh')
+    # sleep(0.3)
     run_bash_file('./scripts/launch_livox_lidar.sh')
 
 
 def chmod_2():
-    clear_thread_dict()
+    kill_all_sub_tasks_in_project()
     run_bash_file('./scripts/launch_oak_mapping.sh')
 
 
 def chmod_3():
-    clear_thread_dict()
+    kill_all_sub_tasks_in_project()
     run_bash_file('./scripts/launch_oak_navigate.sh')
 
 

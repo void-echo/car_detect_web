@@ -14,6 +14,7 @@ from imutils.video import VideoStream
 from pyimagesearch.motion_detection.singlemotiondetector import SingleMotionDetector
 from utils import script_runner
 import serial.tools.list_ports
+from echo_logger import *
 
 def check_com_port(port):
     ports = list(serial.tools.list_ports.comports())
@@ -52,6 +53,7 @@ time.sleep(2.0)
 
 @app.route('/script1.sh')
 def get_script1():
+    print_info("GETTING SCRIPT 1")
     script_runner.chmod_1()
     return send_file("./utils/small_file", as_attachment=True)
 
