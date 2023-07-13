@@ -7,7 +7,7 @@ import depthai as dai
 import numpy as np
 import blobconverter
 
-
+from utils.curve import *
 from utils.SerialController import *
 
 DEPTH_THRESH_HIGH = 3000
@@ -375,10 +375,10 @@ def direction_choose(y_fit):
     y_fit_left = y_fit_matrix[:, 0: len(y_fit) // 2]
     y_fit_right = y_fit_matrix[:, len(y_fit) // 2: len(y_fit)]
     y_fit_front = y_fit_matrix[:, len(y_fit) // 3: len(y_fit) * 2 // 3]
-    print("y_fit", y_fit)
+    # print("y_fit", y_fit)
 
     # 阈值（单个值）
-    threshold = 2600
+    threshold = 2000
     count_left = np.sum(y_fit_left < threshold)
     count_right = np.sum(y_fit_right < threshold)
     count_front = np.sum(y_fit_front < threshold)
@@ -393,19 +393,19 @@ def direction_choose(y_fit):
         # 两边都有障碍物
         if count_left >= len(y_fit) // 10 and count_right >= len(y_fit) // 10:
             # print("turn 30")
-            turn_angle(30, 30)
+            turn_angle(-30, 30)
         # 右边没有障碍物
         elif count_right < len(y_fit) // 10 <= count_left:
-            turn_angle(-20, 20)
+            turn_angle(-30, 30)
         # 左边没有障碍物
         elif count_left < len(y_fit) // 10 <= count_right:
-            turn_angle(20, 20)
+            turn_angle(30, 30)
         # 两边都没有障碍物
         else:
             if total_left > total_right:
-                turn_angle(20, 20)
+                turn_angle(30, 30)
             else:
-                turn_angle(-20, 20)
+                turn_angle(-30, 30)
 
 
 # --------------------------------------------------------------------------------------------------------
@@ -534,7 +534,7 @@ with dai.Device() as device:
                 except StopIteration:
                     break
         except Exception as e:
-            # print(e)
+            print(e)
             pass
 
         time.sleep(0.05)

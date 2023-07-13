@@ -18,14 +18,14 @@ def draw_curve1(x, y):  # 平滑拟合
     y_fit = spl(x_fit)
 
     # 绘制原始数据点和拟合曲线
-    plt.scatter(x, y, label='Original Points')
-    plt.plot(x_fit, y_fit, label='Fitted Curve')
-    plt.xlabel('X')
-    plt.ylabel('Y')
-    plt.legend()
-    plt.show()
+    # plt.scatter(x, y, label='Original Points')
+    # plt.plot(x_fit, y_fit, label='Fitted Curve')
+    # plt.xlabel('X')
+    # plt.ylabel('Y')
+    # plt.legend()
+    # plt.show()
 
-
+    return x_fit, y_fit
 def draw_curve(x, y):  # 平滑拟合
     # 多项式拟合
     degree = 3  # 设置多项式的阶数
@@ -39,13 +39,13 @@ def draw_curve(x, y):  # 平滑拟合
     y_fit = poly(x_fit)
 
     # 绘制原始数据点和拟合曲线
-    plt.scatter(x, y, label='Original Points')
-    plt.plot(x_fit, y_fit, label='Fitted Curve')
-    plt.xlabel('X')
-    plt.ylabel('Y')
-    plt.legend()
-    plt.show()
+    # plt.scatter(x, y, label='Original Points')
+    # plt.plot(x_fit, y_fit, label='Fitted Curve')
+    # plt.xlabel('X')
+    # plt.ylabel('Y')
+    # plt.legend()
+    # plt.show()
 
-
+    return x_fit, y_fit
 # if __name__ == '__main__':
 #     draw_curve(x, y)
