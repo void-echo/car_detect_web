@@ -16,20 +16,23 @@ DEPTH_THRESH_HIGH = 3000
 DEPTH_THRESH_LOW = 500
 WARNING_DIST = 300
 import random
-
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 # CONNECT_CAR = False
 def check_com_port(port):
     ports = list(serial.tools.list_ports.comports())
-    # print("ports", ports)
+    print("ports", ports)
     for p in ports:
+        print(p.device)
         if p.device == port:
+            print("======================================================== COM PORT FOUND, CONNECTING TO CAR ========================================================")
             return True
     return False
 
 
 # 这里改成你自己的端口---------------------------
-com_port = 'COM6'
+com_port = '/dev/ttyUSB0'
 # --------------------------------------------
 CONNECT_CAR = check_com_port(com_port)
 

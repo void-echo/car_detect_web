@@ -47,7 +47,7 @@ def generate():
     while True:
         print("first while")
         cams = device.getConnectedCameras()
-        depth_enabled = dai.CameraBoardSocket.LEFT in cams and dai.CameraBoardSocket.RIGHT in cams
+        depth_enabled = dai.CameraBoardSocket.CAM_B in cams and dai.CameraBoardSocket.RIGHT in cams
         if not depth_enabled:
             raise RuntimeError(
                 "Unable to run this experiment on device without depth capabilities! (Available cameras: {})".format(

@@ -3,6 +3,7 @@ import argparse
 import datetime
 import logging
 import threading
+import warnings
 
 import cv2
 import imutils
@@ -14,6 +15,8 @@ from imutils.video import VideoStream
 
 from pyimagesearch.motion_detection.singlemotiondetector import SingleMotionDetector
 from utils import script_runner
+
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 
 def check_com_port(port):

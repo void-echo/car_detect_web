@@ -42,7 +42,7 @@ def clear_thread_dict():
 
 def kill_all_sub_tasks_in_project():
     call(['bash', '-c',
-          'pkill -f "rviz|livox|object_detect|feature_point_tracker|edge_detecter|object_tractor|mapping_visu|laplacian"'])
+          'pkill -f "rviz|livox|object_detect|feature_point_tracker|edge_detecter|object_tractor|mapping_visu|laplacian|SerialController"'])
     sleep(2)
 
 
