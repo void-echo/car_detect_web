@@ -1,32 +1,41 @@
+import threading
 from subprocess import call
-import os
-import sys
+import multiprocessing
+
 from echo_logger import *
-import time
-import subprocess
 
 sudoPassword = "0-=0-="
 
+threads_dict = {}
+
+
+def __invoke_bash_file(path):
+    call(['bash', path])
+
+
+def __invoke_bash_command(command):
+    call(['bash', '-c', command])
+
+
 def run_bash_file(path):
-    command = ''
-    with open(path, 'r') as f:
-        command = f.read()
-    print_warn(command)
-    result = os.system('echo %s|sudo -S %s\n' % (sudoPassword, command))
-    if result == 0:
-        print_info('Successfully run bash file: %s' % path)
-    else:
-        print('Failed to run bash file: %s' % path, 'result: %s' % result)
+    proc = multiprocessing.Process(target=__invoke_bash_file, args=(path,))
+    thread_id = str(time.time())
+    threads_dict[thread_id] = proc
+    proc.start()
 
 
-def run_bash_direct(command):
-    print_warn(command)
-    result = os.system('echo %s|sudo -S %s\n' % (sudoPassword, command))
-    if result == 0:
-        print_info('Successfully run bash command: %s' % command)
-    else:
-        print('Failed to run bash command: %s' % command, 'result: %s' % result)
+def clear_thread_dict():
+    for key in threads_dict.keys():
+        if not threads_dict[key].is_alive():
+            threads_dict.pop(key)
+        else:
+            threads_dict[key].terminate()
+
+
+def chmod_1():
+    run_bash_file('../scripts/launch_livox_mapper.sh')
+    run_bash_file('../scripts/launch_livox_lidar.sh')
 
 
 if __name__ == '__main__':
-    run_bash_direct(sys.argv[1])
+    chmod_1()
