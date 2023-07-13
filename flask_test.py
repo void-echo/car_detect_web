@@ -199,8 +199,7 @@ if __name__ == '__main__':
     # t.daemon = True  # 设置为守护线程，主线程结束时，守护线程也会结束
     # t.start()
     # start the flask app
-    app.run(host=args["ip"], port=args["port"], debug=True,
-            threaded=True, use_reloader=False)
+    app.run(host=args["ip"], port=args["port"], debug=True, use_reloader=False)
 
 # release the video stream pointer
 vs.stop()
