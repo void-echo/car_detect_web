@@ -47,7 +47,6 @@ def kill_all_sub_tasks_in_project():
 def chmod_1():
     kill_all_sub_tasks_in_project()
     run_bash_file('./scripts/launch_livox_mapper.sh')
-    # sleep(0.3)
     run_bash_file('./scripts/launch_livox_lidar.sh')
 
 
@@ -59,6 +58,31 @@ def chmod_2():
 def chmod_3():
     kill_all_sub_tasks_in_project()
     run_bash_file('./scripts/launch_oak_navigate.sh')
+
+
+def chmod_edge_detect():
+    kill_all_sub_tasks_in_project()
+    run_bash_file('./scripts/launch_edge_normal.sh')
+
+
+def chmod_laplacian():
+    kill_all_sub_tasks_in_project()
+    run_bash_file('./scripts/launch_edge_laplacian.sh')
+
+
+def chmod_key_point_tracker():
+    kill_all_sub_tasks_in_project()
+    run_bash_file('./scripts/launch_key_point_tracker.sh')
+
+
+def chmod_livox_loam():
+    kill_all_sub_tasks_in_project()
+    run_bash_file('./scripts/launch_livox_loam_mapper.sh')
+
+
+def chmod_object_tractor():
+    kill_all_sub_tasks_in_project()
+    run_bash_file('./scripts/launch_object_tractor.sh')
 
 
 if __name__ == '__main__':

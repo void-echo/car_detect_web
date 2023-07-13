@@ -3,18 +3,18 @@ import argparse
 import datetime
 import logging
 import threading
-import time
 
 import cv2
 import imutils
+import serial.tools.list_ports
+from echo_logger import *
 from flask import Flask, render_template, Response, send_file
 from flask_socketio import SocketIO, emit
 from imutils.video import VideoStream
 
 from pyimagesearch.motion_detection.singlemotiondetector import SingleMotionDetector
 from utils import script_runner
-import serial.tools.list_ports
-from echo_logger import *
+
 
 def check_com_port(port):
     ports = list(serial.tools.list_ports.comports())
@@ -67,6 +67,60 @@ def get_script2():
 @app.route('/script3.sh')
 def get_script3():
     script_runner.chmod_3()
+    return send_file("./utils/small_file", as_attachment=True)
+
+
+# def chmod_edge_detect():
+#     kill_all_sub_tasks_in_project()
+#     run_bash_file('./scripts/launch_edge_normal.sh')
+#
+#
+# def chmod_laplacian():
+#     kill_all_sub_tasks_in_project()
+#     run_bash_file('./scripts/launch_edge_laplacian.sh')
+#
+#
+# def chmod_key_point_tracker():
+#     kill_all_sub_tasks_in_project()
+#     run_bash_file('./scripts/launch_key_point_tracker.sh')
+#
+#
+# def chmod_livox_loam():
+#     kill_all_sub_tasks_in_project()
+#     run_bash_file('./scripts/launch_livox_loam_mapper.sh')
+#
+#
+# def chmod_object_tractor():
+#     kill_all_sub_tasks_in_project()
+#     run_bash_file('./scripts/launch_object_tractor.sh')
+
+@app.route('/edge_detect')
+def edge_detect():
+    script_runner.chmod_edge_detect()
+    return send_file("./utils/small_file", as_attachment=True)
+
+
+@app.route('/laplacian')
+def laplacian():
+    script_runner.chmod_laplacian()
+    return send_file("./utils/small_file", as_attachment=True)
+
+
+@app.route('/key_point_tracker')
+def key_point_tracker():
+    script_runner.chmod_key_point_tracker()
+    return send_file("./utils/small_file", as_attachment=True)
+
+
+@app.route('/livox_loam')
+def livox_loam():
+    script_runner.chmod_livox_loam()
+    return send_file("./utils/small_file", as_attachment=True)
+
+
+@app.route('/object_tractor')
+def object_tractor():
+    script_runner.chmod_object_tractor()
     return send_file("./utils/small_file", as_attachment=True)
 
 
