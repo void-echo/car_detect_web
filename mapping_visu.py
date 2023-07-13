@@ -18,6 +18,8 @@ import depthai
 import numpy as np
 import open3d as o3d
 import spectacularAI
+import multiprocessing
+import scipy.optimize as optimize
 
 from common.deserialize_output import input_stream_reader, MockVioOutput, MockMapperOutput
 
@@ -135,6 +137,19 @@ class CoordinateFrame:
         self.frame.transform(prevToCurrent)
         self.camToWorld = camToWorld
 
+    # 定义优化目标函数
+
+
+def optimization_target(camera_pose):
+    # 在这里根据相机位姿进行优化
+    # 更新建图方法中的相机位姿
+    # updateWorldPose(camera_pose)
+
+    # 计算优化目标的值
+    # 这里简单地将所有相机位姿的元素求和作为优化目标的值
+    optimization_value = np.sum(camera_pose)
+    return optimization_value
+
 
 # Camera trajectory
 class Open3DVisualization:
@@ -246,26 +261,50 @@ class Open3DVisualization:
         pc.status = Status.REMOVED
 
 
+# 并行化渲染
+class ParallelOpen3DVisualization:
+    def __init__(self):
+        self.vis = o3d.visualization.Visualizer()
+
+    def render_geometry(self, geometry):
+        self.vis.add_geometry(geometry)
+        self.vis.update_geometry(geometry)
+        self.vis.poll_events()
+        self.vis.update_renderer()
+        self.vis.remove_geometry(geometry)
+
+    def render_geometries_parallel(self, geometries):
+        num_processes = multiprocessing.cpu_count()
+        pool = multiprocessing.Pool(processes=num_processes)
+
+        for geometry in geometries:
+            pool.apply_async(self.render_geometry, args=(geometry,))
+
+        pool.close()
+        pool.join()
+
+    def visualize(self, geometries):
+        self.vis.create_window()
+        self.render_geometries_parallel(geometries)
+        self.vis.destroy_window()
+
+
 def parseArgs():
     import argparse
     p = argparse.ArgumentParser(__doc__)
-    p.add_argument("--dataFolder", help="Instead of running live mapping session, replay session from this folder")
-    p.add_argument('--file', type=argparse.FileType('rb'),
-                   help='Read data from file or pipe, using this with mapping_visu C++ example', default=None)
-    p.add_argument("--recordingFolder", help="Record live mapping session for replay")
-    p.add_argument("--outputFolder", help="Folder where to save the captured point clouds")
-    p.add_argument("--voxel", help="Voxel size (m) for downsampling point clouds")
-    p.add_argument("--manual", help="Control Open3D camera manually", action="store_true")
-    p.add_argument("--smooth", help="Apply some smoothing to 3rd person camera movement", action="store_true")
-    p.add_argument("--color", help="Filter points without color", action="store_true")
-    p.add_argument("--use_rgb", help="Use OAK-D RGB camera", action="store_true")
-    p.add_argument("--trajectory", help="Draw camera trajectory", action="store_true")
-    p.add_argument('--ir_dot_brightness', help='OAK-D Pro (W) IR laser projector brightness (mA), 0 - 1200', type=float,
-                   default=0)
-    p.add_argument('--no_feature_tracker', help='Disable on-device feature tracking and depth map', action="store_true")
-    p.add_argument("--useRectification",
-                   help="--dataFolder option can also be used with some non-OAK-D recordings, but this parameter must be set if the videos inputs are not rectified.",
-                   action="store_true")
+    p.add_argument("--dataFolder")
+    p.add_argument('--file', type=argparse.FileType('rb'))
+    p.add_argument("--recordingFolder")
+    p.add_argument("--outputFolder")
+    p.add_argument("--voxel")
+    p.add_argument("--manual", action="store_true")
+    p.add_argument("--smooth", action="store_true")
+    p.add_argument("--color", action="store_true")
+    p.add_argument("--use_rgb", action="store_true")
+    p.add_argument("--trajectory", action="store_true")
+    p.add_argument('--ir_dot_brightness', type=float, default=0)
+    p.add_argument('--no_feature_tracker', action="store_true")
+    p.add_argument("--useRectification", action="store_true")
     return p.parse_args()
 
 
@@ -308,6 +347,8 @@ if __name__ == '__main__':
         cameraPose = vioOutput.getCameraPose(0)  # 获取相机位姿
         camToWorld = cameraPose.getCameraToWorldMatrix()  # 相机坐标系到世界坐标系的变换矩阵
         visu3D.updateCameraFrame(camToWorld)  # 更新相机位姿
+        result = optimize.minimize(optimization_target, camToWorld, method='Nelder-Mead')
+        optimized_camera_pose = result.x  # 优化后的相机位姿
 
 
     def onMappingOutput(output):
@@ -364,7 +405,7 @@ if __name__ == '__main__':
     else:
         def captureLoop():
             print("Starting OAK-D device")
-            pipeline = depthai.Pipeline()
+            pipeline = depthai.Pipeline()  # 创建pipeline
             config = spectacularAI.depthai.Configuration()  # 创建配置对象
             config.useFeatureTracker = not args.no_feature_tracker  # 是否使用特征跟踪
             if args.recordingFolder:
