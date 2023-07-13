@@ -376,31 +376,33 @@ def direction_choose(y_fit):
     y_fit_left = y_fit_matrix[:, 0: len(y_fit) // 2]
     y_fit_right = y_fit_matrix[:, len(y_fit) // 2: len(y_fit)]
     y_fit_front = y_fit_matrix[:, len(y_fit) // 3: len(y_fit) * 2 // 3]
-    print("y_fit", y_fit)
+    # print("y_fit", y_fit)
+    print("y_fit_front", y_fit_front)
 
     # 阈值（单个值）
-    threshold = 2600
+    threshold =2000
     count_left = np.sum(y_fit_left < threshold)
     count_right = np.sum(y_fit_right < threshold)
     count_front = np.sum(y_fit_front < threshold)
+    print("count_front", count_front)
 
     total_left = sum(y_fit_left[0])
     total_right = sum(y_fit_right[0])
     # 前方没有障碍物
     if count_front < len(y_fit) // 15:
-        forward(50, 0.4)
+        forward(100, 0.2)
         # print("forward")
     else:
         # 两边都有障碍物
         if count_left >= len(y_fit) // 10 and count_right >= len(y_fit) // 10:
             # print("turn 30")
-            turn_angle(30, 30)
+            turn_angle(-30, 30)
         # 右边没有障碍物
         elif count_right < len(y_fit) // 10 <= count_left:
-            turn_angle(-20, 20)
+            turn_angle(-50, 20)
         # 左边没有障碍物
         elif count_left < len(y_fit) // 10 <= count_right:
-            turn_angle(20, 20)
+            turn_angle(50, 20)
         # 两边都没有障碍物
         else:
             if total_left > total_right:
