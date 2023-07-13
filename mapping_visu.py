@@ -366,29 +366,29 @@ if __name__ == '__main__':
             print("Starting OAK-D device")
             pipeline = depthai.Pipeline()
             config = spectacularAI.depthai.Configuration()  # 创建配置对象
-            config.useFeatureTracker = not args.no_feature_tracker
+            config.useFeatureTracker = not args.no_feature_tracker  # 是否使用特征跟踪
             if args.recordingFolder:
-                config.recordingFolder = args.recordingFolder
-            config.useColor = args.use_rgb
-            config.internalParameters = configInternal
-            vioPipeline = spectacularAI.depthai.Pipeline(pipeline, config, onMappingOutput)
+                config.recordingFolder = args.recordingFolder  # 设置录制文件夹
+            config.useColor = args.use_rgb  # 是否使用RGB相机
+            config.internalParameters = configInternal  # 设置内部参数
+            vioPipeline = spectacularAI.depthai.Pipeline(pipeline, config, onMappingOutput)  # 创建可视化管道
 
             with depthai.Device(pipeline) as device, \
-                    vioPipeline.startSession(device) as vio_session:
-                if args.ir_dot_brightness > 0:
-                    device.setIrLaserDotProjectorBrightness(args.ir_dot_brightness)
-                while not visu3D.shouldClose:
-                    onVioOutput(vio_session.waitForOutput())
+                    vioPipeline.startSession(device) as vio_session:  # 创建设备，启动会话
+                if args.ir_dot_brightness > 0:  # 如果设置了红外激光点云投影仪亮度
+                    device.setIrLaserDotProjectorBrightness(args.ir_dot_brightness)  # 设置红外激光点云投影仪亮度
+                while not visu3D.shouldClose:  # 如果可视化没有关闭
+                    onVioOutput(vio_session.waitForOutput())  # 更新相机位姿
 
 
-        thread = threading.Thread(target=captureLoop)
+        thread = threading.Thread(target=captureLoop)  # 创建线程
         thread.start()
         visu3D.run()
         thread.join()
 
     if args.outputFolder:
-        print("Saving point clouds to {0}".format(args.outputFolder))
+        print("Saving point clouds to {0}".format(args.outputFolder))  # 保存点云到文件夹
         for id in visu3D.pointClouds:
             pc = visu3D.pointClouds[id]
-            filename = "{0}/{1}.ply".format(args.outputFolder, id)
-            o3d.io.write_point_cloud(filename, pc.cloud)
+            filename = "{0}/{1}.ply".format(args.outputFolder, id)  # 保存文件名
+            o3d.io.write_point_cloud(filename, pc.cloud)  # 保存点云
