@@ -9,7 +9,7 @@ import numpy as np
 import blobconverter
 
 from utils.curve import *
-from utils.SerialController import *
+# from utils.SerialController import *
 from utils.curve import *
 
 DEPTH_THRESH_HIGH = 3000
@@ -20,7 +20,7 @@ import random
 num_columns = 10
 
 # 希望识别的物体
-OBSTACLE_OBJECTS = ["person", "chair", "table", "bottle", "background"]
+OBSTACLE_OBJECTS = ["person", "chair", "table", "bottle", "background", "sofa", "tvmonitor"]
 
 # MobilenetSSD标签文本
 labelMap = ["background", "aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat", "chair", "cow",
@@ -389,26 +389,29 @@ def direction_choose(y_fit):
     total_right = sum(y_fit_right[0])
     # 前方没有障碍物
     if count_front < len(y_fit) // 15:
-        forward(50, 0.4)
-        # print("forward")
+        # forward(50, 0.4)
+        print("forward")
     else:
         # 两边都有障碍物
         if count_left >= len(y_fit) // 10 and count_right >= len(y_fit) // 10:
-            # print("turn 30")
-            turn_angle(-30, 30)
+            print("turn 30")
+            # turn_angle(-30, 30)
         # 右边没有障碍物
         elif count_right < len(y_fit) // 10 <= count_left:
-            turn_angle(-30, 30)
+            # turn_angle(-30, 30)
+            print("turn -30")
         # 左边没有障碍物
         elif count_left < len(y_fit) // 10 <= count_right:
-            turn_angle(30, 30)
+            # turn_angle(30, 30)
+            print("turn 30")
         # 两边都没有障碍物
         else:
             if total_left > total_right:
-                turn_angle(30, 30)
+                # turn_angle(30, 30)
+                print("turn 30")
             else:
-                turn_angle(-30, 30)
-
+                # turn_angle(-30, 30)
+                print("turn -30")
 
 # --------------------------------------------------------------------------------------------------------
 

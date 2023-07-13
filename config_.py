@@ -7,7 +7,7 @@ num_columns = 20
 
 
 # 希望识别的物体
-OBSTACLE_OBJECTS = ["person", "chair", "table", "bottle", "background"]
+OBSTACLE_OBJECTS = ["person", "chair", "table", "bottle", "background", "sofa", "tvmonitor"]
 
 # MobilenetSSD标签文本
 labelMap = ["background", "aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat", "chair", "cow",

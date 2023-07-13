@@ -29,13 +29,15 @@ class Status(Enum):
     REMOVED = 3
 
 
+# 这个函数的意思是：将点云的坐标系转换到相机坐标系下
 def invert_se3(a):
-    b = np.eye(4)
-    b[:3, :3] = a[:3, :3].transpose()
-    b[:3, 3] = -np.dot(b[:3, :3], a[:3, 3])
+    b = np.eye(4)  # 4*4的单位矩阵
+    b[:3, :3] = a[:3, :3].transpose()  # 旋转矩阵的转置
+    b[:3, 3] = -np.dot(b[:3, :3], a[:3, 3])  # 平移矩阵的负值
     return b
 
 
+# 这个函数的意思是：将相机坐标系下的点云转换到世界坐标系下
 def blend(a, b, m):
     return [a[0] * (1 - m) + b[0] * m, a[1] * (1 - m) + b[1] * m, a[2] * (1 - m) + b[2] * m]
 
@@ -45,16 +47,18 @@ class Trajectory:
         self.maxPoints = 1000
         self.points = []
         self.colors = []
-        self.cloud = o3d.geometry.PointCloud()
+        self.cloud = o3d.geometry.PointCloud()  # 创建点云，是用open3d生成的点云
         for i in range(self.maxPoints):
             self.colors.append(blend([0.960, 0.0192, 0.270], [.217, .009, .9], i / (self.maxPoints - 1)))
             self.points.append([0, 0, 0])
         self.cloud.colors = o3d.utility.Vector3dVector(self.colors)
 
+    # 添加点云坐标
     def addPosition(self, pos):
         while (len(self.points) < self.maxPoints): self.points.append(pos)
-        self.points.insert(0, pos)
+        self.points.insert(0, pos)  # 将点云添加到最前面
         self.points = self.points[:self.maxPoints]
+        # 将点坐标数组转换为 Vector3dVector 类型的对象，并将其赋值给点云数据对象中的 points 属性
         self.cloud.points = o3d.utility.Vector3dVector(self.points)
 
 
@@ -65,6 +69,7 @@ class PointCloud:
         self.camToWorld = np.identity(4)
         self.cloud = self.__getKeyFramePointCloud(keyFrame, voxelSize, colorOnly)
 
+    # 获取关键帧的点云数据
     def __getKeyFramePointCloud(self, keyFrame, voxelSize, colorOnly):
         cloud = o3d.geometry.PointCloud()
         cloud.points = o3d.utility.Vector3dVector(keyFrame.pointCloud.getPositionData())
@@ -76,6 +81,7 @@ class PointCloud:
         if keyFrame.pointCloud.hasNormals():
             cloud.normals = o3d.utility.Vector3dVector(keyFrame.pointCloud.getNormalData())
 
+        # 如果指定了 colorOnly 为 True，则会过滤掉没有颜色信息的点。
         if cloud.has_colors() and colorOnly:
             # Filter points without color
             colors = np.asarray(cloud.colors)
@@ -85,11 +91,13 @@ class PointCloud:
                     pointsWithColor.append(i)
             cloud = cloud.select_by_index(pointsWithColor)
 
+        # 如果指定了 voxelSize，则会对点云进行降采样。
         if voxelSize > 0:
             cloud = cloud.voxel_down_sample(voxelSize)
 
         return cloud
 
+    # 更新点云的世界坐标系，从先前的相机坐标系转换到新的世界坐标系
     def updateWorldPose(self, camToWorld):
         prevWorldToCam = invert_se3(self.camToWorld)
         prevToCurrent = np.matmul(camToWorld, prevWorldToCam)
@@ -127,7 +135,9 @@ class CoordinateFrame:
         self.camToWorld = camToWorld
 
 
+# Camera trajectory
 class Open3DVisualization:
+    # 初始化 Open3D 可视化对象
     def __init__(self, voxelSize, cameraManual, cameraSmooth, colorOnly, trajectory=False):
         self.shouldClose = False
         self.cameraFrame = CoordinateFrame()
@@ -150,6 +160,7 @@ class Open3DVisualization:
         renderOption.light_on = False
         self.viewControl.set_zoom(0.3)
 
+    # 添加点云数据
     def run(self):
         print("Close the window to stop mapping")
 
@@ -273,18 +284,18 @@ if __name__ == '__main__':
         configInternal["alreadyRectified"] = "true"
 
     voxelSize = 0 if args.voxel is None else float(args.voxel)
-    visu3D = Open3DVisualization(voxelSize, args.manual, args.smooth, args.color, args.trajectory)
+    visu3D = Open3DVisualization(voxelSize, args.manual, args.smooth, args.color, args.trajectory)  # 创建可视化对象
 
 
     def onVioOutput(vioOutput):
-        cameraPose = vioOutput.getCameraPose(0)
-        camToWorld = cameraPose.getCameraToWorldMatrix()
-        visu3D.updateCameraFrame(camToWorld)
+        cameraPose = vioOutput.getCameraPose(0)  # 获取相机位姿
+        camToWorld = cameraPose.getCameraToWorldMatrix()  # 相机坐标系到世界坐标系的变换矩阵
+        visu3D.updateCameraFrame(camToWorld)  # 更新相机位姿
 
 
     def onMappingOutput(output):
         for frameId in output.updatedKeyFrames:
-            keyFrame = output.map.keyFrames.get(frameId)
+            keyFrame = output.map.keyFrames.get(frameId)  # 获取关键帧
 
             # Remove deleted key frames from visualisation
             if not keyFrame:
@@ -294,7 +305,7 @@ if __name__ == '__main__':
             # Check that point cloud exists
             if not keyFrame.pointCloud: continue
 
-            # Render key frame point clouds
+            # 渲染关键帧点云
             if visu3D.containsKeyFrame(frameId):
                 # Existing key frame
                 visu3D.updateKeyFrame(frameId, keyFrame)
@@ -307,34 +318,37 @@ if __name__ == '__main__':
 
 
     if args.file:
+        # 如果有文件输入，读取文件
         print("Starting reading input from file or pipe")
 
 
-        def inputStreamLoop():
-            vio_source = input_stream_reader(args.file)
+        def inputStreamLoop():  # 读取输入流
+            vio_source = input_stream_reader(args.file)  # 读取输入流
             for vio_out in vio_source:
-                if 'cameraPoses' in vio_out:
-                    onVioOutput(MockVioOutput(vio_out))
+                if 'cameraPoses' in vio_out:  # 如果有相机位姿
+                    onVioOutput(MockVioOutput(vio_out))  # 更新相机位姿
                 else:
-                    onMappingOutput(MockMapperOutput(vio_out))
+                    onMappingOutput(MockMapperOutput(vio_out))  # 渲染关键帧点云
 
 
-        thread = threading.Thread(target=inputStreamLoop)
-        thread.start()
-        visu3D.run()
-        thread.join()
+        thread = threading.Thread(target=inputStreamLoop)  # 创建线程
+        thread.start()  # 启动线程
+        visu3D.run()  # 运行可视化
+        thread.join()  # 等待线程结束
+    # 如果没有文件输入，有文件夹输入，读取文件夹
     elif args.dataFolder:
-        print("Starting replay")
+        print("Starting replay")  # 回放
         replay = spectacularAI.Replay(args.dataFolder, onMappingOutput, configuration=configInternal)
         replay.setOutputCallback(onVioOutput)
         replay.startReplay()
         visu3D.run()
         replay.close()
+    # 如果没有文件输入，读取OAK-D设备
     else:
         def captureLoop():
             print("Starting OAK-D device")
             pipeline = depthai.Pipeline()
-            config = spectacularAI.depthai.Configuration()
+            config = spectacularAI.depthai.Configuration()  # 创建配置对象
             config.useFeatureTracker = not args.no_feature_tracker
             if args.recordingFolder:
                 config.recordingFolder = args.recordingFolder
