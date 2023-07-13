@@ -35,5 +35,6 @@ scipy==1.11.1
 six==1.16.0
 urllib3==1.26.16
 Werkzeug==2.3.6
+echo_logger~=0.0.3
 
 spectacularAI~=1.20.0
