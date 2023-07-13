@@ -1,6 +1,6 @@
 import argparse
-# import threading
-import _sha256
+
+
 import cv2
 import depthai as dai
 from flask import Flask, render_template, Response
@@ -82,7 +82,7 @@ def generate():
                     print("in_rgb is None, returning unchanged frame")
                     (flag, encodedImage) = cv2.imencode(".jpg", frame)
                     yield (b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' +
-                            bytearray(encodedImage) + b'\r\n')
+                           bytearray(encodedImage) + b'\r\n')
             except Exception as e:
                 print(e)
                 pass
@@ -112,7 +112,6 @@ def start():
     ap.add_argument("-f", "--frame-count", type=int, default=32,
                     help="# of frames used to construct the background model")
     args = vars(ap.parse_args())
-
 
     app.run(host=args["ip"], port=args["port"], debug=True,
             threaded=True, use_reloader=False)

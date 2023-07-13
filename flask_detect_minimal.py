@@ -74,9 +74,9 @@ def generate():
                     else:
                         (flag, encodedImage) = cv2.imencode(".jpg", frame)
 
-                # 将字节流作为生成器的输出
-                yield (b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' +
-                       bytearray(encodedImage) + b'\r\n')
+                    # 将字节流作为生成器的输出
+                    yield (b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' +
+                           bytearray(encodedImage) + b'\r\n')
 
             except Exception as e:
                 print(e)

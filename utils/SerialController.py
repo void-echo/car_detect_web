@@ -79,8 +79,8 @@ def turn_angle(angle=180, t_angle=10):
     if angle > 0:
         num = angle / t_angle
         while True:
-            num -=1
-            command = '!M '+str(t_angle)+' 0'
+            num -= 1
+            command = '!M ' + str(t_angle) + ' 0'
             command += '\r\n'
             ser.write(command.encode('ASCII'))
 
@@ -98,8 +98,8 @@ def turn_angle(angle=180, t_angle=10):
     else:
         num = angle / t_angle
         while True:
-            num +=1
-            command = '!M -'+str(t_angle)
+            num += 1
+            command = '!M -' + str(t_angle)
             command += '\r\n'
             ser.write(command.encode('ASCII'))
 
@@ -143,8 +143,8 @@ def forward_turn_angle(speed=10, angle=10, t_angle=10):
     if angle > 0:
         num = angle / t_angle
         while True:
-            num -=1
-            command = '!M '+str(t_angle)+' '+str(speed)
+            num -= 1
+            command = '!M ' + str(t_angle) + ' ' + str(speed)
             command += '\r\n'
             ser.write(command.encode('ASCII'))
 
@@ -162,8 +162,8 @@ def forward_turn_angle(speed=10, angle=10, t_angle=10):
     else:
         num = angle / t_angle
         while True:
-            num +=1
-            command = '!M -'+str(t_angle)+' '+str(speed)
+            num += 1
+            command = '!M -' + str(t_angle) + ' ' + str(speed)
             command += '\r\n'
             ser.write(command.encode('ASCII'))
 
@@ -274,4 +274,3 @@ def get_info():
 
 
 get_info()
-

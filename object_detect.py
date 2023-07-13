@@ -1,5 +1,4 @@
 # coding=utf-8
-import math
 import time
 
 import cv2
@@ -7,9 +6,8 @@ import depthai as dai
 import numpy as np
 from numpy import ndarray
 
-from config_ import DEPTH_THRESH_LOW, DEPTH_THRESH_HIGH, num_columns, labelMap, OBSTACLE_OBJECTS
+from config_ import num_columns, labelMap, OBSTACLE_OBJECTS
 from utils.calc_util import calc_distance
-from utils.curve import draw_curve
 from utils.pipeline_provider import get_prepared_pipeline_with_palm_detection
 
 frame = None
@@ -58,9 +56,6 @@ def draw_detections(frame, detections):
         except Exception:
             label = detection.label
         annotate(str(label), (offsetX, y1 + 20))
-
-
-
 
 
 class HumanMachineSafety:

@@ -48,6 +48,5 @@ def draw_curve(x, y):  # 平滑拟合
 
     return y_fit
 
-
 # if __name__ == '__main__':
 #     draw_curve(x, y)

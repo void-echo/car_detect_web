@@ -143,7 +143,7 @@ def get_most_simple_pipeline():
     cam.initialControl.setManualFocus(130)
     cam.setColorOrder(dai.ColorCameraProperties.ColorOrder.BGR)
     cam.setPreviewSize(300, 300)
-    cam.setInterleaved(False)   # INTER LEAVED means that the image is stored in a single array, with the pix
+    cam.setInterleaved(False)  # INTER LEAVED means that the image is stored in a single array, with the pix
     isp_xout = pipeline.create(dai.node.XLinkOut)
     isp_xout.setStreamName("cam")
     cam.isp.link(isp_xout.input)
@@ -166,4 +166,3 @@ def get_most_simple_pipeline():
     right.out.link(stereo.right)
 
     most_simple_pipeline = pipeline
-

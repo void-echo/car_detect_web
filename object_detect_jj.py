@@ -1,12 +1,9 @@
 # coding=utf-8
 import math
-import time
 
+import blobconverter
 import cv2
 import depthai as dai
-import numpy as np
-import blobconverter
-
 
 from utils.SerialController import *
 from utils.curve import *
@@ -14,7 +11,6 @@ from utils.curve import *
 DEPTH_THRESH_HIGH = 3000
 DEPTH_THRESH_LOW = 500
 WARNING_DIST = 300
-import random
 
 num_columns = 10
 

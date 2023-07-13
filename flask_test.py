@@ -1,14 +1,16 @@
 # Import necessary libraries
-from pyimagesearch.motion_detection.singlemotiondetector import SingleMotionDetector
-from flask import Flask, render_template, Response
-from imutils.video import VideoStream
-import threading
 import argparse
 import datetime
-import imutils
+import threading
 import time
+
 import cv2
+import imutils
+from flask import Flask, render_template, Response
 from flask_socketio import SocketIO, emit
+from imutils.video import VideoStream
+
+from pyimagesearch.motion_detection.singlemotiondetector import SingleMotionDetector
 from utils.SerialController import get_info
 
 # initialize the output frame and a lock used to ensure thread-safe
@@ -37,12 +39,12 @@ def start_stream():
     while True:
         out_a, out_ba, out_bs, out_s, out_t, out_v = get_info()  # 要传递给前端的数据
         # out_a, out_ba, out_bs, out_s, out_t, out_v = '1', '2', '3', '4', '5', '6'
-        emit('out_a', '电流'+out_a, broadcast=True)
-        emit('out_ba', '电池电流'+out_ba, broadcast=True)
-        emit('out_bs', '电机速度'+out_bs, broadcast=True)
-        emit('out_s', '编码器转速'+out_s, broadcast=True)
-        emit('out_t', '温度'+out_t, broadcast=True)
-        emit('out_v', '电池电压'+out_v, broadcast=True)
+        emit('out_a', '电流' + out_a, broadcast=True)
+        emit('out_ba', '电池电流' + out_ba, broadcast=True)
+        emit('out_bs', '电机速度' + out_bs, broadcast=True)
+        emit('out_s', '编码器转速' + out_s, broadcast=True)
+        emit('out_t', '温度' + out_t, broadcast=True)
+        emit('out_v', '电池电压' + out_v, broadcast=True)
         time.sleep(0.2)
 
 
