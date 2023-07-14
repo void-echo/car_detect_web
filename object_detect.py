@@ -1,6 +1,6 @@
 # coding=utf-8
 import time
-
+import datetime
 import cv2
 import depthai as dai
 import numpy as np
@@ -156,6 +156,10 @@ def obstacle_avoidance(depth_frame) -> list[ndarray]:
 
 # noinspection PyUnresolvedReferences
 def start():
+    print("BEFORE GET ANY AVAILABLE DEVICE")
+    timeout_delta = datetime.timedelta(seconds=100)
+    status = dai.Device.getAnyAvailableDevice(timeout_delta)
+    print("AFTER GET ANY AVAILABLE DEVICE, status: ", status)
     with dai.Device() as device:
         cams = device.getConnectedCameras()
         depth_enabled = dai.CameraBoardSocket.LEFT in cams and dai.CameraBoardSocket.RIGHT in cams

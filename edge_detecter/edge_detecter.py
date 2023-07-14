@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import datetime
 
 import cv2
 import depthai as dai
@@ -56,6 +57,10 @@ xinEdgeCfg.out.link(edgeDetectorRight.inputConfig)
 xinEdgeCfg.out.link(edgeDetectorRgb.inputConfig)
 
 # Connect to device and start pipeline
+print("BEFORE GET ANY AVAILABLE DEVICE")
+timeout_delta = datetime.timedelta(seconds=100)
+status = dai.Device.getAnyAvailableDevice(timeout_delta)
+print("AFTER GET ANY AVAILABLE DEVICE, status: ", status)
 with dai.Device(pipeline) as device:
 
     # Output/input queues

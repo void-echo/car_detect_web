@@ -7,7 +7,7 @@ Requirements: pip install -v open3d==0.16.0
 Note: Most recent open3d version (0.17.0) has a bug with Visualizer::get_view_control() so version 0.16.0 is recommended.
 
 """
-
+import datetime
 import os
 import sys
 import threading
@@ -413,7 +413,10 @@ if __name__ == '__main__':
             config.useColor = args.use_rgb  # 是否使用RGB相机
             config.internalParameters = configInternal  # 设置内部参数
             vioPipeline = spectacularAI.depthai.Pipeline(pipeline, config, onMappingOutput)  # 创建可视化管道
-
+            print("BEFORE GET ANY AVAILABLE DEVICE")
+            timeout_delta = datetime.timedelta(seconds=100)
+            status = depthai.Device.getAnyAvailableDevice(timeout_delta)
+            print("AFTER GET ANY AVAILABLE DEVICE, status: ", status)
             with depthai.Device(pipeline) as device, \
                     vioPipeline.startSession(device) as vio_session:  # 创建设备，启动会话
                 if args.ir_dot_brightness > 0:  # 如果设置了红外激光点云投影仪亮度

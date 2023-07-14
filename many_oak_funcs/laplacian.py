@@ -1,3 +1,5 @@
+import datetime
+
 import numpy as np
 import cv2
 import depthai as dai
@@ -13,7 +15,7 @@ camRgb.setInterleaved(False)
 
 # NN that detects faces in the image
 nn = p.create(dai.node.NeuralNetwork)
-nn.setBlobPath("./edge_simplified_openvino_2021.4_6shave.blob")
+nn.setBlobPath("./many_oak_funcs/edge_simplified_openvino_2021.4_6shave.blob")
 camRgb.preview.link(nn.input)
 
 # Send bouding box from the NN to the host via XLink
@@ -26,6 +28,10 @@ rgb_xout.setStreamName("rgb")
 camRgb.preview.link(rgb_xout.input)
 
 # Pipeline is defined, now we can connect to the device
+print("BEFORE GET ANY AVAILABLE DEVICE")
+timeout_delta = datetime.timedelta(seconds=100)
+status = dai.Device.getAnyAvailableDevice(timeout_delta)
+print("AFTER GET ANY AVAILABLE DEVICE, status: ", status)
 with dai.Device(p) as device:
     qNn = device.getOutputQueue(name="nn", maxSize=4, blocking=False)
     qCam = device.getOutputQueue(name="rgb", maxSize=4, blocking=False)

@@ -1,4 +1,5 @@
 # coding=utf-8
+import datetime
 import math
 
 import blobconverter
@@ -294,7 +295,10 @@ depth_out.setStreamName("depth")
 sdn.passthroughDepth.link(depth_out.input)
 
 print("Pipeline created.")
-
+print("BEFORE GET ANY AVAILABLE DEVICE")
+timeout_delta = datetime.timedelta(seconds=100)
+status = dai.Device.getAnyAvailableDevice(timeout_delta)
+print("AFTER GET ANY AVAILABLE DEVICE, status: ", status)
 with dai.Device() as device:
     cams = device.getConnectedCameras()
     depth_enabled = dai.CameraBoardSocket.LEFT in cams and dai.CameraBoardSocket.RIGHT in cams

@@ -74,6 +74,12 @@ default_any_frame_provider_global_var: AnyFrameOfPipelineProvider
 
 def __init_provider():
     pipeline = get_prepared_pipeline_with_palm_detection()
+    import datetime
+    import depthai as dai
+    print("BEFORE GET ANY AVAILABLE DEVICE")
+    timeout_delta = datetime.timedelta(seconds=100)
+    status = dai.Device.getAnyAvailableDevice(timeout_delta)
+    print("AFTER GET ANY AVAILABLE DEVICE, status: ", status)
     with dai.Device(pipeline) as device:
         global default_any_frame_provider_global_var
         # put pepper to device

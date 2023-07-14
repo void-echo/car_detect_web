@@ -254,6 +254,11 @@ detections = None
 # 定义生成视频流的函数
 def generate():
     global frame, lock, vidQ, humanMachineSafety
+    import datetime
+    print("BEFORE GET ANY AVAILABLE DEVICE")
+    timeout_delta = datetime.timedelta(seconds=100)
+    status = dai.Device.getAnyAvailableDevice(timeout_delta)
+    print("AFTER GET ANY AVAILABLE DEVICE, status: ", status)
     with dai.Device() as device:
         print("set deivce")
         cams = device.getConnectedCameras()

@@ -1,5 +1,5 @@
 import argparse
-
+import datetime
 
 import cv2
 import depthai as dai
@@ -35,6 +35,11 @@ def contact():
 
 
 detections = None
+
+print("BEFORE GET ANY AVAILABLE DEVICE")
+timeout_delta = datetime.timedelta(seconds=100)
+status = dai.Device.getAnyAvailableDevice(timeout_delta)
+print("AFTER GET ANY AVAILABLE DEVICE, status: ", status)
 device = dai.Device()
 device.startPipeline(pipeline)  # 启动流水线
 vidQ = device.getOutputQueue(name="cam", maxSize=4, blocking=False)

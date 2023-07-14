@@ -73,30 +73,6 @@ def get_script3():
     return send_file("./utils/small_file", as_attachment=True)
 
 
-# def chmod_edge_detect():
-#     kill_all_sub_tasks_in_project()
-#     run_bash_file('./scripts/launch_edge_normal.sh')
-#
-#
-# def chmod_laplacian():
-#     kill_all_sub_tasks_in_project()
-#     run_bash_file('./scripts/launch_edge_laplacian.sh')
-#
-#
-# def chmod_key_point_tracker():
-#     kill_all_sub_tasks_in_project()
-#     run_bash_file('./scripts/launch_key_point_tracker.sh')
-#
-#
-# def chmod_livox_loam():
-#     kill_all_sub_tasks_in_project()
-#     run_bash_file('./scripts/launch_livox_loam_mapper.sh')
-#
-#
-# def chmod_object_tractor():
-#     kill_all_sub_tasks_in_project()
-#     run_bash_file('./scripts/launch_object_tractor.sh')
-
 @app.route('/edge_detect')
 def edge_detect():
     script_runner.chmod_edge_detect()

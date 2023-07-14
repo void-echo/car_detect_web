@@ -1,3 +1,5 @@
+import datetime
+
 from slam import process
 from display import Display
 from pointmap import PointMap
@@ -40,6 +42,10 @@ visualizer.create_window(window_name="3D plot", width=960, height=540)
 
 
 # Connect to the device
+print("BEFORE GET ANY AVAILABLE DEVICE")
+timeout_delta = datetime.timedelta(seconds=100)
+status = dai.Device.getAnyAvailableDevice(timeout_delta)
+print("AFTER GET ANY AVAILABLE DEVICE, status: ", status)
 with dai.Device() as device:
 	# Print out available cameras
 	print('Connected cameras: ', device.getConnectedCameras())

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+import datetime
 import time
 from pathlib import Path
 
@@ -66,6 +67,10 @@ detectionNetwork.out.link(objectTracker.inputDetections)
 objectTracker.out.link(trackerOut.input)
 
 # Connect to device and start pipeline
+print("BEFORE GET ANY AVAILABLE DEVICE")
+timeout_delta = datetime.timedelta(seconds=100)
+status = dai.Device.getAnyAvailableDevice(timeout_delta)
+print("AFTER GET ANY AVAILABLE DEVICE, status: ", status)
 with dai.Device(pipeline) as device:
     preview = device.getOutputQueue("preview", 4, False)
     tracklets = device.getOutputQueue("tracklets", 4, False)
