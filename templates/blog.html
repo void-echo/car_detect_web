@@ -29,28 +29,25 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js"></script>
     <script>
         const socket = io.connect('http://' + document.domain + ':' + location.port);
-        socket.on('out_a', function(out_a) {
+        socket.on('out_a', function (out_a) {
             document.getElementById('out_a-container').innerHTML = out_a;
         });
-        socket.on('out_ba', function(out_ba) {
+        socket.on('out_ba', function (out_ba) {
             document.getElementById('out_ba-container').innerHTML = out_ba;
         });
-        socket.on('out_bs', function(out_bs) {
+        socket.on('out_bs', function (out_bs) {
             document.getElementById('out_bs-container').innerHTML = out_bs;
         });
-        socket.on('out_s', function(out_s) {
+        socket.on('out_s', function (out_s) {
             document.getElementById('out_s-container').innerHTML = out_s;
         });
-        socket.on('out_t', function(out_t) {
+        socket.on('out_t', function (out_t) {
             document.getElementById('out_t-container').innerHTML = out_t;
         });
-        socket.on('out_v', function(out_v) {
+        socket.on('out_v', function (out_v) {
             document.getElementById('out_v-container').innerHTML = out_v;
         });
         socket.emit('start_stream');
-
-
-
 
 
     </script>
@@ -120,7 +117,7 @@
                 <div class="heading-section text-center">
                     <!--================= TITLE:Images List ==================-->
                     <h2 style="font-size:30px">影像列表 ·<span class="text-primary"
-                                                           style="font-size:30px"> Images List</span></h2>
+                                                               style="font-size:30px"> Images List</span></h2>
                 </div>
             </div>
         </div>
@@ -137,18 +134,18 @@
                             <script>
                                 function runScript1() {
                                     var confirmed = confirm("是否跳转到livox改进版点云图?");
-                                    if(confirmed) {
+                                    if (confirmed) {
                                         var xmlhttp = new XMLHttpRequest();
-                                        xmlhttp.onreadystatechange = function() {
-                                          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                                            var result = xmlhttp.responseText;
-                                            // do something with the result
-                                          }
+                                        xmlhttp.onreadystatechange = function () {
+                                            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                                                var result = xmlhttp.responseText;
+                                                // do something with the result
+                                            }
                                         };
                                         xmlhttp.open("GET", "script1.sh", true);
                                         xmlhttp.send();
                                     }
-                                  }
+                                }
                             </script>
                         </a>
                     </div>
@@ -171,18 +168,18 @@
                             <script>
                                 function runScript2() {
                                     var confirmed = confirm("是否跳转到OAK-D点云图?");
-                                    if(confirmed) {
+                                    if (confirmed) {
                                         var xmlhttp = new XMLHttpRequest();
-                                        xmlhttp.onreadystatechange = function() {
-                                          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                                            var result = xmlhttp.responseText;
-                                            // do something with the result
-                                          }
+                                        xmlhttp.onreadystatechange = function () {
+                                            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                                                var result = xmlhttp.responseText;
+                                                // do something with the result
+                                            }
                                         };
                                         xmlhttp.open("GET", "script2.sh", true);
                                         xmlhttp.send();
                                     }
-                                  }
+                                }
                             </script>
                             <!--                            <img src="{{ url_for('video_feed') }}" alt="">-->
                         </a>
@@ -190,7 +187,8 @@
                     <div class="blog-content">
                         <h4><a class="truncate" href="blog-single.html">OAK-D建图</a>
                         </h4>
-                        <p>使用了开源库depthai和spectacularAI进行深度感知和VIO任务，实时更新相机位姿和渲染关键帧的点云，并利用Open3D库实现三维可视化。</p>
+                        <p>
+                            使用了开源库depthai和spectacularAI进行深度感知和VIO任务，实时更新相机位姿和渲染关键帧的点云，并利用Open3D库实现三维可视化。</p>
                     </div>
                 </div>
                 <!-- End Blog Item -->
@@ -207,18 +205,18 @@
                             <script>
                                 function runScript3() {
                                     var confirmed = confirm("是否跳转到自动驾驶界面?");
-                                    if(confirmed) {
+                                    if (confirmed) {
                                         var xmlhttp = new XMLHttpRequest();
-                                        xmlhttp.onreadystatechange = function() {
-                                          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                                            var result = xmlhttp.responseText;
-                                            // do something with the result
-                                          }
+                                        xmlhttp.onreadystatechange = function () {
+                                            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                                                var result = xmlhttp.responseText;
+                                                // do something with the result
+                                            }
                                         };
                                         xmlhttp.open("GET", "script3.sh", true);
                                         xmlhttp.send();
                                     }
-                                  }
+                                }
                             </script>
                         </a>
                     </div>
@@ -250,48 +248,46 @@
                         <h4><a class="truncate" href="blog-single.html">PCD图</a>
                         </h4>
 
-                        <p>使用Three.js中的PCDLoader类，将PCD文件显示在HTML文件中，并且可以通过鼠标进行拖动角度、缩放大小等操作</p>
+                        <p>
+                            使用Three.js中的PCDLoader类，将PCD文件显示在HTML文件中，并且可以通过鼠标进行拖动角度、缩放大小等操作</p>
                     </div>
                 </div>
                 <!-- End Blog Item -->
             </div>
             <!-- End Blog Col -->
 
-<!--            <div class="col-lg-4 col-md-6 col-xs-12 wow fadeInUp" data-wow-duration="500ms" data-wow-delay="500ms">-->
-<!--                <div class="blog-item">-->
-<!--                    <div class="blog-pic position-relative">-->
-<!--                        <a class="d-block overflow-hidden">-->
-<!--                            &lt;!&ndash;================= 第五张图 ==================&ndash;&gt;-->
-<!--                            <img src="static/picture/car5.jpg" alt="" title="">-->
-<!--                            <script>-->
-<!--                                function runScript() {-->
-<!--                                    var xmlhttp = new XMLHttpRequest();-->
-<!--                                    xmlhttp.onreadystatechange = function() {-->
-<!--                                      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {-->
-<!--                                        var result = xmlhttp.responseText;-->
-<!--                                        // do something with the result-->
-<!--                                      }-->
-<!--                                    };-->
-<!--                                    xmlhttp.open("GET", "script.sh", true);-->
-<!--                                    xmlhttp.send();-->
-<!--                                  }-->
+            <!--            <div class="col-lg-4 col-md-6 col-xs-12 wow fadeInUp" data-wow-duration="500ms" data-wow-delay="500ms">-->
+            <!--                <div class="blog-item">-->
+            <!--                    <div class="blog-pic position-relative">-->
+            <!--                        <a class="d-block overflow-hidden">-->
+            <!--                            &lt;!&ndash;================= 第五张图 ==================&ndash;&gt;-->
+            <!--                            <img src="static/picture/car5.jpg" alt="" title="">-->
+            <!--                            <script>-->
+            <!--                                function runScript() {-->
+            <!--                                    var xmlhttp = new XMLHttpRequest();-->
+            <!--                                    xmlhttp.onreadystatechange = function() {-->
+            <!--                                      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {-->
+            <!--                                        var result = xmlhttp.responseText;-->
+            <!--                                        // do something with the result-->
+            <!--                                      }-->
+            <!--                                    };-->
+            <!--                                    xmlhttp.open("GET", "script.sh", true);-->
+            <!--                                    xmlhttp.send();-->
+            <!--                                  }-->
 
 
-
-
-
-<!--                            </script>-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                    <div class="blog-content">-->
-<!--                        <h4><a class="truncate" href="blog-single.html">How to Become a Front End Developer - Skills,-->
-<!--                            Roles, Salary Explained</a></h4>-->
-<!--                        <p>Mus integer tristique auctor suscipit congue fames parturient mi lacus placerat mi aliquam-->
-<!--                            fusce cras tristique nonummy.</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                &lt;!&ndash; End Blog Item &ndash;&gt;-->
-<!--            </div>-->
+            <!--                            </script>-->
+            <!--                        </a>-->
+            <!--                    </div>-->
+            <!--                    <div class="blog-content">-->
+            <!--                        <h4><a class="truncate" href="blog-single.html">How to Become a Front End Developer - Skills,-->
+            <!--                            Roles, Salary Explained</a></h4>-->
+            <!--                        <p>Mus integer tristique auctor suscipit congue fames parturient mi lacus placerat mi aliquam-->
+            <!--                            fusce cras tristique nonummy.</p>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                &lt;!&ndash; End Blog Item &ndash;&gt;-->
+            <!--            </div>-->
 
             <div class="col-lg-4 col-md-6 col-xs-12 wow fadeInRight" data-wow-duration="500ms" data-wow-delay="500ms">
                 <div class="blog-item">
@@ -324,24 +320,25 @@
                             <script>
                                 function runScript7() {
                                     var confirmed = confirm("是否跳转到边缘检测?");
-                                    if(confirmed) {
+                                    if (confirmed) {
                                         var xmlhttp = new XMLHttpRequest();
-                                        xmlhttp.onreadystatechange = function() {
-                                          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                                            var result = xmlhttp.responseText;
-                                            // do something with the result
-                                          }
+                                        xmlhttp.onreadystatechange = function () {
+                                            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                                                var result = xmlhttp.responseText;
+                                                // do something with the result
+                                            }
                                         };
                                         xmlhttp.open("GET", "edge_detect", true);
                                         xmlhttp.send();
                                     }
-                                  }
+                                }
                             </script>
                         </a>
                     </div>
                     <div class="blog-content">
                         <h4><a class="truncate" href="blog-single.html">边缘检测图</a></h4>
-                        <p>使用DepthAI库创建图像处理pipeline。它使用OAK-D相机来捕获图像，并在显示窗口中显示处理后的边缘图像。</p>
+                        <p>
+                            使用DepthAI库创建图像处理pipeline。它使用OAK-D相机来捕获图像，并在显示窗口中显示处理后的边缘图像。</p>
                     </div>
                 </div>
                 <!-- End Blog Item -->
@@ -356,18 +353,18 @@
                             <script>
                                 function runScript8() {
                                     var confirmed = confirm("是否跳转到拉普拉斯边缘检测?");
-                                    if(confirmed) {
+                                    if (confirmed) {
                                         var xmlhttp = new XMLHttpRequest();
-                                        xmlhttp.onreadystatechange = function() {
-                                          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                                            var result = xmlhttp.responseText;
-                                            // do something with the result
-                                          }
+                                        xmlhttp.onreadystatechange = function () {
+                                            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                                                var result = xmlhttp.responseText;
+                                                // do something with the result
+                                            }
                                         };
                                         xmlhttp.open("GET", "laplacian", true);
                                         xmlhttp.send();
                                     }
-                                  }
+                                }
                             </script>
                         </a>
                     </div>
@@ -388,25 +385,25 @@
                             <script>
                                 function runScript9() {
                                     var confirmed = confirm("是否跳转到关键点追踪?");
-                                    if(confirmed) {
+                                    if (confirmed) {
                                         var xmlhttp = new XMLHttpRequest();
-                                        xmlhttp.onreadystatechange = function() {
-                                          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                                            var result = xmlhttp.responseText;
-                                            // do something with the result
-                                          }
+                                        xmlhttp.onreadystatechange = function () {
+                                            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                                                var result = xmlhttp.responseText;
+                                                // do something with the result
+                                            }
                                         };
                                         xmlhttp.open("GET", "key_point_tracker", true);
                                         xmlhttp.send();
                                     }
-                                  }
+                                }
                             </script>
                         </a>
                     </div>
                     <div class="blog-content">
                         <h4><a class="truncate" href="blog-single.html">关键点追踪图</a>
                         </h4>
-                        <p>对图像帧进行处理和可视化，追踪物体的关键点。</p>
+                        <p>检测关键点，用ORB提取描述子并进行K最近邻匹配，用RANSAC算法剔除错误匹配点，最后将二维坐标转化为三维坐标，输出图像。</p>
                     </div>
                 </div>
                 <!-- End Blog Item -->
@@ -421,18 +418,18 @@
                             <script>
                                 function runScript10() {
                                     var confirmed = confirm("是否跳转到livox-loam建图?");
-                                    if(confirmed) {
+                                    if (confirmed) {
                                         var xmlhttp = new XMLHttpRequest();
-                                        xmlhttp.onreadystatechange = function() {
-                                          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                                            var result = xmlhttp.responseText;
-                                            // do something with the result
-                                          }
+                                        xmlhttp.onreadystatechange = function () {
+                                            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                                                var result = xmlhttp.responseText;
+                                                // do something with the result
+                                            }
                                         };
                                         xmlhttp.open("GET", "livox_loam", true);
                                         xmlhttp.send();
                                     }
-                                  }
+                                }
                             </script>
                         </a>
                     </div>
@@ -454,18 +451,18 @@
                             <script>
                                 function runScript11() {
                                     var confirmed = confirm("是否跳转人物追踪?");
-                                    if(confirmed) {
+                                    if (confirmed) {
                                         var xmlhttp = new XMLHttpRequest();
-                                        xmlhttp.onreadystatechange = function() {
-                                          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                                            var result = xmlhttp.responseText;
-                                            // do something with the result
-                                          }
+                                        xmlhttp.onreadystatechange = function () {
+                                            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                                                var result = xmlhttp.responseText;
+                                                // do something with the result
+                                            }
                                         };
                                         xmlhttp.open("GET", "object_tractor", true);
                                         xmlhttp.send();
                                     }
-                                  }
+                                }
                             </script>
                         </a>
                     </div>
@@ -491,7 +488,8 @@
                 <div class="col-sm-6 col-lg-3 wow fadeInLeft" data-wow-duration="500ms" data-wow-delay="500ms">
                     <div class="footer-widget white">
                         <h3 class="widget-title">Lidar</h3>
-                        <p>Livox Mid-40。独特的非重复采样策略，助其精确探测视场中每个细节。而这一切都蕴含于小巧的机身中，可轻松嵌入各种平台。</p>
+                        <p>Livox
+                            Mid-40。独特的非重复采样策略，助其精确探测视场中每个细节。而这一切都蕴含于小巧的机身中，可轻松嵌入各种平台。</p>
                     </div>
                     <!-- End Footer Widget  -->
                 </div>
@@ -502,33 +500,33 @@
                     </div>
                     <!-- End Footer Widget  -->
                 </div>
-<!--                <div class="col-sm-6 col-lg-3 wow fadeInUp" data-wow-duration="500ms" data-wow-delay="500ms">-->
-<!--                    <div class="footer-widget white">-->
-<!--                        <h3 class="widget-title">Phone</h3>-->
-<!--                        <div class="popular-tags">-->
-<!--                            <ul class="mb-0 list-unstyled">-->
-<!--                                <li>(+44) 153 456 789</li>-->
-<!--                                <li>(+44) 721 456 789</li>-->
-<!--                            </ul>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash; End Footer Widget  &ndash;&gt;-->
-<!--                </div>-->
-<!--                <div class="col-sm-6 col-lg-3  wow fadeInRight" data-wow-duration="500ms" data-wow-delay="500ms">-->
-<!--                    <div class="footer-widget white">-->
-<!--                        <h3 class="widget-title">Social</h3>-->
-<!--                        <div class="footer-social">-->
-<!--                            <ul>-->
-<!--                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>-->
-<!--                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>-->
-<!--                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>-->
-<!--                                <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>-->
-<!--                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>-->
-<!--                            </ul>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash; End Footer Widget  &ndash;&gt;-->
-<!--                </div>-->
+                <!--                <div class="col-sm-6 col-lg-3 wow fadeInUp" data-wow-duration="500ms" data-wow-delay="500ms">-->
+                <!--                    <div class="footer-widget white">-->
+                <!--                        <h3 class="widget-title">Phone</h3>-->
+                <!--                        <div class="popular-tags">-->
+                <!--                            <ul class="mb-0 list-unstyled">-->
+                <!--                                <li>(+44) 153 456 789</li>-->
+                <!--                                <li>(+44) 721 456 789</li>-->
+                <!--                            </ul>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                    &lt;!&ndash; End Footer Widget  &ndash;&gt;-->
+                <!--                </div>-->
+                <!--                <div class="col-sm-6 col-lg-3  wow fadeInRight" data-wow-duration="500ms" data-wow-delay="500ms">-->
+                <!--                    <div class="footer-widget white">-->
+                <!--                        <h3 class="widget-title">Social</h3>-->
+                <!--                        <div class="footer-social">-->
+                <!--                            <ul>-->
+                <!--                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>-->
+                <!--                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>-->
+                <!--                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>-->
+                <!--                                <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>-->
+                <!--                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>-->
+                <!--                            </ul>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                    &lt;!&ndash; End Footer Widget  &ndash;&gt;-->
+                <!--                </div>-->
             </div>
         </div>
     </div>
@@ -592,6 +590,7 @@
           "three/addons/": "https://unpkg.com/three@0.152.2/examples/jsm/"
         }
       }
+
 
 
 
@@ -677,11 +676,6 @@
 
     const myDiv = document.getElementById('myDiv');
     myDiv.appendChild(renderer.domElement);
-
-
-
-
-
 
 
 </script>
