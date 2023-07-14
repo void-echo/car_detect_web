@@ -615,7 +615,7 @@
 
         renderer = new THREE.WebGLRenderer({antialias: true});
         renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.setSize(window.innerWidth / 3.2, window.innerHeight / 2.3);
+        renderer.setSize(window.innerWidth / 4, window.innerHeight / 3.5);
         renderer.useLegacyLights = false;
         document.body.appendChild(renderer.domElement);
 
@@ -663,7 +663,7 @@
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
 
-        renderer.setSize(window.innerWidth / 3.2, window.innerHeight / 2.3);
+        renderer.setSize(window.innerWidth / 4, window.innerHeight / 3.5);
 
         render();
 

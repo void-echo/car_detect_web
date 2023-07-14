@@ -1,4 +1,5 @@
 import datetime
+import warnings
 
 from slam import process
 from display import Display
@@ -6,6 +7,7 @@ from pointmap import PointMap
 import cv2
 import open3d as o3d
 import depthai as dai
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 # Start defining a pipeline
 pipeline = dai.Pipeline()
