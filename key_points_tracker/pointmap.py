@@ -11,6 +11,9 @@ class PointMap(object):
 		self.array = [0,0,0]
 
 	def collect_points(self, tripoints):
+		# tripoints is a numpy array, shape (3, n)
+		# where n is the number of points
+		# 这个函数的作用是把每一帧的三维点云都收集起来
 		if len(tripoints) > 0:
 			array_to_project = np.array([0,0,0])
 

@@ -275,10 +275,10 @@ class ParallelOpen3DVisualization:
 
     def render_geometries_parallel(self, geometries):
         num_processes = multiprocessing.cpu_count()
-        pool = multiprocessing.Pool(processes=num_processes)
+        pool = multiprocessing.Pool(processes=num_processes)  # 创建进程池
 
         for geometry in geometries:
-            pool.apply_async(self.render_geometry, args=(geometry,))
+            pool.apply_async(self.render_geometry, args=(geometry,))  # 异步执行
 
         pool.close()
         pool.join()
@@ -347,7 +347,7 @@ if __name__ == '__main__':
         cameraPose = vioOutput.getCameraPose(0)  # 获取相机位姿
         camToWorld = cameraPose.getCameraToWorldMatrix()  # 相机坐标系到世界坐标系的变换矩阵
         visu3D.updateCameraFrame(camToWorld)  # 更新相机位姿
-        result = optimize.minimize(optimization_target, camToWorld, method='Nelder-Mead')
+        result = optimize.minimize(optimization_target, camToWorld, method='trust-ncg')
         optimized_camera_pose = result.x  # 优化后的相机位姿
 
 

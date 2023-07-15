@@ -9,9 +9,9 @@ import numpy as np
 pipeline = dai.Pipeline()
 
 # Define sources and outputs
-camRgb = pipeline.create(dai.node.ColorCamera)
-monoLeft = pipeline.create(dai.node.MonoCamera)
-monoRight = pipeline.create(dai.node.MonoCamera)
+camRgb = pipeline.create(dai.node.ColorCamera)  # rgb
+monoLeft = pipeline.create(dai.node.MonoCamera)  # left：左目，单目，灰度图
+monoRight = pipeline.create(dai.node.MonoCamera)  # right：右目，单目，灰度图
 
 edgeDetectorLeft = pipeline.create(dai.node.EdgeDetector)
 edgeDetectorRight = pipeline.create(dai.node.EdgeDetector)
@@ -44,7 +44,8 @@ monoRight.setCamera("right")
 edgeDetectorRgb.setMaxOutputFrameSize(camRgb.getVideoWidth() * camRgb.getVideoHeight())
 
 # Linking
-monoLeft.out.link(edgeDetectorLeft.inputImage)
+# 将节点连接起来，形成图像处理pipeline
+monoLeft.out.link(edgeDetectorLeft.inputImage)  # monoLeft.out是MonoCamera节点的输出，edgeDetectorLeft.inputImage是EdgeDetector节点的输入
 monoRight.out.link(edgeDetectorRight.inputImage)
 camRgb.video.link(edgeDetectorRgb.inputImage)
 
@@ -67,7 +68,7 @@ with dai.Device(pipeline) as device:
     edgeLeftQueue = device.getOutputQueue(edgeLeftStr, 8, False)
     edgeRightQueue = device.getOutputQueue(edgeRightStr, 8, False)
     edgeRgbQueue = device.getOutputQueue(edgeRgbStr, 8, False)
-    edgeCfgQueue = device.getInputQueue(edgeCfgStr)
+    edgeCfgQueue = device.getInputQueue(edgeCfgStr)  # 输入队列
 
     print("Switch between sobel filter kernels using keys '1' and '2'")
 
@@ -91,7 +92,7 @@ with dai.Device(pipeline) as device:
 
         if key == ord('1'):
             print("Switching sobel filter kernel.")
-            cfg = dai.EdgeDetectorConfig()
+            cfg = dai.EdgeDetectorConfig()  # 创建一个边缘检测配置对象
             sobelHorizontalKernel = [[1, 0, -1], [2, 0, -2], [1, 0, -1]]
             sobelVerticalKernel = [[1, 2, 1], [0, 0, 0], [-1, -2, -1]]
             cfg.setSobelFilterKernels(sobelHorizontalKernel, sobelVerticalKernel)
