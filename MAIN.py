@@ -190,6 +190,7 @@ def detect_motion(frameCount):
                 cv2.rectangle(frame, (minX, minY), (maxX, maxY),
                               (0, 0, 255), 2)
 
+
         # update the background model and increment the total number
         # of frames read thus far
         md.update(gray)

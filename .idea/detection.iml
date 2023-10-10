@@ -4,8 +4,9 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/static" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/__oak_d_mapping_output" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.10 (base)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="oak" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="es-module-shims" level="application" />
     <orderEntry type="library" name="@types/three" level="application" />
